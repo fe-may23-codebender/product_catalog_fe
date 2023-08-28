@@ -11,10 +11,7 @@ type Props = Omit<LinkProps, 'to'> & {
 
 export const SearchLink: FC<Props> = (props) => {
   const {
-    children,
-    params,
-    className = '',
-    ...restProps
+    children, params, className = '', ...restProps
   } = props;
 
   const [searchParams] = useSearchParams();
