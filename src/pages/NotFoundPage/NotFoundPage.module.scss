@@ -10,7 +10,7 @@
   margin: 0 auto;
 
     &__Text {
-      @extend %h1-text-mobile;
+      // @extend %h1-text-mobile;
       color: $secondary-color;
       margin-top: 20px;
       margin-bottom: 100px;
@@ -37,7 +37,7 @@
       line-height: 75px;
 
         a {
-          @extend %buttonText;
+          // @extend %buttonText;
           display: block;
           color: #FFFFFF;
           width: 100%;
