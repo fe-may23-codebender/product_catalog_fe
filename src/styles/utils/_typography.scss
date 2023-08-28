@@ -1,26 +1,26 @@
 /* #region DESKTOP/TABLET HEADERS */
-%h1-text {
+@mixin h1-text {
   font-family: 'Mont Bold', sans-serif;
   font-size: 48px;
   line-height: 56px;
   letter-spacing: -0.01em;
 }
 
-%h2-text {
+@mixin h2-text {
   font-family: 'Mont Bold', sans-serif;
   font-size: 32px;
   line-height: 41px;
   letter-spacing: -0.01em;
 }
 
-%h3-text {
+@mixin h3-text {
   font-family: 'Mont Bold', sans-serif;
   font-size: 22px;
   line-height: 31px;
   letter-spacing: 0;
 }
 
-%h4-text {
+@mixin h4-text {
   font-family: 'Mont SemiBold', sans-serif;
   font-size: 20px;
   line-height: 26px;
@@ -29,28 +29,28 @@
 /* #endregion */
 
 /* #region MOBILE HEADERS */
-%h1-text-mobile {
+@mixin h1-text-mobile {
   font-family: 'Mont Bold', sans-serif;
   font-size: 32px;
   line-height: 41px;
   letter-spacing: -0.01em;
 }
 
-%h2-text-mobile {
+@mixin h2-text-mobile {
   font-family: 'Mont Bold', sans-serif;
   font-size: 22px;
   line-height: 31px;
   letter-spacing: 0;
 }
 
-%h3-text-mobile {
+@mixin h3-text-mobile {
   font-family: 'Mont SemiBold', sans-serif;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: 0;
 }
 
-%h4-text-mobile {
+@mixin h4-text-mobile {
   font-family: 'Mont SemiBold', sans-serif;
   font-size: 16px;
   line-height: 20px;
@@ -58,7 +58,7 @@
 }
 /* #endregion */
 
-%uppercaseText {
+@mixin uppercaseText {
   font-family: 'Mont Bold', sans-serif;
   font-size: 12px;
   line-height: 11px;
@@ -66,21 +66,21 @@
   text-transform: uppercase;
 }
 
-%buttonText {
+@mixin buttonText {
   font-family: 'Mont SemiBold', sans-serif;
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0;
 }
 
-%bodyText {
+@mixin bodyText {
   font-family: 'Mont Regular', sans-serif;
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0;
 }
 
-%smallText {
+@mixin smallText {
   font-family: 'Mont SemiBold', sans-serif;
   font-size: 12px;
   line-height: 15px;

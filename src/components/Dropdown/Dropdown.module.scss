@@ -31,7 +31,7 @@
 
 .label {
   display: block;
-  @extend %smallText;
+  @include smallText;
   color: $secondary-color;
   margin-bottom: 4px;
 }
@@ -44,7 +44,7 @@
   padding: 10px 12px;
   border: 1px solid $icons-color;
 
-  @extend %buttonText;
+  @include buttonText;
   color: $primary-color;
 
   cursor: pointer;
@@ -93,7 +93,7 @@
 }
 
 .listItem {
-  @extend %bodyText;
+  @include bodyText;
   color: $secondary-color;
   background-color: $white-color;
 
@@ -113,4 +113,3 @@
   height: 100%;
   color: inherit;
 }
-

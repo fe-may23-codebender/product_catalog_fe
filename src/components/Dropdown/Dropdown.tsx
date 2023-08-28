@@ -72,7 +72,7 @@ export const Dropdown: FC<Props> = (props) => {
       <button
         className={styles.trigger}
         type="button"
-        onClick={() => setIsActive(prevState => !prevState)}
+        onClick={() => setIsActive((prevState) => !prevState)}
       >
         <span className={styles.text}>{option}</span>
 
