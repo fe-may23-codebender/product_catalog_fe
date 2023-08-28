@@ -10,7 +10,7 @@ export const NotFound: React.FC = () => {
       Sorry, that page doesn't seem to exist.
     </p>
     <div className={styles.Container__Button}>
-      <a href="#">Start shopping</a>
+      <a href="/">Start shopping</a>
     </div>
   </div>
   );

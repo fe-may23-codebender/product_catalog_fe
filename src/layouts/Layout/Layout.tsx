@@ -1,9 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-type Props = {};
-
-export const Layout: FC<Props> = () => {
+export const Layout: FC = () => {
   return (
     <>
       <header>header</header>
