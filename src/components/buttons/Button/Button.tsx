@@ -2,8 +2,8 @@
 /* eslint-disable react/require-default-props */
 import { FC, ReactNode } from 'react';
 import cn from 'classnames';
-import { ButtonType, SearchParams } from '../../types';
-import { SearchLink } from '../SearchLink';
+import { ButtonType, SearchParams } from '../../../types';
+import { SearchLink } from '../../SearchLink';
 import styles from './Button.module.scss';
 
 type CommonProps = {
