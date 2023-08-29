@@ -4,7 +4,6 @@ import container from '../../styles/utils/container.module.scss';
 export const PhonePage = () => {
   return (
     <div className={styles.phonesPage}>
-
       <div className={container.limit}>
         <h2 className={styles.title}>Mobile phones</h2>
         <h3 className={styles.text}>95 models</h3>
