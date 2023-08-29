@@ -25,13 +25,11 @@ $item-container-desktop: 752px;
 
   &__Text {
     @include h1-text-mobile;
-    margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 32px;
     color: $primary-color;
 
     @include onTablet {
       @include h1-text;
-      margin-bottom: 100px;
     }
   }
 
