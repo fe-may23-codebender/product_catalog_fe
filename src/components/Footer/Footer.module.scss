@@ -1,0 +1,106 @@
+@import '../../styles/utils/index';
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  right: 0;
+  padding: 32px 16px;
+  margin: 0;
+  gap: 32px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 1px 0px $elements-color;
+
+  @include uppercaseText;
+
+  @include onTablet() {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 152px;
+  }
+
+  &__logo {
+    width: 70px;
+
+    @include onTablet() {
+      width: 80px;
+    }
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: $secondary-color;
+    text-transform: none;
+    gap: 16px;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.footer__nav {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+
+    @include onTablet() {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    list-style-type: none;
+
+    &:not(:first-child) {
+      margin: 0;
+      margin-top: 16px;
+    }
+
+    @include onTablet() {
+      &:not(:first-child) {
+        margin: 0;
+        margin-left: 16px;
+      }
+    }
+  }
+
+  &__link {
+    display: block;
+    align-items: center;
+    text-decoration: none;
+    color: $secondary-color;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: $white-color;
+  border: 1px solid $icons-color;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.button__up {
+  width: 16px;
+  height: 16px;
+  background-color: $white-color;
+  background: url('../../assets/icons/gray-arrows/arrow-up.svg') no-repeat;
+}
