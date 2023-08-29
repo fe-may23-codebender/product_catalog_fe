@@ -1,7 +1,7 @@
 import styles from './PhonesPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
 
-export const PhonePage = () => {
+export const PhonesPage = () => {
   return (
     <div className={styles.phonesPage}>
       <div className={container.limit}>

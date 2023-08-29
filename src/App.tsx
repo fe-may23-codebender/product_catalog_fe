@@ -1,18 +1,20 @@
 import { FC } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { PhonePage } from './pages/PhonesPage/PhonesPage';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { Layout } from './layouts/Layout';
+import { NotFound } from './pages/NotFoundPage';
+import { PhonesPage } from './pages/PhonesPage';
 
-type Props = {};
-
-export const App: FC<Props> = () => {
+export const App: FC = () => {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<h1>Home page</h1>} />
-        <Route path="phones" element={<PhonePage />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<h1>Home page</h1>} />
+        <Route path="home" element={<Navigate to="/" replace />} />
 
-        <Route path="*" element={<p>Page not found</p>} />
-      </Routes>
-    </div>
+        <Route path="phones" element={<PhonesPage />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 };
