@@ -10,40 +10,40 @@
   scroll-behavior: smooth;
   background-color: $white-color;
 
-    &__Text {
-      @include h1-text-mobile;
-      color: $secondary-color;
-      margin-top: 20px;
-      margin-bottom: 50px;
-      text-align: center;
+  &__Text {
+    @include h1-text-mobile;
+    color: $secondary-color;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    text-align: center;
 
-      @include onTablet {
-        @include h1-text;
-        margin-bottom: 100px;
-      }
+    @include onTablet {
+      @include h1-text;
+      margin-bottom: 100px;
     }
+  }
 
-    &__Button {
-      align-self: center;
-      width: 300px;
-      height: 75px;
+  &__Button {
+    align-self: center;
+    width: 300px;
+    height: 75px;
 
-      background-color: #313237;
-      color: #FFFFFF;
-      text-decoration: none;
-      text-align: center;
+    background-color: #313237;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    line-height: 75px;
+
+    a {
+      @include buttonText;
+      display: block;
+      color: #ffffff;
+      width: 100%;
       line-height: 75px;
-
-        a {
-          @include buttonText;
-          display: block;
-          color: #FFFFFF;
-          width: 100%;
-          line-height: 75px;
-        }
     }
+  }
 
-    img {
-      min-height: 50%;
-    }
+  img {
+    min-height: 50%;
+  }
 }
