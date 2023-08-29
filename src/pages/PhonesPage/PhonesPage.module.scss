@@ -1,0 +1,55 @@
+@use '../../styles/utils/' as *;
+
+.title {
+  color: $primary-color;
+  @include h2-text;
+
+  @include onTablet {
+    font-family: 'Mont Bold', sans-serif;
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.01em;
+  }
+ }
+
+ .text {
+  font-family: 'Mont SemiBold', sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0;
+  color: $secondary-color;
+ }
+
+.phonesPage {
+  background-color: $hover-bg-color;
+}
+
+.product {
+  background-color: $hover-bg-color;
+  justify-content: center;
+
+  @include pageGrid;
+  row-gap: 40px;
+
+  &__card {
+    height: 506px;
+    background-color: #091a6f;
+    grid-column: span 4;
+
+    @include onTablet {
+      grid-column: span 6;
+    }
+
+    @media screen and (min-width: 767px){
+      grid-column: span 4;
+    }
+
+    @include onDesctop {
+      grid-column: span 6;
+    }
+  }
+
+}
+
+
+

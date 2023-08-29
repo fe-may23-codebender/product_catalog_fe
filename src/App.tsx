@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { PhonePage } from './pages/PhonePage/PhonesPage';
+import { PhonePage } from './pages/PhonesPage/PhonesPage';
 
 type Props = {};
 
