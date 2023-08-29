@@ -1,0 +1,75 @@
+@use '../../styles/utils/index' as *;
+$item-container-mobile: 288px;
+$item-container-tablet: 592px;
+$item-container-desktop: 752px;
+
+.Container {
+  height: 100vh;
+  width: 100vw;
+  padding: 24px 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: $white-color;
+
+  @include onTablet {
+    padding: 40px 0;
+  }
+
+  &__Text {
+    @include h1-text-mobile;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    // text-align: center;
+    color: $secondary-color;
+
+    @include onTablet {
+      @include h1-text;
+      margin-bottom: 100px;
+    }
+  }
+
+  &__Content {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include onDesctop {
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+    }
+
+    &__ItemContainer {
+      margin: 0 auto;
+      width: 100%;
+
+      @include onDesctop {
+        width: $item-container-desktop;
+      }
+
+      &__CartItem {
+        margin: 0 auto;
+        background-color: aquamarine;
+        height: 128px;
+        max-width: $item-container-desktop;
+        margin-bottom: 16px;
+
+        @include onDesctop {
+          width: $item-container-desktop;
+        }
+      }
+    }
+
+    &__TotalContainer {
+      margin: 0 auto;
+      margin-top: 16px;
+      width: 100%;
+      max-width: $item-container-desktop;
+      height: 206px;
+      background-color: brown;
+
+      @include onDesctop {
+        width: 368px;
+        margin-top: 0;
+      }
+    }
+  }
+}
