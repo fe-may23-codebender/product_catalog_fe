@@ -1,0 +1,72 @@
+@use '../../styles/utils/' as *;
+
+.GridContainer {
+  @include pageGrid;
+  margin-top: 100px; // delete after adding slider block
+}
+.PhonesDetails {
+
+  &__title {
+    @include h2-text-mobile;
+    grid-column: 1 / -1;
+    color: $primary-color;
+    font-weight: 800;
+    line-height: 140%;
+
+  }
+}
+
+.About {
+  color: $primary-color;
+  grid-column: span 4;
+
+  @include onTablet {
+    grid-column: span 12;
+  }
+  &__title {
+    @include h3-text;
+    margin-bottom: 16px;
+  }
+
+
+
+  &__info {
+    @include h4-text-mobile;
+    margin-bottom: 16px;
+  }
+
+  &__text {
+    color:$secondary-color;
+    @include bodyText;
+    margin-bottom: 32px;
+  }
+}
+
+.TechInfo {
+  grid-column: span 4;
+
+  @include onTablet {
+    grid-column: span 12;
+  }
+
+  &__title {
+    @include h3-text;
+    margin-bottom: 16px;
+  }
+  &__characteristic {
+    @include bodyText;
+    color: $secondary-color;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__value {
+    color: $primary-color;
+  }
+}
+
+
+.line {
+  background-color: $elements-color;
+  margin-bottom: 30px;
+}

@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './layouts/Layout';
 import { NotFound } from './pages/NotFoundPage';
 import { PhonesPage } from './pages/PhonesPage';
+import { PhonesDetailsPage } from './pages/PhoneDetailsPage/PhoneDetailsPage';
 import { Cart } from './pages/Cart';
 
 export const App: FC = () => {
@@ -12,8 +13,11 @@ export const App: FC = () => {
         <Route index element={<h1>Home page</h1>} />
         <Route path="home" element={<Navigate to="/" replace />} />
 
-        <Route path="phones" element={<PhonesPage />} />
         <Route path="cart" element={<Cart />} />
+
+        <Route path="phones" element={<PhonesPage />}>
+          <Route path="phones/:productId" element={<PhonesDetailsPage />} />
+        </Route>
 
         <Route path="*" element={<NotFound />} />
       </Route>
