@@ -7,14 +7,11 @@ import { links } from '../Header/Header';
 import styles from './BurgerMenu.module.scss';
 
 type Props = {
-  isOpen: boolean,
-  toggleMenu: () => void,
+  isOpen: boolean;
+  toggleMenu: () => void;
 };
 
-export const BurgerMenu: React.FC<Props> = ({
-  isOpen,
-  toggleMenu,
-}) => {
+export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
   const [activeLink, setActiveLink] = useState<string>('');
 
   const handleLinkClick = (linkIndex: string) => {
@@ -40,11 +37,13 @@ export const BurgerMenu: React.FC<Props> = ({
 
       <nav className={styles.nav}>
         <ul className={styles.nav__list}>
-          {links.map(link => (
+          {links.map((link) => (
             <li key={link.title} className={styles.nav__item}>
               <Link
                 to={link.path}
-                className={`${styles.nav__link} ${activeLink === link.path ? styles.is_activeLink : ''}`}
+                className={`${styles.nav__link} ${
+                  activeLink === link.path ? styles.is_activeLink : ''
+                }`}
                 onClick={() => handleLinkClick(link.path)}
               >
                 {link.title}
@@ -59,28 +58,32 @@ export const BurgerMenu: React.FC<Props> = ({
           <span className={styles.menuButtons__quantity}>1</span>
           <Link
             to="/favourite"
-            className={activeLink === 'favourite' ? styles.is__activeButton : ''}
+            className={
+              activeLink === 'favourite' ? styles.is__activeButton : ''
+            }
             onClick={() => handleLinkClick('favourite')}
           >
             <div className={styles.menuButtons__link}>
-              <div className={`${styles.menuButtons__buttonLink} ${styles.menuButtons__buttonLink__favourite}`} />
+              <div
+                className={`${styles.menuButtons__buttonLink} ${styles.menuButtons__buttonLink__favourite}`}
+              />
             </div>
           </Link>
         </div>
 
         <div className={styles.menuButtons__button}>
-          <span className={styles.menuButtons__quantity}>
-            1
-          </span>
+          <span className={styles.menuButtons__quantity}>1</span>
           <Link
             to="/shopping_bag"
-            className={activeLink === 'shopping_bag' ? styles.is__activeButton : ''}
+            className={
+              activeLink === 'shopping_bag' ? styles.is__activeButton : ''
+            }
             onClick={() => handleLinkClick('shopping_bag')}
           >
-            <div
-              className={styles.menuButtons__link}
-            >
-              <div className={`${styles.menuButtons__buttonLink} ${styles.menuButtons__buttonLink__shopping_bag}`} />
+            <div className={styles.menuButtons__link}>
+              <div
+                className={`${styles.menuButtons__buttonLink} ${styles.menuButtons__buttonLink__shopping_bag}`}
+              />
             </div>
           </Link>
         </div>

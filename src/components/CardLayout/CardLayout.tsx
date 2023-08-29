@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './CardLayout.module.scss';
-import { AddToCard } from '../buttons/AddToCard';
-import { AddToFavourite } from '../buttons/AddToFavourite';
+import { AddToCard } from '../Buttons/AddToCard';
+import { AddToFavourite } from '../Buttons/AddToFavourite';
 
 type Props = {};
 
@@ -19,12 +19,8 @@ export const CardLayout: FC<Props> = () => {
         Apple iPhone 14 Pro 128GB Silver (MQ023)
       </h2>
       <div className={styles.card__price}>
-        <span className={styles.card__price__now}>
-          $999
-        </span>
-        <span className={styles.card__price__old}>
-          $1000
-        </span>
+        <span className={styles.card__price__now}>$999</span>
+        <span className={styles.card__price__old}>$1000</span>
       </div>
       <span className={styles.card__line} />
 
