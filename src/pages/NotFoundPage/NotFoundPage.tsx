@@ -7,7 +7,7 @@ export const NotFound: React.FC = () => {
     <div className={styles.Container}>
       <img src={NotFoundImg} alt="Not Found" className="" />
       <p className={styles.Container__Text}>
-        Sorry, that page doesn't seem to exist.
+        Sorry, that page doesn&apos;t seem to exist.
       </p>
       <div className={styles.Container__Button}>
         <a href="/">Start shopping</a>
