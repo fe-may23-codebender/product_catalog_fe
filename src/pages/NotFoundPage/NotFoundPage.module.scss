@@ -16,11 +16,11 @@
       text-align: center;
       color: $secondary-color;
 
-      @include onTablet {
-        @include h1-text;
-        margin-bottom: 100px;
-      }
+    @include onTablet {
+      @include h1-text;
+      margin-bottom: 100px;
     }
+  }
 
     &__Button {
       width: 300px;
@@ -41,7 +41,7 @@
         }
     }
 
-    img {
-      min-height: 50%;
-    }
+  img {
+    min-height: 50%;
+  }
 }

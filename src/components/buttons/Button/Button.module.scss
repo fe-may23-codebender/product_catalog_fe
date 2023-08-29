@@ -1,0 +1,32 @@
+@use '../../../styles/utils' as *;
+
+.container {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $icons-color;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+
+  &.disabled {
+    pointer-events: none;
+    color: $icons-color;
+    border-color: $elements-color;
+  }
+
+  &.selected {
+    border-color: transparent;
+    background-color: $primary-color;
+    color: $white-color;
+  }
+
+  &.element {
+    border-color: $elements-color;
+  }
+
+  &:not(.disabled, .selected) {
+    @include hover(border, 1px solid $primary-color !important);
+  }
+}

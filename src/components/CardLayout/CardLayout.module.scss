@@ -1,0 +1,89 @@
+@use '../../styles/utils/index' as *;
+
+.card {
+  display: flex;
+  width: 214px;
+  padding: 32px;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid $elements-color;
+  transition-duration: 1s;
+
+  &__title {
+    @include bodyText;
+    margin-block: 16px 0;
+  }
+
+  /* &:hover .card__title {
+    color: #ebbae5;
+  } */
+
+  &__photo {
+    margin: 0 auto;
+    display: block;
+    height: 129px;
+  }
+
+  @include onTablet {
+    width: 237px;
+
+    &__photo {
+      height: 202px;
+    }
+  }
+
+  @include onDesctop {
+    width: 272px;
+
+    &__photo {
+      height: 196px;
+    }
+
+    /* &:hover {
+      transform: scale(1.1);
+    } */
+  }
+
+  &__price {
+    display: flex;
+    gap: 8px;
+    @include h2-text-mobile;
+
+    &__old {
+      font-family: 'Mont Regular', sans-serif;
+      color: #89939a;
+      text-decoration-line: line-through;
+      text-decoration-color: invert;
+    }
+  }
+
+  &__line {
+    height: 1px;
+    width: 100%;
+    background-color: $elements-color;
+  }
+
+  &__characteristics {
+    @include smallText;
+    display: flex;
+    margin-block: 8px;
+    flex-direction: column;
+    letter-spacing: 0.7px;
+    gap: 8px;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+}
+
+.characteristic {
+  display: flex;
+  justify-content: space-between;
+}
+
+.characteristic :first-child {
+  color: $secondary-color;
+}

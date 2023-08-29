@@ -1,5 +1,41 @@
 @use '../../styles/utils/' as *;
 
-.phonesPage {
-  background-color: #e61b1b;
+.title {
+  color: $primary-color;
+  @include h2-text;
+
+  @include onTablet {
+    @include h1-text;
+  }
+}
+
+.text {
+  @include bodyText;
+  color: $secondary-color;
+}
+
+.product {
+  background-color: $hover-bg-color;
+  justify-content: center;
+
+  @include pageGrid;
+  row-gap: 40px;
+
+  &__card {
+    height: 506px;
+    background-color: #091a6f;
+    grid-column: span 4;
+
+    @include onTablet {
+      grid-column: span 6;
+    }
+
+    @media screen and (min-width: 767px) {
+      grid-column: span 4;
+    }
+
+    @include onDesctop {
+      grid-column: span 6;
+    }
+  }
 }

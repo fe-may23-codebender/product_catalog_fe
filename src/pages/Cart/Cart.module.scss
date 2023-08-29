@@ -6,21 +6,28 @@ $item-container-desktop: 752px;
 .Container {
   height: 100vh;
   width: 100vw;
-  padding: 24px 0;
+  padding-top: 24px;
+  padding-bottom: 24px;
   margin: 0 auto;
   box-sizing: border-box;
   background-color: $white-color;
+  overflow-y: auto;
 
   @include onTablet {
-    padding: 40px 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  &__Top {
+    @include smallText;
+    line-height: 17px;
   }
 
   &__Text {
     @include h1-text-mobile;
     margin-top: 20px;
     margin-bottom: 50px;
-    // text-align: center;
-    color: $secondary-color;
+    color: $primary-color;
 
     @include onTablet {
       @include h1-text;
@@ -31,45 +38,97 @@ $item-container-desktop: 752px;
   &__Content {
     display: grid;
     grid-template-columns: 1fr;
+    gap: 32px;
 
     @include onDesctop {
       grid-template-columns: 2fr 1fr;
       gap: 16px;
     }
+  }
+}
 
-    &__ItemContainer {
-      margin: 0 auto;
-      width: 100%;
+.BackLink {
+  color: $secondary-color;
+  display: inline-block;
+  width: 60px;
+}
 
-      @include onDesctop {
-        width: $item-container-desktop;
-      }
+.ItemContainer {
+  margin: 0 auto;
+  width: 100%;
 
-      &__CartItem {
-        margin: 0 auto;
-        background-color: aquamarine;
-        height: 128px;
-        max-width: $item-container-desktop;
-        margin-bottom: 16px;
+  @include onDesctop {
+    width: $item-container-desktop;
+  }
 
-        @include onDesctop {
-          width: $item-container-desktop;
-        }
-      }
+  &__CartItem {
+    margin: 0 auto;
+    background-color: aquamarine;
+    height: 128px;
+    max-width: $item-container-desktop;
+    margin-bottom: 16px;
+
+    @include onDesctop {
+      width: $item-container-desktop;
     }
 
-    &__TotalContainer {
-      margin: 0 auto;
-      margin-top: 16px;
-      width: 100%;
-      max-width: $item-container-desktop;
-      height: 206px;
-      background-color: brown;
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+  }
+}
 
-      @include onDesctop {
-        width: 368px;
-        margin-top: 0;
-      }
+.TotalContainer {
+  margin: 0 auto;
+  width: 100%;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  border: 1px solid $elements-color;
+  max-width: $item-container-desktop;
+  text-align: center;
+
+  @include onDesctop {
+    max-width: 368px;
+    height: 206px;
+    margin-top: 0;
+  }
+
+  &__Price {
+    border-bottom: 1px solid $elements-color;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+
+    &__Amount {
+      @include h2-text;
+      color: $primary-color;
+    }
+
+    &__Title {
+      @include bodyText;
+      color: $secondary-color;
+    }
+  }
+
+  &__Button {
+    @include buttonText;
+    height: 48px;
+    background-color: $primary-color;
+    width: 100%;
+    color: $white-color;
+
+    &:hover {
+      box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.40);
+    }
+
+    &:active {
+      color: $color-green;
+      background-color: $white-color;
+      border: 1px solid $elements-color;
     }
   }
 }
