@@ -80,7 +80,7 @@ export const Header: React.FC<Props> = () => {
 
           <div className={styles.navButtons__buttonShopping_bag}>
             <span className={styles.navButtons__quantity}>1</span>
-            <Link to="/shopping_bag">
+            <Link to="/cart">
               <div className={styles.navButtons__link}>
                 <div
                   className={`${styles.navButtons__buttonLink} ${styles.navButtons__buttonLink__shopping_bag}`}
