@@ -32,7 +32,7 @@ export const Breadcrumbs = () => {
         <div
           className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow}`}
         />
-        <Link to={pageLink} className={styles.breadcrumbs__link}>
+        <Link to={pageLink} className={styles.breadcrumbs__link} />
 
         <div className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow}`} />
         <Link

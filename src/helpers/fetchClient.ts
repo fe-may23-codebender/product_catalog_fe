@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const BASE_URL = '';
+const BASE_URL = 'https://codebender-catalog.onrender.com';
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
@@ -36,7 +36,4 @@ function request<T>(
 
 export const client = {
   get: <T>(url: string) => request<T>(url),
-  post: <T>(url: string, data: any) => request<T>(url, 'POST', data),
-  patch: <T>(url: string, data: any) => request<T>(url, 'PATCH', data),
-  delete: (url: string) => request(url, 'DELETE'),
 };
