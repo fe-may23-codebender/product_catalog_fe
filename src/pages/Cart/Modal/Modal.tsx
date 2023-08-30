@@ -23,9 +23,7 @@ export const Modal: React.FC<Props> = ({ onHandleModalClose }) => {
 
   return (
     <>
-      <div className={styles.ModalContainer}>
-        {}
-      </div>
+      <div className={styles.ModalContainer}>{}</div>
       <div className={styles.ModalWindow}>
         <button
           type="button"

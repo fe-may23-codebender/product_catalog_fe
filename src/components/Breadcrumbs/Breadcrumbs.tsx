@@ -18,6 +18,7 @@ export const Breadcrumbs = () => {
 
   if (path.length > 2) {
     productPath = path[2].split('-');
+
     productName = formatProductName(productPath);
   }
 
@@ -28,30 +29,21 @@ export const Breadcrumbs = () => {
           to="/"
           className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__home}`}
         />
-
         <div
           className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow}`}
         />
-        <Link to={pageLink} className={styles.breadcrumbs__link} />
 
         <div className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow}`} />
-        <Link
-          to={pageLink}
-          className={styles.breadcrumbs__link}
-        >
 
+        <Link to={pageLink} className={styles.breadcrumbs__link}>
           {pageName}
         </Link>
 
         {path.length > 2 && (
           <>
-
             <div
               className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow} `}
             />
-
-            <div className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow} `} />
-
             <div>{productName}</div>
           </>
         )}
