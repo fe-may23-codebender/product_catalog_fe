@@ -1,10 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getProductDescription, getProductInfo } from '../../api/products';
-import {
-  ProductDetails,
-  ProductCategory,
-} from '../../types';
+import { ProductDetails, ProductCategory } from '../../types';
 
 export interface ProductDetailsState {
   item: ProductDetails | null;
