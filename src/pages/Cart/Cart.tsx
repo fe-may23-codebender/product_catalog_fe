@@ -14,7 +14,6 @@ export const Cart: React.FC = () => {
 
   return (
     <>
-      {}
       {isModalOpened && <Modal onHandleModalClose={setIsModalOpened} />}
       <div className={`${container.limit} ${styles.Container}`}>
         <p className={styles.Container__Top}>
