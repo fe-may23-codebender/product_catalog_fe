@@ -5,14 +5,12 @@
   margin-top: 100px; // delete after adding slider block
 }
 .PhonesDetails {
-
   &__title {
     @include h2-text-mobile;
     grid-column: 1 / -1;
     color: $primary-color;
     font-weight: 800;
     line-height: 140%;
-
   }
 }
 
@@ -28,15 +26,13 @@
     margin-bottom: 16px;
   }
 
-
-
   &__info {
     @include h4-text-mobile;
     margin-bottom: 16px;
   }
 
   &__text {
-    color:$secondary-color;
+    color: $secondary-color;
     @include bodyText;
     margin-bottom: 32px;
   }
@@ -64,7 +60,6 @@
     color: $primary-color;
   }
 }
-
 
 .line {
   background-color: $elements-color;
