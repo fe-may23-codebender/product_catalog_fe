@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { Logo } from '../Logo/Logo';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
@@ -27,12 +27,15 @@ export const links = [
 type Props = {};
 
 export const Header: React.FC<Props> = () => {
-  const [activeLink, setActiveLink] = useState<number | null>(null);
+  // const [activeLink, setActiveLink] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLinkClick = (linkIndex: number) => {
-    setActiveLink(linkIndex);
-  };
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  // const handleLinkClick = (linkPath: string) => {
+  //   setActiveLink(linkPath);
+  // };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -46,14 +49,14 @@ export const Header: React.FC<Props> = () => {
 
           <nav className={styles.navigation}>
             <ul className={styles.navigation__list}>
-              {links.map((link, index) => (
+              {links.map((link) => (
                 <li key={link.title} className={styles.navigation__listItem}>
                   <Link
                     to={link.path}
                     className={`${styles.navigation__listLink} ${
-                      activeLink === index ? styles.is_active : ''
+                      currentPath === link.path ? styles.is_active : ''
                     }`}
-                    onClick={() => handleLinkClick(index)}
+                    // onClick={() => handleLinkClick(link.path)}
                   >
                     <p>{link.title}</p>
                   </Link>
