@@ -1,0 +1,115 @@
+@use '../../styles/utils/index' as *;
+
+.card {
+  display: flex;
+  width: 288px;
+  padding: 16px;
+  gap: 16px;
+  flex-direction: column;
+  border: 1px solid $elements-color;
+  transition-duration: 1s;
+
+  &__firstBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+
+  }
+
+  &__delete {
+    background-color: $white-color;
+    background-image: url('../../assets/icons/delete-button.svg');
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 16px;
+    width: 16px;
+  }
+
+  &__photo {
+    margin: 0 auto;
+    display: block;
+    height: 66px;
+    padding-inline: 11px;
+    padding-block: 6px;
+  }
+
+  &__title {
+    display: flex;
+    @include bodyText;
+    flex: 1 0 0;
+    width: 100%;
+  }
+
+  @include onTablet {
+    width: 592px;
+    padding: 24px;
+    gap: 24px;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__title {
+      width: 176px;
+    }
+  }
+
+  @include onDesctop {
+    width: 752px;
+
+    &__title {
+      width: 100%;
+    }
+
+   &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__secondBlock {
+    gap: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__button {
+    display: flex;
+    gap: 13px;
+
+    &__background {
+      background-color: $white-color;
+    }
+
+    &__count {
+      display: flex;
+      @include buttonText;
+      align-items: center;
+    }
+
+    &__plus {
+      background-image: url('../../assets/icons/plus.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 16px;
+      width: 16px;
+      padding: 8px;
+    }
+
+    &__minus {
+      background-image: url('../../assets/icons/minus.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 16px;
+      width: 16px;
+      padding: 8px;
+    }
+  }
+
+  &__price {
+    width: 80px;
+    text-align: right;
+    gap: 8px;
+    @include h2-text-mobile;
+  }
+}
