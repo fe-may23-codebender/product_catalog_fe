@@ -4,3 +4,4 @@ export * from './QeuryParams';
 export * from './ButtonType';
 export * from './PageSize';
 export * from './Breakpoint';
+export * from './ProductCategory';
