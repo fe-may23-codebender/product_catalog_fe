@@ -1,27 +1,21 @@
 /* eslint no-console: ["error", { allow: ["log", "error"] }] */
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import styles from './PhonesPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
 import { CardLayout } from '../../components/CardLayout';
 import { Dropdown } from '../../components/Dropdown';
 import { PageSize, QueryParams, SortField } from '../../types';
-import { Phone } from '../../types/Phone';
-import { getPhones } from '../../services/phones';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { selectProducts } from '../../redux/selectors';
+import { fecthProducts } from '../../redux/slices/productsSlice';
 
 export const PhonesPage: React.FC = () => {
-  const [phones, setPhones] = useState<Phone[]>([]);
+  const dispatch = useAppDispatch();
+  const { items } = useAppSelector(selectProducts);
 
   useEffect(() => {
-    getPhones()
-      .then((data) => {
-        setPhones(data);
-        console.log(phones);
-      })
-      .catch(() => {
-        console.log('oops');
-        // setErrorMessage(ErrorType.fetchTodo);
-      });
+    dispatch(fecthProducts());
   }, []);
 
   return (
@@ -29,7 +23,7 @@ export const PhonesPage: React.FC = () => {
       <div className={container.limit}>
         <Breadcrumbs />
         <h2 className={styles.title}>Mobile phones</h2>
-        <h3 className={styles.text}>95 models</h3>
+        <h3 className={styles.text}>{`${items.length} models`}</h3>
 
         <div className={styles.Sort}>
           <Dropdown
@@ -50,12 +44,13 @@ export const PhonesPage: React.FC = () => {
         </div>
 
         <div className={styles.product}>
-          <CardLayout />
-          <div className={styles.product__card} />
-          <div className={styles.product__card} />
-          <div className={styles.product__card} />
-          <div className={styles.product__card} />
-          <div className={styles.product__card} />
+          {items.map(item => (
+            <div className={styles.product__card} key={item.id}>
+              <CardLayout
+                item={item}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

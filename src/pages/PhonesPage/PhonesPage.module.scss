@@ -45,14 +45,13 @@
 }
 
 .product {
-  justify-content: center;
-
   @include pageGrid;
   row-gap: 40px;
 
   &__card {
-    height: 506px; //delete after implement product card
-    background-color: #091a6f; //delete after implement product card
+    display: grid;
+    align-self: center;
+    justify-self: center;
     grid-column: span 4;
 
     @include onTablet {
