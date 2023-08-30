@@ -49,7 +49,7 @@ export const Header: React.FC<Props> = () => {
 
           <nav className={styles.navigation}>
             <ul className={styles.navigation__list}>
-              {links.map((link) => (
+              {links.map(link => (
                 <li key={link.title} className={styles.navigation__listItem}>
                   <Link
                     to={link.path}
