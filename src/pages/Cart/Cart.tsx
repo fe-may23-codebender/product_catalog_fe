@@ -23,26 +23,16 @@ export const Cart: React.FC = () => {
             Back
           </Link>
         </p>
-        <h1 className={styles.Container__Text}>
-          Cart
-        </h1>
+        <h1 className={styles.Container__Text}>Cart</h1>
         <div className={styles.Container__Content}>
           <div className={styles.ItemContainer}>
-            <div className={styles.ItemContainer__CartItem}>
-              Item
-            </div>
-            <div className={styles.ItemContainer__CartItem}>
-              Item
-            </div>
-            <div className={styles.ItemContainer__CartItem}>
-              Item
-            </div>
+            <div className={styles.ItemContainer__CartItem}>Item</div>
+            <div className={styles.ItemContainer__CartItem}>Item</div>
+            <div className={styles.ItemContainer__CartItem}>Item</div>
           </div>
           <div className={styles.TotalContainer}>
             <div className={styles.TotalContainer__Price}>
-              <h2 className={styles.TotalContainer__Price__Amount}>
-                $2657
-              </h2>
+              <h2 className={styles.TotalContainer__Price__Amount}>$2657</h2>
               <p className={styles.TotalContainer__Price__Title}>
                 Total for 3 items
               </p>
