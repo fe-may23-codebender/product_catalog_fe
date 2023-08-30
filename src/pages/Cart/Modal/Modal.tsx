@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Modal.module.scss';
 import closeIcon from '../../../assets/icons/close.svg';
 import modaleImg from '../../../assets/images/success.svg';
@@ -7,6 +9,18 @@ type Props = {
 };
 
 export const Modal: React.FC<Props> = ({ onHandleModalClose }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const redirectTimeout = setTimeout(() => {
+      navigate('/');
+    }, 2000);
+
+    return () => {
+      clearTimeout(redirectTimeout);
+    };
+  }, []);
+
   return (
     <>
       <div className={styles.ModalContainer}>

@@ -53,20 +53,12 @@ $item-container-desktop: 752px;
   margin: 0 auto;
   width: 100%;
 
-  @include onDesctop {
-    width: $item-container-desktop;
-  }
-
   &__CartItem {
     margin: 0 auto;
     background-color: aquamarine;
     height: 128px;
     max-width: $item-container-desktop;
     margin-bottom: 16px;
-
-    @include onDesctop {
-      width: $item-container-desktop;
-    }
 
     &:nth-last-child(1) {
       margin-bottom: 0;

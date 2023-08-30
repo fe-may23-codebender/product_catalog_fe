@@ -77,7 +77,7 @@
       @include bodyText;
       color: $secondary-color;
       clip-path: inset(0 1.75ch 0 0);
-      animation: l 1.5s steps(4) infinite;
+      animation: l 1s steps(4) infinite;
     }
 
     @keyframes l {
