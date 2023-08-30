@@ -2,6 +2,7 @@
 /* eslint-disable react/require-default-props */
 import { FC, ReactNode } from 'react';
 import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 import { ButtonType, SearchParams } from '../../../types';
 import { SearchLink } from '../../SearchLink';
 import styles from './Button.module.scss';
@@ -11,6 +12,7 @@ type CommonProps = {
   iconPath?: string;
   onClick?: () => void;
   children?: ReactNode;
+  badge?: number;
 };
 
 type SearchLinkProps = {
@@ -18,11 +20,16 @@ type SearchLinkProps = {
   params: SearchParams;
 };
 
+type LinkProps = {
+  type: ButtonType.Link;
+  to: string;
+};
+
 type ButtonProps = {
   type: ButtonType.Button;
 };
 
-type Props = CommonProps & (ButtonProps | SearchLinkProps);
+type Props = CommonProps & (ButtonProps | SearchLinkProps | LinkProps);
 
 export const Button: FC<Props> = (props) => {
   const {
@@ -31,9 +38,10 @@ export const Button: FC<Props> = (props) => {
     onClick = () => {},
     iconPath = '',
     children,
+    badge = 0,
   } = props;
 
-  const buttonClassnames = cn(styles.container, className);
+  const buttonClassnames = cn(styles.container, className as string);
 
   const commonProps = {
     className: buttonClassnames,
@@ -41,7 +49,13 @@ export const Button: FC<Props> = (props) => {
   };
 
   const componentChildren = (
-    <>{iconPath ? <img src={props.iconPath} alt="icon" /> : children}</>
+    <div className={styles.content}>
+      {iconPath ? <img src={props.iconPath} alt="icon" /> : children}
+
+      {badge > 0 && (
+        <span className={styles.badge}>{badge <= 99 ? badge : '99+'}</span>
+      )}
+    </div>
   );
 
   if (type === ButtonType.Search) {
@@ -49,6 +63,14 @@ export const Button: FC<Props> = (props) => {
       <SearchLink params={props.params} {...commonProps}>
         {componentChildren}
       </SearchLink>
+    );
+  }
+
+  if (type === ButtonType.Link) {
+    return (
+      <NavLink to={props.to} {...commonProps}>
+        {componentChildren}
+      </NavLink>
     );
   }
 

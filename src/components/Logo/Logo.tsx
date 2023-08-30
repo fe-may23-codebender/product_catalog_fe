@@ -1,15 +1,13 @@
 import { Link } from 'react-router-dom';
-import styles from './Logo.module.scss';
 
-type Props = {};
+import logo from '../../assets/icons/logo.svg';
 
-export const Logo: React.FC<Props> = () => {
-  return (
-    <div className={styles.logo}>
-      <Link to="/" className={styles.logo_link}>
-        <div className={styles.logo__text} />
-        <div className={styles.logo__emoji} />
-      </Link>
-    </div>
-  );
+type Props = {
+  className?: string;
 };
+
+export const Logo: React.FC<Props> = ({ className = '' }) => (
+  <Link to="/" className={className}>
+    <img src={logo} alt="Nice gadgets" />
+  </Link>
+);
