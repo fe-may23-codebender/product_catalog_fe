@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './CardLayout.module.scss';
-import { AddToCard } from '../Buttons/AddToCard';
-import { AddToFavourite } from '../Buttons/AddToFavourite';
+import { AddToCard } from '../buttons/AddToCard';
+import { AddToFavourite } from '../buttons/AddToFavourite';
 
 type Props = {};
 
