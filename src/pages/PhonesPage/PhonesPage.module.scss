@@ -22,8 +22,8 @@
   row-gap: 40px;
 
   &__card {
-    height: 506px;
-    background-color: #091a6f;
+    height: 506px; //delete after implement product card
+    background-color: #091a6f; //delete after implement product card
     grid-column: span 4;
 
     @include onTablet {
