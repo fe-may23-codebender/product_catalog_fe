@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
 import styles from './PhoneDetailsPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
+import { ProductDescription } from '../../types';
 
 export const PhonesDetailsPage = () => {
-  const description: any [] = []; // delete after
+  const description: ProductDescription[] = []; // delete after
 
   return (
     <div className={styles.PhonesDetails}>
