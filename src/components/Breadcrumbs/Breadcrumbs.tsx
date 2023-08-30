@@ -13,7 +13,7 @@ export const Breadcrumbs = () => {
   if (path.length > 2) {
     productPath = path[2].split('-');
     productName = productPath
-      .map(el => {
+      .map((el) => {
         let element = '';
 
         if (el === 'iphone') {
@@ -37,7 +37,9 @@ export const Breadcrumbs = () => {
             to="/"
             className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__home}`}
           />
-          <div className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow}`} />
+          <div
+            className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow}`}
+          />
           <Link
             to={`/${pageName.toLocaleLowerCase()}`}
             className={styles.breadcrumbs__link}
@@ -47,7 +49,9 @@ export const Breadcrumbs = () => {
 
           {path.length > 2 && (
             <>
-              <div className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow} `} />
+              <div
+                className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow} `}
+              />
               <div>{productName}</div>
             </>
           )}
