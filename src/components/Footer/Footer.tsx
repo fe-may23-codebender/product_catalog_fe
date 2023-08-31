@@ -1,8 +1,13 @@
+/* eslint-disable max-len */
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo/Logo';
 import container from '../../styles/utils/container.module.scss';
 import styles from './Footer.module.scss';
+import { Button } from '../Buttons/Button';
+import { ButtonType } from '../../types';
+
+import arrow_up from '../../assets/icons/black-arrows/arrow-up.svg';
 
 const footerLinks = [
   {
@@ -45,9 +50,11 @@ export const Footer = () => {
 
         <button type="button" className={styles.footer__button} onClick={goUp}>
           <span className={styles.footer__button__text}>Back to top</span>
-          <div className={styles.footer__button__arrow}>
-            <div className={styles.footer__button__arrow__up} />
-          </div>
+          <Button
+            type={ButtonType.Button}
+            iconPath={arrow_up}
+            className={cn(styles.footer__button__arrow, styles.footer__button__arrow__up)}
+          />
         </button>
       </div>
     </footer>
