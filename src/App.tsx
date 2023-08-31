@@ -5,12 +5,13 @@ import { NotFound } from './pages/NotFoundPage';
 import { PhonesPage } from './pages/PhonesPage';
 import { Cart } from './pages/Cart';
 import { PhonesDetailsPage } from './pages/PhoneDetailsPage/PhoneDetailsPage';
+import { HomePage } from './pages/HomePage/HomePage';
 
 export const App: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<h1>Home page</h1>} />
+        <Route index element={<HomePage />} />
         <Route path="home" element={<Navigate to="/" replace />} />
 
         <Route path="cart" element={<Cart />} />

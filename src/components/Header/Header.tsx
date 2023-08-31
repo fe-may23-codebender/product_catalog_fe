@@ -8,7 +8,7 @@ import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { ButtonType, ProductCategory } from '../../types';
 import { FavoriteLink } from '../FavoriteLink';
 import { CartLink } from '../CartLink';
-import { Button } from '../Buttons/Button';
+import { Button } from '../buttons/Button';
 
 import styles from './Header.module.scss';
 import burger from '../../assets/icons/burger-menu.svg';
