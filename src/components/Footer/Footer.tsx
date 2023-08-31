@@ -1,8 +1,13 @@
+/* eslint-disable max-len */
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo/Logo';
 import container from '../../styles/utils/container.module.scss';
 import styles from './Footer.module.scss';
+import { Button } from '../Buttons/Button';
+import { ButtonType } from '../../types';
+
+import arrow_up from '../../assets/icons/black-arrows/arrow-up.svg';
 
 const footerLinks = [
   {
@@ -15,7 +20,11 @@ const footerLinks = [
 
 export const Footer = () => {
   function goUp() {
-    window.scrollTo(0, 0);
+    document.querySelector('body')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    });
   }
 
   return (
@@ -41,12 +50,17 @@ export const Footer = () => {
           </ul>
         </div>
 
-        <div className={styles.footer__button}>
+        <button type="button" className={styles.footer__button} onClick={goUp}>
           <span className={styles.footer__button__text}>Back to top</span>
-          <button type="button" className={styles.button} onClick={goUp}>
-            <div className={styles.button__up} />
-          </button>
-        </div>
+          <Button
+            type={ButtonType.Button}
+            iconPath={arrow_up}
+            className={cn(
+              styles.footer__button__arrow,
+              styles.footer__button__arrow__up,
+            )}
+          />
+        </button>
       </div>
     </footer>
   );

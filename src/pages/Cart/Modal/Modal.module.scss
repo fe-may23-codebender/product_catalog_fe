@@ -10,6 +10,7 @@
   background-color: $secondary-color;
   opacity: 0.5;
   overflow: hidden;
+  z-index: 3;
 }
 
 .ModalWindow {
@@ -22,6 +23,7 @@
   background-color: $white-color;
   border-radius: 10px;
   box-shadow: 2px 4px 20px;
+  z-index: 4;
 
   @include onTablet {
     width: 450px;

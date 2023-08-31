@@ -35,8 +35,6 @@ export const Breadcrumbs: FC<Props> = ({ className = '' }) => {
         className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__home}`}
       />
 
-      <Link to={pageLink} className={styles.breadcrumbs__link} />
-
       <div
         className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow}`}
       />

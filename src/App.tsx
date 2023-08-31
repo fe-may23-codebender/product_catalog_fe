@@ -6,12 +6,13 @@ import { ProductsPage } from './pages/ProductsPage';
 import { Cart } from './pages/Cart';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { ProductCategory } from './types';
+import { HomePage } from './pages/HomePage';
 
 export const App: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<h1>Home page</h1>} />
+        <Route index element={<HomePage />} />
         <Route path="home" element={<Navigate to="/" replace />} />
 
         {Object.values(ProductCategory).map((category) => (
