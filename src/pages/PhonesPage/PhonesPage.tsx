@@ -1,6 +1,7 @@
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import styles from './PhonesPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
+import { CardLayout } from '../../components/CardLayout';
 
 export const PhonesPage = () => {
   return (
@@ -13,11 +14,21 @@ export const PhonesPage = () => {
         <div>DROPDOWN</div>
 
         <div className={styles.product}>
-          <div className={styles.product__card} />
-          <div className={styles.product__card} />
-          <div className={styles.product__card} />
-          <div className={styles.product__card} />
-          <div className={styles.product__card} />
+          <div className={styles.product__card}>
+            <CardLayout />
+          </div>
+          <div className={styles.product__card}>
+            <CardLayout />
+          </div>
+          <div className={styles.product__card}>
+            <CardLayout />
+          </div>
+          <div className={styles.product__card}>
+            <CardLayout />
+          </div>
+          <div className={styles.product__card}>
+            <CardLayout />
+          </div>
         </div>
       </div>
     </div>

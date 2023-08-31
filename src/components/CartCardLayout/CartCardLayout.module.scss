@@ -2,12 +2,12 @@
 
 .card {
   display: flex;
-  width: 288px;
   padding: 16px;
   gap: 16px;
   flex-direction: column;
   border: 1px solid $elements-color;
-  transition-duration: 1s;
+  background-color: $white-color;
+  transition-duration: 0.5s;
 
   &__firstBlock {
     display: flex;
@@ -25,6 +25,16 @@
     background-position: center center;
     height: 16px;
     width: 16px;
+    transition-duration: 0.3s;
+
+    &:hover {
+      transform: scale(1.3);
+      background-image: url('../../assets/icons/close.svg');
+    }
+
+    &:active {
+      transform: scale(1.15);
+    }
   }
 
   &__photo {
@@ -43,7 +53,6 @@
   }
 
   @include onTablet {
-    width: 592px;
     padding: 24px;
     gap: 24px;
     flex-direction: row;
@@ -55,14 +64,13 @@
   }
 
   @include onDesctop {
-    width: 752px;
 
     &__title {
       width: 100%;
     }
 
-   &:hover {
-      transform: scale(1.1);
+    &:hover {
+      transform: scale(1.02);
     }
   }
 
@@ -77,31 +85,14 @@
     display: flex;
     gap: 13px;
 
-    &__background {
-      background-color: $white-color;
-    }
-
     &__count {
       display: flex;
       @include buttonText;
       align-items: center;
     }
 
+    &__minus,
     &__plus {
-      background-image: url('../../assets/icons/plus.svg');
-      background-repeat: no-repeat;
-      background-position: center center;
-      height: 16px;
-      width: 16px;
-      padding: 8px;
-    }
-
-    &__minus {
-      background-image: url('../../assets/icons/minus.svg');
-      background-repeat: no-repeat;
-      background-position: center center;
-      height: 16px;
-      width: 16px;
       padding: 8px;
     }
   }
