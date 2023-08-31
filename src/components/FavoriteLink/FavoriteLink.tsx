@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import { FC } from 'react';
 import { ButtonType } from '../../types';
-import { Button } from '../Buttons/Button';
+import { Button } from '../buttons/Button';
 
 import favorite from '../../assets/icons/like-button.svg';
 

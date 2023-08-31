@@ -3,7 +3,7 @@ import styles from './PhoneDetailsPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
 
 export const PhonesDetailsPage = () => {
-  const description: any [] = []; // delete after
+  const description: any[] = []; // delete after
 
   return (
     <div className={styles.PhonesDetails}>
