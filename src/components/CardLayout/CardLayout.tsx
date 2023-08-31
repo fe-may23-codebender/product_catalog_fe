@@ -14,7 +14,7 @@ type Props = {
 export const CardLayout: FC<Props> = ({ item, className = '' }) => {
   return (
     <article className={cn(styles.card, className)}>
-      <Link to="/phones">
+      <Link to={`../${item.category}/${item.itemId}`}>
         <img
           className={styles.card__photo}
           src={`/product_catalog_fe/${item.image}`}

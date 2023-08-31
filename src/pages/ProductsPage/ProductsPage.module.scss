@@ -14,6 +14,14 @@
   }
 }
 
+.breadcrumbs {
+  grid-column: 1 / -1;
+}
+
+.loader {
+  @include centering-xy;
+}
+
 .dropdowns {
   grid-column: span 4;
   display: grid;
@@ -24,10 +32,6 @@
 
   @include onTablet {
     grid-template-columns: repeat(7, 1fr);
-  }
-
-  @include onDesctop {
-    gap: 0;
     grid-column: span 7;
   }
 }
@@ -50,24 +54,27 @@
   grid-column: 1 / -1;
 }
 
-.product {
+.pagination {
   grid-column: 1 / -1;
-  @include pageGrid;
-  row-gap: 40px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
 
-  &__card {
-    grid-column: span 4;
+.NoResults {
+  margin-block: 30px;
+  grid-column: 1 / -1;
 
-    @include onTablet {
-      grid-column: span 6;
-    }
+  @include onDesctop {
+    margin-top: 120px;
+  }
+}
 
-    @media screen and (min-width: 767px) {
-      grid-column: span 4;
-    }
+.NoResultsText {
+  text-align: center;
 
-    @include onDesctop {
-      grid-column: span 6;
-    }
+  @include h2-text-mobile;
+
+  @include onTablet {
+    @include h2-text;
   }
 }

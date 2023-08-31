@@ -39,7 +39,7 @@ export const Pagination: FC<Props> = (props) => {
 
   const pageNumbers = useMemo(() => {
     return getPageNumbers(breakpoint, pageCount, currentPage, visiblePages);
-  }, [breakpoint, currentPage]);
+  }, [breakpoint, currentPage, perPage, total]);
 
   const prevBtnIsDisabled = currentPage <= 1;
   const nextBtnIsDisabled = currentPage >= pageCount;

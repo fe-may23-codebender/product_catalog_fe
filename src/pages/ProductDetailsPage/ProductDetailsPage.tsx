@@ -1,13 +1,13 @@
 /* eslint-disable max-len */
-import styles from './PhoneDetailsPage.module.scss';
+import styles from './ProductDetailsPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
 import { ProductDescription } from '../../types';
 
-export const PhonesDetailsPage = () => {
+export const ProductDetailsPage = () => {
   const description: ProductDescription[] = []; // delete after
 
   return (
-    <div className={styles.PhonesDetails}>
+    <div className={styles.ProductDetails}>
       <div className={container.limit}>
         <h2 className={styles.PhonesDetails__title}>
           Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
