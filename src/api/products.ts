@@ -6,8 +6,10 @@ import {
   ProductInfo,
 } from '../types';
 
-export const getProducts = () => {
-  return client.get<Product[]>('/products');
+export const getProducts = (searchParams = '') => {
+  const normalizedSearch = searchParams ? `?${searchParams}` : '';
+
+  return client.get<Product[]>(`/products${normalizedSearch}`);
 };
 
 export const getProductInfo = (

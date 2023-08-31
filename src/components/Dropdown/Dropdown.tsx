@@ -1,6 +1,7 @@
 /* eslint-disable react/require-default-props */
 import { FC, useState, useRef } from 'react';
 import cn from 'classnames';
+import { capitalize } from 'lodash';
 import { SearchLink } from '../SearchLink';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { SearchParams } from '../../types';
@@ -74,7 +75,7 @@ export const Dropdown: FC<Props> = (props) => {
         type="button"
         onClick={() => setIsActive((prevState) => !prevState)}
       >
-        <span className={styles.text}>{option}</span>
+        <span className={styles.text}>{capitalize(option)}</span>
 
         <div className={styles.icons}>
           <img

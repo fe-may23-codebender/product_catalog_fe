@@ -2,9 +2,10 @@ import { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './layouts/Layout';
 import { NotFound } from './pages/NotFoundPage';
-import { PhonesPage } from './pages/PhonesPage';
+import { ProductsPage } from './pages/ProductsPage';
 import { Cart } from './pages/Cart';
-import { PhonesDetailsPage } from './pages/PhoneDetailsPage/PhoneDetailsPage';
+import { ProductDetailsPage } from './pages/ProductDetailsPage';
+import { ProductCategory } from './types';
 
 export const App: FC = () => {
   return (
@@ -13,11 +14,20 @@ export const App: FC = () => {
         <Route index element={<h1>Home page</h1>} />
         <Route path="home" element={<Navigate to="/" replace />} />
 
-        <Route path="cart" element={<Cart />} />
+        {Object.values(ProductCategory).map((category) => (
+          <Route
+            key={category}
+            path={category}
+            element={<ProductsPage productCategory={category} />}
+          >
+            <Route
+              path={`${category}/:productId`}
+              element={<ProductDetailsPage />}
+            />
+          </Route>
+        ))}
 
-        <Route path="phones" element={<PhonesPage />}>
-          <Route path="phones/:productId" element={<PhonesDetailsPage />} />
-        </Route>
+        <Route path="cart" element={<Cart />} />
 
         <Route path="*" element={<NotFound />} />
       </Route>
