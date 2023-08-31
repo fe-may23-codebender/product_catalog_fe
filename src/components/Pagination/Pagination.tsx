@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import { FC, useMemo } from 'react';
 import cn from 'classnames';
-import { Button } from '../buttons/Button';
+import { Button } from '../Buttons/Button';
 import { ButtonType, PageSize, QueryParams } from '../../types';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { getPageNumbers } from '../../helpers/getPageNumbers';

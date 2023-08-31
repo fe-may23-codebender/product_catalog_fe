@@ -24,6 +24,7 @@
     &__list {
       display: flex;
       flex-direction: column;
+      gap: 16px;
 
       @include onTablet() {
         flex-direction: row;

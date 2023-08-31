@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import { FC } from 'react';
 import { ButtonType } from '../../types';
-import { Button } from '../buttons/Button';
+import { Button } from '../Buttons/Button';
 
 import basket from '../../assets/icons/shopping-bag.svg';
 

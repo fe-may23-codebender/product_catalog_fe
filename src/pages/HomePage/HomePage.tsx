@@ -18,7 +18,7 @@ import 'swiper/css/pagination';
 import styles from './HomePage.module.scss';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { Breakpoint, ButtonType } from '../../types';
-import { Button } from '../../components/buttons/Button';
+import { Button } from '../../components/Buttons/Button';
 import arrowLeft from '../../assets/icons/black-arrows/arrow-left.svg';
 import arrowRight from '../../assets/icons/black-arrows/arrow-right.svg';
 

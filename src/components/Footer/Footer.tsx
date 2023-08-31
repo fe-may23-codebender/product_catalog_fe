@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Logo } from '../Logo/Logo';
 import container from '../../styles/utils/container.module.scss';
 import styles from './Footer.module.scss';
-import { Button } from '../Buttons/Button/Button';
+import { Button } from '../Buttons/Button';
 import { ButtonType } from '../../types';
 
 import arrow_up from '../../assets/icons/black-arrows/arrow-up.svg';
