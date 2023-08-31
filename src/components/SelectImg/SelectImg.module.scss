@@ -10,25 +10,25 @@
       flex-direction: column;
     }
   }
-  
+
   &__item {
-  position: relative;
-  width: 51px;
-  height: 49px;
-  border: 1px solid $icons-color;
-  background-color: $white-color;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: relative;
+    width: 51px;
+    height: 49px;
+    border: 1px solid $icons-color;
+    background-color: $white-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  &:hover {
-    border-color: $primary-color;
-  }
+    &:hover {
+      border-color: $primary-color;
+    }
 
-  &__img {
-    position: absolute;
-    height: 40px;
-  }
+    &__img {
+      position: absolute;
+      height: 40px;
+    }
   }
 }
 

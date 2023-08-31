@@ -20,9 +20,7 @@ const footerLinks = [
 
 export const Footer = () => {
   function goUp() {
-    document.querySelector('body')?.scrollIntoView({
-      behavior: 'smooth', block: 'end', inline: 'nearest',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   return (
@@ -53,7 +51,10 @@ export const Footer = () => {
           <Button
             type={ButtonType.Button}
             iconPath={arrow_up}
-            className={cn(styles.footer__button__arrow, styles.footer__button__arrow__up)}
+            className={cn(
+              styles.footer__button__arrow,
+              styles.footer__button__arrow__up,
+            )}
           />
         </button>
       </div>

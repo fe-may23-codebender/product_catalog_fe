@@ -1,7 +1,7 @@
 /* eslint-disable react/require-default-props */
 import { FC, useMemo } from 'react';
 import cn from 'classnames';
-import { Button } from '../buttons/Button';
+import { Button } from '../Buttons/Button';
 import { ButtonType, PageSize, QueryParams } from '../../types';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { getPageNumbers } from '../../helpers/getPageNumbers';
@@ -39,7 +39,7 @@ export const Pagination: FC<Props> = (props) => {
 
   const pageNumbers = useMemo(() => {
     return getPageNumbers(breakpoint, pageCount, currentPage, visiblePages);
-  }, [breakpoint, currentPage]);
+  }, [breakpoint, currentPage, perPage, total]);
 
   const prevBtnIsDisabled = currentPage <= 1;
   const nextBtnIsDisabled = currentPage >= pageCount;

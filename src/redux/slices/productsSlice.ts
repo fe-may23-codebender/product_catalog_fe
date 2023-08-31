@@ -22,9 +22,12 @@ const initialState: ProductsState = {
   },
 };
 
-export const fecthProducts = createAsyncThunk('products/fetch', () => {
-  return getProducts();
-});
+export const fecthProducts = createAsyncThunk(
+  'products/fetch',
+  ({ searchParams }: { searchParams?: string }) => {
+    return getProducts(searchParams);
+  },
+);
 
 export const productsSlice = createSlice({
   name: 'products',

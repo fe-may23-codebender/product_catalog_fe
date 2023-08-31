@@ -40,13 +40,13 @@ export const SelectImg = () => {
   return (
     <>
       <ul className={styles.select__list}>
-        {images.map(image => (
-          <li
-            key={image.id}
-          >
+        {images.map((image) => (
+          <li key={image.id}>
             <button
               type="button"
-              className={`${styles.select__item} ${activeImg === image.id ? styles.is__active : ''}`}
+              className={`${styles.select__item} ${
+                activeImg === image.id ? styles.is__active : ''
+              }`}
               onClick={() => selectActiveImg(image.id)}
             >
               <img

@@ -27,7 +27,7 @@ const generatePageNumbers = (
 
     pages.push(
       {
-        link: pages[pages.length - 1].link,
+        link: pages[pages.length - 1].link + 1,
         label: '...',
       },
       {
