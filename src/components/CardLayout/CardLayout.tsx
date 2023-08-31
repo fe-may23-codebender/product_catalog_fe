@@ -1,58 +1,53 @@
 import { FC } from 'react';
+import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import { AddToCard } from '../Buttons/AddToCard';
-import { Button } from '../Buttons/Button';
-import { ButtonType } from '../../types';
+import { AddToCartButton } from '../Buttons/AddToCartButton';
+import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
+import { Product } from '../../types';
 import styles from './CardLayout.module.scss';
 
-import favourite from '../../assets/icons/like-button.svg';
-
 type Props = {
-  item: Product,
+  className?: string;
+  item: Product;
 };
 
-export const CardLayout: FC<Props> = ({ item }) => {
+export const CardLayout: FC<Props> = ({ item, className = '' }) => {
   return (
-    <div className={styles.card}>
+    <article className={cn(styles.card, className)}>
       <Link to="/phones">
         <img
           className={styles.card__photo}
-          src={`/${item.image}`}
+          src={`/product_catalog_fe/${item.image}`}
           alt={item.name}
         />
       </Link>
-      <h2 className={styles.card__title}>
-        {item.name}
-      </h2>
+
+      <h2 className={styles.card__title}>{item.name}</h2>
+
       <div className={styles.card__price}>
-        <span className={styles.card__price__now}>{item.price}</span>
-        <span className={styles.card__price__old}>{item.fullPrice}</span>
+        <span className={styles.card__price__now}>{`$${item.price}`}</span>
+        <span className={styles.card__price__old}>{`$${item.fullPrice}`}</span>
       </div>
       <span className={styles.card__line} />
 
       <ul className={styles.card__characteristics}>
         <li className={styles.characteristic}>
-          <div>Screen</div>
-          <div>{item.screen}</div>
+          <span className={styles.characteristicTitle}>Screen</span>
+          <span className={styles.characteristicValue}>{item.screen}</span>
         </li>
         <li className={styles.characteristic}>
-          <div>Capacity</div>
-          <div>{item.capacity}</div>
+          <span className={styles.characteristicTitle}>Capacity</span>
+          <span className={styles.characteristicValue}>{item.capacity}</span>
         </li>
         <li className={styles.characteristic}>
-          <div>RAM</div>
-          <div>{item.ram}</div>
+          <span className={styles.characteristicTitle}>RAM</span>
+          <span className={styles.characteristicValue}>{item.ram}</span>
         </li>
       </ul>
-      <div className={styles.card__button}>
-        <AddToCard />
-        <Button
-          iconPath={favourite}
-          className={styles.card__button__favourite}
-          onClick={() => {}}
-          type={ButtonType.Button}
-        />
+      <div className={styles.card__buttons}>
+        <AddToCartButton className={styles.buttonCart} />
+        <AddToFavoriteButton className={styles.buttonFavorite} />
       </div>
-    </div>
+    </article>
   );
 };

@@ -1,27 +1,24 @@
-@use '../../../styles/utils/index' as *;
+@use '../../../styles/utils' as *;
 
 .addToCard {
-  height: 40px;
   display: flex;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
-  flex: 1 0 0;
-  cursor: pointer;
   color: $white-color;
   background-color: $primary-color;
-  border: black 1px solid;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
   @include buttonText;
-  transition-duration: 0.5s;
 
   &:hover {
-    box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+    box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
   }
 
-  &:active {
+  .active {
     color: $color-green;
     background-color: $white-color;
     border: 1px solid $elements-color;
   }
-
 }
