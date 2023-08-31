@@ -29,9 +29,11 @@ export const Breadcrumbs = () => {
           to="/"
           className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__home}`}
         />
+
         <div
           className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow}`}
         />
+
         <Link to={pageLink} className={styles.breadcrumbs__link}>
           {pageName}
         </Link>

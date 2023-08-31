@@ -1,6 +1,11 @@
 @use '../../styles/utils/' as *;
 
+.productsContainer {
+  @include pageGrid;
+}
+
 .title {
+  grid-column: 1 / -1;
   color: $primary-color;
   @include h2-text;
 
@@ -9,20 +14,48 @@
   }
 }
 
+.dropdowns {
+  grid-column: span 4;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 40px;
+  margin-bottom: 24px;
+  gap: 16px;
+
+  @include onTablet {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  @include onDesctop {
+    gap: 0;
+    grid-column: span 7;
+  }
+}
+
+.dropdown {
+  grid-column: span 2;
+
+  @include onTablet {
+    grid-column: span 3;
+
+    &-wide {
+      grid-column: span 4;
+    }
+  }
+}
+
 .text {
   @include bodyText;
   color: $secondary-color;
+  grid-column: 1 / -1;
 }
 
 .product {
-  justify-content: center;
-
+  grid-column: 1 / -1;
   @include pageGrid;
   row-gap: 40px;
 
   &__card {
-    height: 506px; //delete after implement product card
-    background-color: #091a6f; //delete after implement product card
     grid-column: span 4;
 
     @include onTablet {

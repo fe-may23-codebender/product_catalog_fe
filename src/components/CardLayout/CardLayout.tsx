@@ -1,47 +1,53 @@
 import { FC } from 'react';
+import cn from 'classnames';
+import { Link } from 'react-router-dom';
+import { AddToCartButton } from '../Buttons/AddToCartButton';
+import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
+import { Product } from '../../types';
 import styles from './CardLayout.module.scss';
-import { AddToCard } from '../buttons/AddToCard';
-import { AddToFavourite } from '../buttons/AddToFavourite';
 
-type Props = {};
+type Props = {
+  className?: string;
+  item: Product;
+};
 
-export const CardLayout: FC<Props> = () => {
+export const CardLayout: FC<Props> = ({ item, className = '' }) => {
   return (
-    <div className={styles.card}>
-      <img
-        className={styles.card__photo}
-        // eslint-disable-next-line max-len
-        src="https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/img/phones/apple-iphone-11-pro-max/gold/00.jpg"
-        alt="Apple iPhone 14 Pro 128GB Silver (MQ023)"
-      />
+    <article className={cn(styles.card, className)}>
+      <Link to="/phones">
+        <img
+          className={styles.card__photo}
+          src={`/product_catalog_fe/${item.image}`}
+          alt={item.name}
+        />
+      </Link>
 
-      <h2 className={styles.card__title}>
-        Apple iPhone 14 Pro 128GB Silver (MQ023)
-      </h2>
+      <h2 className={styles.card__title}>{item.name}</h2>
+
       <div className={styles.card__price}>
-        <span className={styles.card__price__now}>$999</span>
-        <span className={styles.card__price__old}>$1000</span>
+        <span className={styles.card__price__now}>{`$${item.price}`}</span>
+        <span className={styles.card__price__old}>{`$${item.fullPrice}`}</span>
       </div>
       <span className={styles.card__line} />
 
       <ul className={styles.card__characteristics}>
         <li className={styles.characteristic}>
-          <div>Screen</div>
-          <div>6.1” OLED</div>
+          <span className={styles.characteristicTitle}>Screen</span>
+          <span className={styles.characteristicValue}>{item.screen}</span>
         </li>
         <li className={styles.characteristic}>
-          <div>Capacity</div>
-          <div>128 GB</div>
+          <span className={styles.characteristicTitle}>Capacity</span>
+          <span className={styles.characteristicValue}>{item.capacity}</span>
         </li>
         <li className={styles.characteristic}>
-          <div>RAM</div>
-          <div>6 GB</div>
+          <span className={styles.characteristicTitle}>RAM</span>
+          <span className={styles.characteristicValue}>{item.ram}</span>
         </li>
       </ul>
-      <div className={styles.card__button}>
-        <AddToCard />
-        <AddToFavourite />
+      <div className={styles.card__buttons}>
+        <AddToCartButton className={styles.buttonCart} />
+        <AddToFavoriteButton className={styles.buttonFavorite} />
       </div>
-    </div>
+    </article>
   );
 };

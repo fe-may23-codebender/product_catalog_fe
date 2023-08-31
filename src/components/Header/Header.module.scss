@@ -11,7 +11,7 @@
     padding-left: 24px;
     max-width: 1440px;
     margin: 0 auto;
-    padding-inline: 10px;
+    padding-inline: 0;
   }
 
   &__content {
@@ -26,6 +26,7 @@
 
   &__logo {
     padding: 20px 0;
+    padding-left: 1%;
   }
 }
 

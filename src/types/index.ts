@@ -5,3 +5,6 @@ export * from './ButtonType';
 export * from './PageSize';
 export * from './Breakpoint';
 export * from './ProductCategory';
+export * from './Product';
+export * from './CategoryMap';
+export * from './ProductDetails';
