@@ -15,7 +15,9 @@ const footerLinks = [
 
 export const Footer = () => {
   function goUp() {
-    window.scrollTo(0, 0);
+    document.querySelector('body')?.scrollIntoView({
+      behavior: 'smooth', block: 'end', inline: 'nearest',
+    });
   }
 
   return (
@@ -41,12 +43,12 @@ export const Footer = () => {
           </ul>
         </div>
 
-        <div className={styles.footer__button}>
+        <button type="button" className={styles.footer__button} onClick={goUp}>
           <span className={styles.footer__button__text}>Back to top</span>
-          <button type="button" className={styles.button} onClick={goUp}>
-            <div className={styles.button__up} />
-          </button>
-        </div>
+          <div className={styles.footer__button__arrow}>
+            <div className={styles.footer__button__arrow__up} />
+          </div>
+        </button>
       </div>
     </footer>
   );

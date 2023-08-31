@@ -1,4 +1,4 @@
-@import '../../styles/utils/index';
+@use '../../styles/utils/index' as *;
 
 .breadcrumbs {
   display: flex;
@@ -19,7 +19,7 @@
     }
 
     &__arrow {
-      background: url('../../assets/icons/black-arrows/arrow-right.svg');
+      background: url('../../assets/icons/gray-arrows/arrow-right.svg');
     }
   }
 
