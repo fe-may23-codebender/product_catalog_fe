@@ -2,15 +2,67 @@
 
 .footer {
   box-sizing: border-box;
-  box-shadow: 0px 0px 1px 0px $elements-color;
+  border-top: 1px solid $elements-color;
 
   @include uppercaseText;
 
   &__logo {
-    width: 70px;
+    width: 100%;
 
     @include onTablet() {
       width: 80px;
+    }
+  }
+
+  &__nav {
+    width: 100%;
+
+    @include onTablet() {
+      width: 80px;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+  
+      @include onTablet() {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+      }
+  
+      @include onDesctop {
+        gap: 60px;
+      }
+    }
+  
+    &__item {
+      list-style-type: none;
+  
+      &:not(:first-child) {
+        margin: 0;
+        margin-top: 16px;
+      }
+  
+      @include onTablet() {
+        &:not(:first-child) {
+          margin: 0;
+          margin-left: 16px;
+        }
+      }
+    }
+  
+    &__link {
+      display: block;
+      align-items: center;
+      text-decoration: none;
+      color: $secondary-color;
+      cursor: pointer;
+  
+      &:hover {
+        color: $primary-color;
+      }
     }
   }
 
@@ -24,6 +76,8 @@
     text-transform: none;
     gap: 16px;
     cursor: pointer;
+
+    @include smallText;
 
     &:hover {
       color: $primary-color;
@@ -44,10 +98,7 @@
       }
     
       &__up {
-        width: 16px;
-        height: 16px;
-        background-color: $white-color;
-        background: url('../../assets/icons/black-arrows/arrow-up.svg') no-repeat;
+        padding-inline: 8px;
       }
     }
   }
@@ -55,7 +106,7 @@
 
 .container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 32px;
   align-items: center;
   padding-block: 32px;
@@ -64,53 +115,5 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-  }
-}
-
-.footer__nav {
-  &__list {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-
-    @include onTablet() {
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-    }
-
-    @include onDesctop {
-      gap: 60px;
-    }
-  }
-
-  &__item {
-    list-style-type: none;
-
-    &:not(:first-child) {
-      margin: 0;
-      margin-top: 16px;
-    }
-
-    @include onTablet() {
-      &:not(:first-child) {
-        margin: 0;
-        margin-left: 16px;
-      }
-    }
-  }
-
-  &__link {
-    display: block;
-    align-items: center;
-    text-decoration: none;
-    color: $secondary-color;
-    cursor: pointer;
-
-    &:hover {
-      color: $primary-color;
-    }
   }
 }
