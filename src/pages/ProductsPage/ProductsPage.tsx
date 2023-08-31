@@ -3,9 +3,7 @@ import cn from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { Dropdown } from '../../components/Dropdown';
-import {
-  PageSize, ProductCategory, QueryParams, SortField,
-} from '../../types';
+import { PageSize, ProductCategory, QueryParams, SortField } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectProducts } from '../../redux/selectors';
 import { getKeyByValue } from '../../helpers/getKeyByValue';

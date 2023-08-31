@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Logo } from '../Logo/Logo';
 import container from '../../styles/utils/container.module.scss';
 import styles from './Footer.module.scss';
-import { Button } from '../Buttons/Button';
+import { Button } from '../Buttons/Button/Button';
 import { ButtonType } from '../../types';
 
 import arrow_up from '../../assets/icons/black-arrows/arrow-up.svg';
@@ -20,11 +20,7 @@ const footerLinks = [
 
 export const Footer = () => {
   function goUp() {
-    document.querySelector('body')?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-      inline: 'nearest',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   return (

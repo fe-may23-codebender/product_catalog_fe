@@ -43,6 +43,10 @@ export const Breadcrumbs: FC<Props> = ({ className = '' }) => {
         {pageName}
       </Link>
 
+      <div
+        className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__arrow}`}
+      />
+
       {path.length > 2 && (
         <>
           <div

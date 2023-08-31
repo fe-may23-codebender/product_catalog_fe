@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* eslint-disable max-len */
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination } from 'swiper';

@@ -37,6 +37,7 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
     <aside className={`${styles.burgerMenu} ${isOpen ? styles.open : ''}`}>
       <div className={styles.burgerMenu__header}>
         <Logo />
+
         <Button
           type={ButtonType.Button}
           iconPath={close}
@@ -81,7 +82,9 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
           }`}
           onClick={() => handleLinkClick('cart')}
         >
-          <CartLink className={cn(styles.menuButtons__buttonLink)} />
+          <CartLink
+            className={cn(styles.menuButtons__buttonLink)}
+          />
         </button>
       </div>
     </aside>

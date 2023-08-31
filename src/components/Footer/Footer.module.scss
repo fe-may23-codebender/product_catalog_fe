@@ -40,11 +40,6 @@
     &__item {
       list-style-type: none;
 
-      &:not(:first-child) {
-        margin: 0;
-        margin-top: 16px;
-      }
-
       @include onTablet() {
         &:not(:first-child) {
           margin: 0;
