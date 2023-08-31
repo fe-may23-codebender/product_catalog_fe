@@ -2,13 +2,14 @@
 
 .card {
   display: flex;
-  width: 287px;
   padding: 32px;
   flex-direction: column;
   gap: 8px;
   background-color: $white-color;
   border: 1px solid $elements-color;
-  transition-duration: 1s;
+  background-color: $white-color;
+  transition-duration: 0.5s;
+  width: 100%;
 
   @include onTablet {
     width: 100%;
@@ -17,36 +18,31 @@
   &__title {
     @include bodyText;
     margin-block: 16px 0;
+    color: $primary-color;
   }
 
-  /* &:hover .card__title {
-    color: #ebbae5;
-  } */
+  &:hover &__title {
+    color: rgba(175, 88, 199, 0.461);
+  }
 
   &__photo {
     margin: 0 auto;
-    display: block;
+    display: flex;
     height: 129px;
   }
 
-  @include onTablet {
-    width: 237px;
-
+  @media (min-width: 420px) {
     &__photo {
       height: 202px;
     }
   }
 
   @include onDesctop {
-    width: 272px;
 
-    &__photo {
-      height: 196px;
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 11px rgba(33,33,33,.2);
     }
-
-    /* &:hover {
-      transform: scale(1.1);
-    } */
   }
 
   &__price {
@@ -54,11 +50,12 @@
     gap: 8px;
     @include h2-text-mobile;
 
+
     &__old {
+      display: flex;
       font-family: 'Mont Regular', sans-serif;
-      color: #89939a;
+      color: $secondary-color;
       text-decoration-line: line-through;
-      text-decoration-color: invert;
     }
   }
 
@@ -81,6 +78,10 @@
     display: flex;
     justify-content: space-between;
     gap: 8px;
+
+    &__favourite {
+      padding: 11px;
+    }
   }
 }
 

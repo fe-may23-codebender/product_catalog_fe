@@ -1,8 +1,11 @@
 import { FC } from 'react';
-import styles from './CardLayout.module.scss';
+import { Link } from 'react-router-dom';
 import { AddToCard } from '../Buttons/AddToCard';
-import { AddToFavourite } from '../Buttons/AddToFavourite';
-import { Product } from '../../types';
+import { Button } from '../Buttons/Button';
+import { ButtonType } from '../../types';
+import styles from './CardLayout.module.scss';
+
+import favourite from '../../assets/icons/like-button.svg';
 
 type Props = {
   item: Product,
@@ -11,12 +14,13 @@ type Props = {
 export const CardLayout: FC<Props> = ({ item }) => {
   return (
     <div className={styles.card}>
-      <img
-        className={styles.card__photo}
-        src={`/${item.image}`}
-        alt={item.name}
-      />
-
+      <Link to="/phones">
+        <img
+          className={styles.card__photo}
+          src={`/${item.image}`}
+          alt={item.name}
+        />
+      </Link>
       <h2 className={styles.card__title}>
         {item.name}
       </h2>
@@ -42,7 +46,12 @@ export const CardLayout: FC<Props> = ({ item }) => {
       </ul>
       <div className={styles.card__button}>
         <AddToCard />
-        <AddToFavourite />
+        <Button
+          iconPath={favourite}
+          className={styles.card__button__favourite}
+          onClick={() => {}}
+          type={ButtonType.Button}
+        />
       </div>
     </div>
   );

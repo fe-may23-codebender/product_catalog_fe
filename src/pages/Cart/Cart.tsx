@@ -4,6 +4,7 @@ import container from '../../styles/utils/container.module.scss';
 import styles from './Cart.module.scss';
 import arrowLeft from '../../assets/icons/black-arrows/arrow-left.svg';
 import { Modal } from './Modal';
+import { CartCardLayout } from '../../components/CartCardLayout';
 
 export const Cart: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -25,9 +26,15 @@ export const Cart: React.FC = () => {
         <h1 className={styles.Container__Text}>Cart</h1>
         <div className={styles.Container__Content}>
           <div className={styles.ItemContainer}>
-            <div className={styles.ItemContainer__CartItem}>Item</div>
-            <div className={styles.ItemContainer__CartItem}>Item</div>
-            <div className={styles.ItemContainer__CartItem}>Item</div>
+            <div className={styles.ItemContainer__CartItem}>
+              <CartCardLayout />
+            </div>
+            <div className={styles.ItemContainer__CartItem}>
+              <CartCardLayout />
+            </div>
+            <div className={styles.ItemContainer__CartItem}>
+              <CartCardLayout />
+            </div>
           </div>
           <div className={styles.TotalContainer}>
             <div className={styles.TotalContainer__Price}>

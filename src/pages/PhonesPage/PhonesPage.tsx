@@ -1,4 +1,3 @@
-/* eslint no-console: ["error", { allow: ["log", "error"] }] */
 import { useEffect } from 'react';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import styles from './PhonesPage.module.scss';
