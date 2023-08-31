@@ -15,7 +15,7 @@ export const CapacityFunctionality = () => {
       <p>Select capacity</p>
 
       <ul className={styles.capacity__list}>
-        {capacity.map(cap => (
+        {capacity.map((cap) => (
           <li key={cap}>
             <button
               type="button"
@@ -23,7 +23,9 @@ export const CapacityFunctionality = () => {
               onClick={() => changeCapacity(cap)}
             >
               <div
-                className={`${styles.capacity__container} ${activeCapacity === cap ? styles.is__active : ''}`}
+                className={`${styles.capacity__container} ${
+                  activeCapacity === cap ? styles.is__active : ''
+                }`}
               >
                 {cap}
               </div>

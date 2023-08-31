@@ -21,7 +21,7 @@ export const ColorFunctionality = () => {
       <p>Avaliable colors</p>
 
       <ul className={styles.color__list}>
-        {colors.map(color => (
+        {colors.map((color) => (
           <li key={color.id}>
             <button
               type="button"
@@ -29,10 +29,14 @@ export const ColorFunctionality = () => {
               onClick={() => changeColor(color.id)}
             >
               <div
-                className={`${styles.color__circle} ${activeColorId === color.id ? styles.is__active : ''}`}
+                className={`${styles.color__circle} ${
+                  activeColorId === color.id ? styles.is__active : ''
+                }`}
               >
                 <div
-                  className={`${styles.color__circle__color} ${styles[`color__circle__${color.title}`]}`}
+                  className={`${styles.color__circle__color} ${
+                    styles[`color__circle__${color.title}`]
+                  }`}
                 />
               </div>
             </button>
