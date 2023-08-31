@@ -1,47 +1,47 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './CardLayout.module.scss';
 import { AddToCard } from '../Buttons/AddToCard';
 import { Button } from '../Buttons/Button';
 import { ButtonType } from '../../types';
+import styles from './CardLayout.module.scss';
+
 import favourite from '../../assets/icons/like-button.svg';
 
-type Props = {};
+type Props = {
+  item: Product,
+};
 
-export const CardLayout: FC<Props> = () => {
+export const CardLayout: FC<Props> = ({ item }) => {
   return (
     <div className={styles.card}>
       <Link to="/phones">
         <img
           className={styles.card__photo}
-          // eslint-disable-next-line max-len
-          src="https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/img/phones/apple-iphone-11-pro-max/gold/00.jpg"
-          alt="Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)"
+          src={`/${item.image}`}
+          alt={item.name}
         />
       </Link>
-      <Link to="/phones">
-        <h2 className={styles.card__title}>
-          Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
-        </h2>
-      </Link>
+      <h2 className={styles.card__title}>
+        {item.name}
+      </h2>
       <div className={styles.card__price}>
-        <span className={styles.card__price__now}>$999</span>
-        <span className={styles.card__price__old}>$1000</span>
+        <span className={styles.card__price__now}>{item.price}</span>
+        <span className={styles.card__price__old}>{item.fullPrice}</span>
       </div>
       <span className={styles.card__line} />
 
       <ul className={styles.card__characteristics}>
         <li className={styles.characteristic}>
           <div>Screen</div>
-          <div>6.1” OLED</div>
+          <div>{item.screen}</div>
         </li>
         <li className={styles.characteristic}>
           <div>Capacity</div>
-          <div>128 GB</div>
+          <div>{item.capacity}</div>
         </li>
         <li className={styles.characteristic}>
           <div>RAM</div>
-          <div>6 GB</div>
+          <div>{item.ram}</div>
         </li>
       </ul>
       <div className={styles.card__button}>
