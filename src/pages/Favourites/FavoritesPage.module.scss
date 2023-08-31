@@ -1,0 +1,77 @@
+@use '../../styles/utils/index' as *;
+$item-container-desktop: 752px;
+
+.Container {
+  width: 100vw;
+  margin: 0 auto;
+  box-sizing: border-box;
+  background-color: $white-color;
+  overflow-y: auto;
+
+  &__Top {
+    @include smallText;
+    line-height: 17px;
+  }
+}
+
+.title {
+  grid-column: 1 / -1;
+  color: $primary-color;
+  @include h2-text;
+
+  @include onTablet {
+    @include h1-text;
+  }
+}
+
+.text {
+  @include bodyText;
+  color: $secondary-color;
+  grid-column: 1 / -1;
+}
+
+.emptyMessage {
+  @include bodyText;
+  display: block;
+  margin-top: 50px;
+  text-align: center;
+  color: $secondary-color;
+
+  @include onTablet {
+    @include h4-text;
+  }
+}
+
+.product {
+  grid-column: 1 / -1;
+  @include pageGrid;
+  row-gap: 40px;
+  margin-bottom: 56px;
+  margin-top: 32px;
+
+  @include onTablet {
+    margin-bottom: 64px;
+    margin-top: 40px;
+  }
+
+  @include onDesctop {
+    margin-bottom: 80px;
+  }
+
+  &__card {
+    grid-column: span 4;
+
+    @include onTablet {
+      grid-column: span 6;
+    }
+
+    @media screen and (min-width: 767px) {
+      grid-column: span 4;
+    }
+
+    @include onDesctop {
+      grid-column: span 6;
+    }
+  }
+}
+

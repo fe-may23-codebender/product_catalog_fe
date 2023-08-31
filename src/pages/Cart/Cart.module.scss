@@ -2,23 +2,16 @@
 $item-container-desktop: 752px;
 
 .Container {
-  height: 100vh;
   width: 100vw;
-  padding-top: 24px;
-  padding-bottom: 24px;
   margin: 0 auto;
   box-sizing: border-box;
   background-color: $white-color;
   overflow-y: auto;
 
-  @include onTablet {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
-
   &__Top {
     @include smallText;
     line-height: 17px;
+    margin: 25px 0 40px;
   }
 
   &__Text {
@@ -35,11 +28,29 @@ $item-container-desktop: 752px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
+    margin-bottom: 56px;
+    margin-top: 32px;
+
+    @include onTablet {
+      margin-bottom: 64px;
+      margin-top: 40px;
+    }
 
     @include onDesctop {
       grid-template-columns: 2fr 1fr;
       gap: 16px;
+      margin-bottom: 80px;
     }
+  }
+}
+
+.title {
+  grid-column: 1 / -1;
+  color: $primary-color;
+  @include h2-text;
+
+  @include onTablet {
+    @include h1-text;
   }
 }
 

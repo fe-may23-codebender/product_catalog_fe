@@ -5,6 +5,7 @@ import { NotFound } from './pages/NotFoundPage';
 import { PhonesPage } from './pages/PhonesPage';
 import { Cart } from './pages/Cart';
 import { PhonesDetailsPage } from './pages/PhoneDetailsPage/PhoneDetailsPage';
+import { FavoritesPage } from './pages/Favourites';
 
 export const App: FC = () => {
   return (
@@ -14,6 +15,7 @@ export const App: FC = () => {
         <Route path="home" element={<Navigate to="/" replace />} />
 
         <Route path="cart" element={<Cart />} />
+        <Route path="favorites" element={<FavoritesPage />} />
 
         <Route path="phones" element={<PhonesPage />}>
           <Route path="phones/:productId" element={<PhonesDetailsPage />} />
