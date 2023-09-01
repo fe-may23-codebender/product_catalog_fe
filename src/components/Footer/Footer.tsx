@@ -1,4 +1,6 @@
 /* eslint-disable max-len */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo/Logo';
@@ -46,7 +48,7 @@ export const Footer = () => {
           </ul>
         </div>
 
-        <button type="button" className={styles.footer__button} onClick={goUp}>
+        <div role="button" className={styles.footer__button} onClick={goUp}>
           <span className={styles.footer__button__text}>Back to top</span>
           <Button
             type={ButtonType.Button}
@@ -56,7 +58,7 @@ export const Footer = () => {
               styles.footer__button__arrow__up,
             )}
           />
-        </button>
+        </div>
       </div>
     </footer>
   );

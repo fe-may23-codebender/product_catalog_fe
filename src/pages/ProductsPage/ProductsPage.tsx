@@ -4,34 +4,41 @@ import { useSearchParams } from 'react-router-dom';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { Dropdown } from '../../components/Dropdown';
 import {
-  PageSize, ProductCategory, QueryParams, SortField,
+  PageSize,
+  ProductCategory,
+  QueryParams,
+  SearchParams,
+  SortField,
 } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectProducts } from '../../redux/selectors';
 import { getKeyByValue } from '../../helpers/getKeyByValue';
 import { ProductsList } from '../../components/ProductsList';
-import { getProductsByCategory } from '../../helpers/getProductsByCategory';
 import { Loader } from '../../components/Loader';
 import { Pagination } from '../../components/Pagination';
 import { NoResults } from '../../components/NoResults';
+import { fecthProducts } from '../../redux/slices/productsSlice';
+import { getSearchWith } from '../../helpers/searchHelper';
 
 import styles from './ProductsPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
-import { fecthProducts } from '../../redux/slices/productsSlice';
 
 type Props = {
   productCategory: ProductCategory;
 };
 
 export const ProductsPage: FC<Props> = ({ productCategory }) => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fecthProducts({ searchParams: searchParams.toString() }));
-  }, [searchParams]);
+  const setSearchWith = (params: SearchParams) => {
+    const newSearchParams = getSearchWith(searchParams, params);
 
-  const { groups, loaded, items } = useAppSelector(selectProducts);
+    setSearchParams(newSearchParams);
+  };
+
+  const { data, loaded } = useAppSelector(selectProducts);
+  const { items, countByGroup } = data;
 
   const pageSize = {
     All: 'all',
@@ -46,18 +53,37 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
     [ProductCategory.Accessory]: 'Accessories',
   };
 
-  const currentPage = +(searchParams.get(QueryParams.CurrentPage) || 1);
+  const pageParam = searchParams.get(QueryParams.CurrentPage) || '';
+  const currentPage = +(pageParam || 1);
   const sortParam = searchParams.get(QueryParams.SortBy) || '';
   const query = searchParams.get(QueryParams.Query) || '';
-  const itemsPerPage = searchParams.get(QueryParams.ItemsPerPage) || 'all';
   const sortBy = getKeyByValue(SortField, sortParam) || 'Choose option';
+  const perPageParam = searchParams.get(QueryParams.ItemsPerPage) || '';
+  const itemsPerPage = perPageParam || PageSize.Four;
 
-  const preparedProducts = getProductsByCategory(items, productCategory);
-
-  const productsCount = groups[productCategory];
+  const productsCount = countByGroup[productCategory];
   const currentTitle = title[productCategory];
 
-  const productsNotFound = !preparedProducts.length;
+  useEffect(() => {
+    const params = [pageParam, perPageParam];
+
+    if (params.some((value) => !value)) {
+      setSearchWith({
+        [QueryParams.CurrentPage]: `${currentPage}`,
+        [QueryParams.ItemsPerPage]: itemsPerPage,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!searchParams.size) {
+      return;
+    }
+
+    dispatch(fecthProducts({ searchParams: searchParams.toString() }));
+  }, [searchParams]);
+
+  const productsNotFound = !items.length;
   const categoryNotFound = productsNotFound && !query;
   const noMatchingQuery = productsNotFound && query;
 
@@ -103,7 +129,7 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
               />
             </div>
 
-            <ProductsList products={preparedProducts} />
+            <ProductsList products={items} />
 
             <Pagination
               currentPage={currentPage}
