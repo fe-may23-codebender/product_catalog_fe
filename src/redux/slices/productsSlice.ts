@@ -1,31 +1,31 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getProducts } from '../../api/products';
-import { Product, CategoryMap } from '../../types';
-import { getProductsCount } from '../../helpers/getProductsCount';
+import { ApiData, ApiOptions } from '../../types';
 
 export interface ProductsState {
-  items: Product[];
+  data: ApiData;
   loaded: boolean;
   hasError: boolean;
-  groups: CategoryMap;
 }
 
 const initialState: ProductsState = {
-  items: [],
+  data: {
+    items: [],
+    countByGroup: {
+      phones: 0,
+      tablets: 0,
+      accessories: 0,
+    },
+  },
   loaded: false,
   hasError: false,
-  groups: {
-    phones: 0,
-    tablets: 0,
-    accessories: 0,
-  },
 };
 
 export const fecthProducts = createAsyncThunk(
   'products/fetch',
-  ({ searchParams }: { searchParams?: string }) => {
-    return getProducts(searchParams);
+  (options: Partial<ApiOptions>) => {
+    return getProducts(options);
   },
 );
 
@@ -40,10 +40,9 @@ export const productsSlice = createSlice({
         state.hasError = false;
       })
       .addCase(fecthProducts.fulfilled, (state, action) => {
-        state.groups = getProductsCount(action.payload);
-
         state.loaded = true;
-        state.items = action.payload;
+        state.data.items = action.payload.items;
+        state.data.countByGroup = action.payload.countByGroup;
       })
       .addCase(fecthProducts.rejected, (state) => {
         state.loaded = true;

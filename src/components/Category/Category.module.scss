@@ -1,0 +1,30 @@
+@use '../../styles/utils/index' as *;
+
+.category {
+  &:nth-child(n+2) {
+    margin-top: 32px;
+
+    @include onTablet {
+      margin-top: 0;
+    }
+  }
+}
+
+.Category_Img {
+  width: 100%;
+}
+
+.Category_Title {
+  @include h4-text-mobile;
+  margin-top: 24px;
+  color: $primary-color;
+
+  @include onTablet {
+    @include h4-text;
+  }
+}
+
+.Category_Amount {
+  @include bodyText;
+  color: $secondary-color;;
+}

@@ -7,9 +7,10 @@ import basket from '../../assets/icons/shopping-bag.svg';
 
 type Props = {
   className?: string;
+  onClick?: () => void;
 };
 
-export const CartLink: FC<Props> = ({ className = '' }) => {
+export const CartLink: FC<Props> = ({ className = '', onClick = () => {} }) => {
   const count = 12;
 
   return (
@@ -19,6 +20,7 @@ export const CartLink: FC<Props> = ({ className = '' }) => {
       iconPath={basket}
       className={className}
       badge={count}
+      onClick={onClick}
     />
   );
 };
