@@ -38,22 +38,10 @@ export const FavoritesPage: React.FC = () => {
       )}
 
       <div className={styles.product}>
-        <CardLayout
-          className={styles.product__card}
-          item={item}
-        />
-        <CardLayout
-          className={styles.product__card}
-          item={item}
-        />
-        <CardLayout
-          className={styles.product__card}
-          item={item}
-        />
-        <CardLayout
-          className={styles.product__card}
-          item={item}
-        />
+        <CardLayout className={styles.product__card} item={item} />
+        <CardLayout className={styles.product__card} item={item} />
+        <CardLayout className={styles.product__card} item={item} />
+        <CardLayout className={styles.product__card} item={item} />
       </div>
     </div>
   );
