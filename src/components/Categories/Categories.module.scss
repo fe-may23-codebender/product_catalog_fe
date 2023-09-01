@@ -8,6 +8,10 @@
   @include h2-text-mobile;
   margin-bottom: 24px;
   color: $primary-color;
+
+  @include onTablet {
+    @include h2-text;
+  }
 }
 
 .categories {
@@ -17,29 +21,4 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
-}
-
-.category {
-  &:nth-child(n+2) {
-    margin-top: 32px;
-
-    @include onTablet {
-      margin-top: 0;
-    }
-  }
-}
-
-.Category_Img {
-  width: 100%;
-}
-
-.Category_Title {
-  @include h4-text-mobile;
-  margin-top: 24px;
-  color: $primary-color;
-}
-
-.Category_Amount {
-  @include bodyText;
-  color: $secondary-color;;
 }
