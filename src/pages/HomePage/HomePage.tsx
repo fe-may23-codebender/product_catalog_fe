@@ -92,6 +92,8 @@ export const HomePage = () => {
             iconPath={arrowRight}
           />
         </div>
+
+        <Categories />
       </div>
     </div>
   );
