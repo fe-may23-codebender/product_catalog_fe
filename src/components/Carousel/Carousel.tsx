@@ -63,17 +63,10 @@ export const Carousel = () => {
         }}
       >
         <SwiperSlide className={styles.slide}>
-          <img
-            className={styles.slider__img}
-            src={banerCheck}
-            alt="baner 1"
-          />
+          <img className={styles.slider__img} src={banerCheck} alt="baner 1" />
         </SwiperSlide>
         {baners.map((baner) => (
-          <SwiperSlide
-            key={baner}
-            className={styles.slide}
-          >
+          <SwiperSlide key={baner} className={styles.slide}>
             <img className={styles.slider__img} src={baner} alt="baner 1" />
           </SwiperSlide>
         ))}

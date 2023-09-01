@@ -1,7 +1,7 @@
 @use '../../styles/utils/index' as *;
 
 .category {
-  &:nth-child(n+2) {
+  &:nth-child(n + 2) {
     margin-top: 32px;
 
     @include onTablet {
@@ -26,5 +26,5 @@
 
 .Category_Amount {
   @include bodyText;
-  color: $secondary-color;;
+  color: $secondary-color;
 }
