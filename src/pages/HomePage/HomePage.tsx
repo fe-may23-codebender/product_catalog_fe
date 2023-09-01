@@ -21,6 +21,7 @@ import { Breakpoint, ButtonType } from '../../types';
 import { Button } from '../../components/Buttons/Button';
 import arrowLeft from '../../assets/icons/black-arrows/arrow-left.svg';
 import arrowRight from '../../assets/icons/black-arrows/arrow-right.svg';
+import { Categories } from '../../components/Categories';
 
 SwiperCore.use([Navigation, Pagination]);
 let swiperInstance: any = null;
@@ -91,6 +92,8 @@ export const HomePage = () => {
             iconPath={arrowRight}
           />
         </div>
+
+        <Categories />
       </div>
     </div>
   );
