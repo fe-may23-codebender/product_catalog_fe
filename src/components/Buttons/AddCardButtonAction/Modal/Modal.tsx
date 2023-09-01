@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import styles from './Modal.module.scss';
 
 type Props = {
-  closeModal: () => void,
-  title?: string,
+  closeModal: () => void;
+  title?: string;
 };
 
 export const Modal: FC<Props> = ({ closeModal, title }) => {
@@ -26,10 +26,7 @@ export const Modal: FC<Props> = ({ closeModal, title }) => {
           <p>has been added to the cart</p>
         </div>
         <Link to="/cart">
-          <button
-            type="button"
-            className={styles.modal__button}
-          >
+          <button type="button" className={styles.modal__button}>
             Go to cart
           </button>
         </Link>

@@ -12,11 +12,21 @@
   animation: ani 4s forwards;
 
   @keyframes ani {
-    0% {opacity: 0,}
-    25% {opacity: 1;}
-    50% {opacity: 1;}
-    75% {opacity: 1;}
-    100% {opacity: 0;}
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 }
 
@@ -41,10 +51,9 @@
     gap: 10px;
 
     &__name {
-      font-family: 'Mont SemiBold', sans-serif;;
+      font-family: 'Mont SemiBold', sans-serif;
       font-weight: 600;
     }
-
   }
 
   &__button {
