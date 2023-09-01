@@ -4,6 +4,7 @@ import { Layout } from './layouts/Layout';
 import { NotFound } from './pages/NotFoundPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { Cart } from './pages/Cart';
+import { FavoritesPage } from './pages/Favourites';
 import { ProductDetailsPage } from './pages/ProductDetailsPage';
 import { ProductCategory } from './types';
 import { HomePage } from './pages/HomePage';
@@ -29,6 +30,7 @@ export const App: FC = () => {
         ))}
 
         <Route path="cart" element={<Cart />} />
+        <Route path="favorites" element={<FavoritesPage />} />
 
         <Route path="*" element={<NotFound />} />
       </Route>

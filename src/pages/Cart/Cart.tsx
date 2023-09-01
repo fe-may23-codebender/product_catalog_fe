@@ -23,7 +23,7 @@ export const Cart: React.FC = () => {
             Back
           </Link>
         </p>
-        <h1 className={styles.Container__Text}>Cart</h1>
+        <h1 className={styles.title}>Cart</h1>
         <div className={styles.Container__Content}>
           <div className={styles.ItemContainer}>
             <div className={styles.ItemContainer__CartItem}>
