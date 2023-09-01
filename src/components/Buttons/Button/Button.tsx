@@ -68,10 +68,7 @@ export const Button: FC<Props> = (props) => {
 
   if (type === ButtonType.Link) {
     return (
-      <NavLink
-        to={props.to}
-        {...commonProps}
-      >
+      <NavLink to={props.to} {...commonProps}>
         {componentChildren}
       </NavLink>
     );
