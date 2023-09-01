@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import { AddToCartButton } from '../Buttons/AddToCartButton';
 import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
 import { Product } from '../../types';
 import styles from './CardLayout.module.scss';
+import { AddToCartButtonAction } from '../Buttons/AddCardButtonAction';
 
 type Props = {
   className?: string;
@@ -45,7 +45,10 @@ export const CardLayout: FC<Props> = ({ item, className = '' }) => {
         </li>
       </ul>
       <div className={styles.card__buttons}>
-        <AddToCartButton className={styles.buttonCart} />
+        <AddToCartButtonAction
+          className={styles.buttonCart}
+          title={item.name}
+        />
         <AddToFavoriteButton className={styles.buttonFavorite} />
       </div>
     </article>
