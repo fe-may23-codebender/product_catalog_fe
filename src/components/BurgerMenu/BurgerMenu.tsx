@@ -65,25 +65,19 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
       </nav>
 
       <div className={styles.menuButtons}>
-        <button
-          type="button"
+        <FavoriteLink
           className={`${styles.menuButtons__button} ${
             activeLink === 'favorites' ? styles.is__activeButton : ''
           }`}
           onClick={() => handleLinkClick('favorites')}
-        >
-          <FavoriteLink className={cn(styles.menuButtons__buttonLink)} />
-        </button>
+        />
 
-        <button
-          type="button"
+        <CartLink
           className={`${styles.menuButtons__button} ${
             activeLink === 'cart' ? styles.is__activeButton : ''
           }`}
           onClick={() => handleLinkClick('cart')}
-        >
-          <CartLink className={cn(styles.menuButtons__buttonLink)} />
-        </button>
+        />
       </div>
     </aside>
   );

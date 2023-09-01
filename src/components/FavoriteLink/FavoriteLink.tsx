@@ -7,9 +7,13 @@ import favorite from '../../assets/icons/like-button.svg';
 
 type Props = {
   className?: string;
+  onClick?: () => void;
 };
 
-export const FavoriteLink: FC<Props> = ({ className = '' }) => {
+export const FavoriteLink: FC<Props> = ({
+  className = '',
+  onClick = () => {},
+}) => {
   const count = 12;
 
   return (
@@ -18,6 +22,7 @@ export const FavoriteLink: FC<Props> = ({ className = '' }) => {
       to="favorites"
       iconPath={favorite}
       className={className}
+      onClick={onClick}
       badge={count}
     />
   );

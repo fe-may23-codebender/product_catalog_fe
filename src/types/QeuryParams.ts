@@ -1,6 +1,6 @@
 export enum QueryParams {
-  Query = 'query',
-  SortBy = 'sort',
+  Query = 'search',
+  SortBy = 'sortBy',
   ItemsPerPage = 'perPage',
   CurrentPage = 'page',
 }

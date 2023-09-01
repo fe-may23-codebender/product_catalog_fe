@@ -22,10 +22,7 @@ export const App: FC = () => {
             path={category}
             element={<ProductsPage productCategory={category} />}
           >
-            <Route
-              path={`${category}/:productId`}
-              element={<ProductDetailsPage />}
-            />
+            <Route path=":productId" element={<ProductDetailsPage />} />
           </Route>
         ))}
 
