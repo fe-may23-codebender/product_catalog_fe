@@ -1,0 +1,47 @@
+import { FC } from 'react';
+import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
+import { Product } from '../../types';
+import styles from './ButtonsFunctionality.module.scss';
+import { AddToCartButtonAction } from '../Buttons/AddCardButtonAction';
+
+type Props = {
+  item: Product;
+};
+
+export const ButtonsFunctionality: FC<Props> = ({ item }) => {
+  return (
+    <div className={styles.card}>
+      <div className={styles.card__price}>
+        <span className={styles.card__price__now}>{`$${item.price}`}</span>
+        <span className={styles.card__price__old}>{`$${item.fullPrice}`}</span>
+      </div>
+      <div className={styles.card__buttons}>
+        <AddToCartButtonAction
+          className={styles.buttonCart}
+          title={item.name}
+        />
+        <AddToFavoriteButton className={styles.buttonFavorite} />
+      </div>
+      <ul className={styles.card__characteristics}>
+        <li className={styles.characteristic}>
+          <span className={styles.characteristicTitle}>Screen</span>
+          <span className={styles.characteristicValue}>{item.screen}</span>
+        </li>
+        <li className={styles.characteristic}>
+          <span className={styles.characteristicTitle}>Resolution</span>
+          <span className={styles.characteristicValue}>{item.capacity}</span>
+        </li>
+        <li className={styles.characteristic}>
+          <span className={styles.characteristicTitle}>Processor</span>
+          <span className={styles.characteristicValue}>
+            {item.processor && 'Bionic'}
+          </span>
+        </li>
+        <li className={styles.characteristic}>
+          <span className={styles.characteristicTitle}>RAM</span>
+          <span className={styles.characteristicValue}>{item.ram}</span>
+        </li>
+      </ul>
+    </div>
+  );
+};
