@@ -1,4 +1,5 @@
 import { client } from '../helpers/fetchClient';
+import { getSearchWith } from '../helpers/searchHelper';
 import {
   ProductCategory,
   ProductDescription,
@@ -8,14 +9,19 @@ import {
 } from '../types';
 
 export const getProducts = ({
-  category = 'products' as ProductCategory,
-  searchParams = '',
+  productCategory = '' as ProductCategory,
+  searchParams,
 }: Partial<ApiOptions>) => {
-  const normalizedSearchParams = searchParams
-    ? `?${searchParams.toString()}`
+  const params = new URLSearchParams(searchParams || '');
+  const preparedParams = getSearchWith(params, {
+    productType: productCategory,
+  });
+
+  const normalizedSearchParams = preparedParams
+    ? `?${preparedParams}`
     : '';
 
-  return client.get<ApiData>(`/${category}${normalizedSearchParams}`);
+  return client.get<ApiData>(`/products${normalizedSearchParams}`);
 };
 
 export const getProductInfo = (

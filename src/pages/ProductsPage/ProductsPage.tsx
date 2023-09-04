@@ -73,15 +73,15 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
         [QueryParams.ItemsPerPage]: itemsPerPage,
       });
     }
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if (!searchParams.size) {
       return;
     }
 
-    dispatch(fecthProducts({ searchParams: searchParams.toString() }));
-  }, [searchParams]);
+    dispatch(fecthProducts({ searchParams, productCategory }));
+  }, [searchParams, productCategory]);
 
   const productsNotFound = !items.length;
   const categoryNotFound = productsNotFound && !query;

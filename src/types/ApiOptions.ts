@@ -2,6 +2,6 @@
 import { ProductCategory } from '.';
 
 export interface ApiOptions {
-  category: ProductCategory;
-  searchParams: string;
+  productCategory: ProductCategory;
+  searchParams: URLSearchParams;
 }
