@@ -1,14 +1,22 @@
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
-import { ProductDetails } from '../../types';
-import styles from './ButtonsFunctionality.module.scss';
+import { Product, ProductDetails } from '../../types';
 import { AddToCartButtonAction } from '../Buttons/AddCardButtonAction';
+import { useAppSelector } from '../../redux/hooks';
+import { selectProducts } from '../../redux/selectors';
+import styles from './ButtonsFunctionality.module.scss';
 
 type Props = {
   item: ProductDetails;
 };
 
 export const ButtonsFunctionality: FC<Props> = ({ item }) => {
+  const { items } = useAppSelector(selectProducts);
+
+  const currentProduct = useMemo(() => (
+    items.find(({ itemId }) => itemId === item.itemId) || null
+  ), [item.id]);
+
   return (
     <div className={styles.card}>
       <div className={styles.card__price}>
@@ -20,7 +28,10 @@ export const ButtonsFunctionality: FC<Props> = ({ item }) => {
           className={styles.buttonCart}
           title={item.name}
         />
-        <AddToFavoriteButton className={styles.buttonFavorite} />
+        <AddToFavoriteButton
+          className={styles.buttonFavorite}
+          product={currentProduct as Product}
+        />
       </div>
       <ul className={styles.card__characteristics}>
         <li className={styles.characteristic}>

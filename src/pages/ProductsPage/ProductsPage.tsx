@@ -7,11 +7,10 @@ import {
   PageSize,
   ProductCategory,
   QueryParams,
-  SearchParams,
   SortField,
 } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { selectProducts } from '../../redux/selectors';
+import { selectProducts, selectProductsStats } from '../../redux/selectors';
 import { getKeyByValue } from '../../helpers/getKeyByValue';
 import { ProductsList } from '../../components/ProductsList';
 import { Loader } from '../../components/Loader';
@@ -22,23 +21,21 @@ import { getSearchWith } from '../../helpers/searchHelper';
 
 import styles from './ProductsPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
+import { fecthProductsStats } from '../../redux/slices/productsStatsSlice';
 
 type Props = {
   productCategory: ProductCategory;
 };
 
 export const ProductsPage: FC<Props> = ({ productCategory }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
 
-  const setSearchWith = (params: SearchParams) => {
-    const newSearchParams = getSearchWith(searchParams, params);
-
-    setSearchParams(newSearchParams);
-  };
-
-  const { data, loaded } = useAppSelector(selectProducts);
-  const { items, countByGroup } = data;
+  const { items, loaded: productsLoaded } = useAppSelector(selectProducts);
+  const {
+    countByGroup,
+    loaded: statsLoaded,
+  } = useAppSelector(selectProductsStats);
 
   const pageSize = {
     All: 'all',
@@ -65,29 +62,28 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   const currentTitle = title[productCategory];
 
   useEffect(() => {
-    const params = [pageParam, perPageParam];
-
-    if (params.some((value) => !value)) {
-      setSearchWith({
-        [QueryParams.CurrentPage]: `${currentPage}`,
+    const params = perPageParam
+      ? searchParams
+      : getSearchWith(searchParams, {
         [QueryParams.ItemsPerPage]: itemsPerPage,
       });
-    }
-  }, [searchParams]);
+
+    dispatch(fecthProducts({ searchParams: params, productCategory }));
+  }, [productCategory, searchParams]);
 
   useEffect(() => {
-    if (!searchParams.size) {
+    if (statsLoaded) {
       return;
     }
 
-    dispatch(fecthProducts({ searchParams, productCategory }));
-  }, [searchParams, productCategory]);
+    dispatch(fecthProductsStats());
+  }, [statsLoaded]);
 
   const productsNotFound = !items.length;
   const categoryNotFound = productsNotFound && !query;
   const noMatchingQuery = productsNotFound && query;
 
-  if (!loaded) {
+  if (!productsLoaded || !statsLoaded) {
     return <Loader className={styles.loader} />;
   }
 
