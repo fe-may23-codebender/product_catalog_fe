@@ -1,10 +1,7 @@
 @use '../../styles/utils/index' as *;
 
-.container {
-  @include pageGrid;
-}
-
 .HomePage {
+  gap: 80px;
   &__title {
     grid-column: 1 /-1;
     margin-top: 24px;
@@ -23,4 +20,8 @@
       margin-bottom: 56px;
     }
   }
+}
+
+.swiperContainer {
+  margin: 80px 0;
 }
