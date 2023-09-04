@@ -1,19 +1,19 @@
 import { FC } from 'react';
 import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
-import { Product } from '../../types';
+import { ProductDetails } from '../../types';
 import styles from './ButtonsFunctionality.module.scss';
 import { AddToCartButtonAction } from '../Buttons/AddCardButtonAction';
 
 type Props = {
-  item: Product;
+  item: ProductDetails;
 };
 
 export const ButtonsFunctionality: FC<Props> = ({ item }) => {
   return (
     <div className={styles.card}>
       <div className={styles.card__price}>
-        <span className={styles.card__price__now}>{`$${item.price}`}</span>
-        <span className={styles.card__price__old}>{`$${item.fullPrice}`}</span>
+        <span className={styles.card__price__now}>{`$${item.priceRegular}`}</span>
+        <span className={styles.card__price__old}>{`$${item.priceDiscount}`}</span>
       </div>
       <div className={styles.card__buttons}>
         <AddToCartButtonAction
@@ -33,9 +33,7 @@ export const ButtonsFunctionality: FC<Props> = ({ item }) => {
         </li>
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>Processor</span>
-          <span className={styles.characteristicValue}>
-            {item.processor && 'Bionic'}
-          </span>
+          <span className={styles.characteristicValue}>{item.processor}</span>
         </li>
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>RAM</span>
