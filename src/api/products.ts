@@ -4,14 +4,16 @@ import {
   ProductCategory,
   ProductDescription,
   ProductInfo,
-  ApiData,
   ApiOptions,
+  Product,
+  CategoryMap,
+  SuggestedProducts,
 } from '../types';
 
 export const getProducts = ({
   productCategory = '' as ProductCategory,
   searchParams,
-}: Partial<ApiOptions>) => {
+}: ApiOptions) => {
   const params = new URLSearchParams(searchParams || '');
   const preparedParams = getSearchWith(params, {
     productType: productCategory,
@@ -21,7 +23,7 @@ export const getProducts = ({
     ? `?${preparedParams}`
     : '';
 
-  return client.get<ApiData>(`/products${normalizedSearchParams}`);
+  return client.get<Product[]>(`/products${normalizedSearchParams}`);
 };
 
 export const getProductInfo = (
@@ -33,4 +35,12 @@ export const getProductInfo = (
 
 export const getProductDescription = (productId: string) => {
   return client.get<ProductDescription[]>(`/descriptions/${productId}`);
+};
+
+export const getProductsStats = () => {
+  return client.get<CategoryMap>('/stats');
+};
+
+export const getSuggestedProducts = () => {
+  return client.get<SuggestedProducts>('/homepage');
 };

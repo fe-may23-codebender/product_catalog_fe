@@ -1,26 +1,42 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../../types';
+import { getTotalPrice } from '../../helpers/getTotalPrice';
 
 const CART = 'cart';
 
-const storageValue = localStorage.getItem(CART);
+export interface CartState {
+  items: Product[];
+  totalPrice: number;
+}
 
-const initialState: Product[] = storageValue ? JSON.parse(storageValue) : [];
+const storageValue = localStorage.getItem(CART);
+const parsedValue: Product[] = storageValue ? JSON.parse(storageValue) : [];
+
+const initialState: CartState = {
+  items: parsedValue,
+  totalPrice: getTotalPrice(parsedValue),
+};
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
     add: (state, action: PayloadAction<Product>) => {
-      state.push(action.payload);
-      localStorage.setItem(CART, JSON.stringify(state));
+      state.items.push(action.payload);
+      state.totalPrice += action.payload.price;
+
+      localStorage.setItem(CART, JSON.stringify(state.items));
     },
-    remove: (state, action: PayloadAction<string>) => {
-      const newState = state.filter((product) => product.id !== action.payload);
+    remove: (state, action: PayloadAction<Product>) => {
+      const newItems = state.items.filter((product) => (
+        product.id !== action.payload.id
+      ));
 
-      localStorage.setItem(CART, JSON.stringify(newState));
+      state.items = newItems;
+      state.totalPrice -= action.payload.price;
 
-      return newState;
+      localStorage.setItem(CART, JSON.stringify(newItems));
     },
   },
 });

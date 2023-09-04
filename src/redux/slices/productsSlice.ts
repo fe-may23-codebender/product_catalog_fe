@@ -1,30 +1,23 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getProducts } from '../../api/products';
-import { ApiData, ApiOptions } from '../../types';
+import { ApiOptions, Product } from '../../types';
 
 export interface ProductsState {
-  data: ApiData;
+  items: Product[];
   loaded: boolean;
   hasError: boolean;
 }
 
 const initialState: ProductsState = {
-  data: {
-    items: [],
-    countByGroup: {
-      phones: 0,
-      tablets: 0,
-      accessories: 0,
-    },
-  },
+  items: [],
   loaded: false,
   hasError: false,
 };
 
 export const fecthProducts = createAsyncThunk(
   'products/fetch',
-  (options: Partial<ApiOptions>) => {
+  (options: ApiOptions) => {
     return getProducts(options);
   },
 );
@@ -41,8 +34,7 @@ export const productsSlice = createSlice({
       })
       .addCase(fecthProducts.fulfilled, (state, action) => {
         state.loaded = true;
-        state.data.items = action.payload.items;
-        state.data.countByGroup = action.payload.countByGroup;
+        state.items = action.payload;
       })
       .addCase(fecthProducts.rejected, (state) => {
         state.loaded = true;

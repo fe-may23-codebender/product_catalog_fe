@@ -1,5 +1,6 @@
 export type ProductInfo = {
-  id: string;
+  id: number;
+  itemId: string;
   namespaceId: string;
   name: string;
   capacityAvailable: string[];

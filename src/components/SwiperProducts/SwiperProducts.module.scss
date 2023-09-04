@@ -1,8 +1,16 @@
 @use '../../styles/utils/index' as *;
 
-.swiperContainer{
+.swiperContainer {
+  padding: 0 10px 30px;
+  margin: 0 -10px -30px;
+  overflow: hidden;
+}
+
+.swiperContent {
   display: flex;
   flex-direction: column-reverse;
+  padding: 0 30px 30px;
+  margin: 0 -30px -30px;
 }
 
 .swiperHeader {
@@ -19,7 +27,7 @@
 
     @include onTablet() {
       width: 100%;
-    
+
       @include h2-text;
     }
   }
@@ -33,13 +41,5 @@
 
 .swiperButton {
   width: 32px;
-    height: 32px;
-
-    &__disable {
-      border-color: $elements-color;
-
-      &:hover {
-        cursor: not-allowed;
-      }
-    }
+  height: 32px;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { FC } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './layouts/Layout';
@@ -16,13 +17,10 @@ export const App: FC = () => {
         <Route index element={<HomePage />} />
         <Route path="home" element={<Navigate to="/" replace />} />
 
-        {Object.values(ProductCategory).map((category) => (
-          <Route
-            key={category}
-            path={category}
-            element={<ProductsPage productCategory={category} />}
-          >
-            <Route path=":productId" element={<ProductDetailsPage />} />
+        {Object.values(ProductCategory).map(category => (
+          <Route path={category} key={category}>
+            <Route index element={<ProductsPage productCategory={category} />} />
+            <Route path=":productId?" element={<ProductDetailsPage />} />
           </Route>
         ))}
 

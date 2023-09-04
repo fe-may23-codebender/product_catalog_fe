@@ -12,9 +12,13 @@ type Props = {
 export const Category: FC<Props> = ({
   title, name, amount, img,
 }) => (
-  <Link to={`/${name}`} className={styles.category}>
-    <img src={img} alt={title} className={styles.Category_Img} />
+  <article className={styles.category}>
+    <Link to={`/${name}`} className={styles.link}>
+      <img src={img} alt={title} className={styles.Category_Img} />
+    </Link>
+
     <h4 className={styles.Category_Title}>{title}</h4>
     <p className={styles.Category_Amount}>{`${amount} models`}</p>
-  </Link>
+  </article>
+
 );

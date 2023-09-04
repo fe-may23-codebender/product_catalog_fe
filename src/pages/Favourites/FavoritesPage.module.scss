@@ -1,5 +1,4 @@
 @use '../../styles/utils/index' as *;
-$item-container-desktop: 752px;
 
 .Container {
   width: 100vw;
@@ -15,7 +14,6 @@ $item-container-desktop: 752px;
 }
 
 .title {
-  grid-column: 1 / -1;
   color: $primary-color;
   @include h2-text;
 
@@ -27,12 +25,10 @@ $item-container-desktop: 752px;
 .text {
   @include bodyText;
   color: $secondary-color;
-  grid-column: 1 / -1;
 }
 
 .emptyMessage {
   @include bodyText;
-  display: block;
   margin-top: 50px;
   text-align: center;
   color: $secondary-color;
@@ -42,10 +38,7 @@ $item-container-desktop: 752px;
   }
 }
 
-.product {
-  grid-column: 1 / -1;
-  @include pageGrid;
-  row-gap: 40px;
+.products {
   margin-bottom: 56px;
   margin-top: 32px;
 

@@ -11,3 +11,4 @@ export * from './CategoryMap';
 export * from './ProductDetails';
 export * from './ApiData';
 export * from './ApiOptions';
+export * from './SuggestedProducts';

@@ -1,41 +1,49 @@
 import { FC } from 'react';
-import styles from './Categories.module.scss';
 import { Category } from '../Category';
+import styles from './Categories.module.scss';
+import { CategoryMap, ProductCategory } from '../../types';
 
-const categories = [
-  {
-    title: 'Mobile phones',
-    name: 'phones',
-    amount: 95,
-    img: '/product_catalog_fe/img/categories/phones-category.png',
-  },
-  {
-    title: 'Tablets',
-    name: 'tablets',
-    amount: 24,
-    img: '/product_catalog_fe/img/categories/tablets-category.png',
-  },
-  {
-    title: 'Accessories',
-    name: 'accessories',
-    amount: 100,
-    img: '/product_catalog_fe/img/categories/accessories-category.png',
-  },
-];
+type Props = {
+  countByGroup: CategoryMap;
+};
 
-export const Categories: FC = () => (
-  <div className={styles.container}>
-    <h2 className={styles.title}>Shop by category</h2>
-    <div className={styles.categories}>
-      {categories.map((category) => (
-        <Category
-          key={category.title}
-          name={category.name}
-          title={category.title}
-          amount={category.amount}
-          img={category.img}
-        />
-      ))}
+type CategoryData = {
+  [key in ProductCategory]: {
+    title: string;
+    image: string;
+  };
+};
+
+export const Categories: FC<Props> = ({ countByGroup }) => {
+  const data: CategoryData = {
+    [ProductCategory.Phone]: {
+      title: 'Mobile phones',
+      image: '/product_catalog_fe/img/categories/phones-category.png',
+    },
+    [ProductCategory.Tablet]: {
+      title: 'Tablets',
+      image: '/product_catalog_fe/img/categories/tablets-category.png',
+    },
+    [ProductCategory.Accessory]: {
+      title: 'Accessories',
+      image: '/product_catalog_fe/img/categories/accessories-category.png',
+    },
+  };
+
+  return (
+    <div className={styles.container}>
+      <h2 className={styles.title}>Shop by category</h2>
+      <div className={styles.categories}>
+        {Object.entries(data).map(([category, categoryData]) => (
+          <Category
+            key={category}
+            name={category}
+            title={categoryData.title}
+            amount={countByGroup[category as ProductCategory]}
+            img={categoryData.image}
+          />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};

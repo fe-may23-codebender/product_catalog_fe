@@ -3,5 +3,5 @@ import { ProductCategory } from '.';
 
 export interface ApiOptions {
   productCategory: ProductCategory;
-  searchParams: URLSearchParams;
+  searchParams: URLSearchParams | string;
 }
