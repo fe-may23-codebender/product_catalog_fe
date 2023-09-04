@@ -27,7 +27,7 @@ export const Categories: FC = () => (
   <div className={styles.container}>
     <h2 className={styles.title}>Shop by category</h2>
     <div className={styles.categories}>
-      {categories.map(category => (
+      {categories.map((category) => (
         <Category
           key={category.title}
           name={category.name}
