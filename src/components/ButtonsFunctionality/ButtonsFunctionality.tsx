@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
 import { Product, ProductDetails } from '../../types';
-import { AddToCartButtonAction } from '../Buttons/AddCardButtonAction';
+import { AddToCartButton } from '../Buttons/AddToCartButton';
 import { useAppSelector } from '../../redux/hooks';
 import { selectProducts } from '../../redux/selectors';
 import styles from './ButtonsFunctionality.module.scss';
@@ -13,25 +13,31 @@ type Props = {
 export const ButtonsFunctionality: FC<Props> = ({ item }) => {
   const { items } = useAppSelector(selectProducts);
 
-  const currentProduct = useMemo(() => (
-    items.find(({ itemId }) => itemId === item.itemId) || 0 // it doesn't render with null
-  ), [item.id]);
+  const currentProduct = useMemo(
+    () => items.find(({ itemId }) => itemId === item.itemId) || null,
+    [item.id],
+  );
 
   return (
     <div className={styles.card}>
       <div className={styles.card__price}>
-        <span className={styles.card__price__now}>{`$${item.priceRegular}`}</span>
-        <span className={styles.card__price__old}>{`$${item.priceDiscount}`}</span>
+        <span className={styles.card__price__now}>
+          {`$${item.priceRegular}`}
+        </span>
+        <span className={styles.card__price__old}>
+          {`$${item.priceDiscount}`}
+        </span>
       </div>
       <div className={styles.card__buttons}>
-        <AddToCartButtonAction
+        {/* <AddToCartButton
+          product={currentProduct as Product}
           className={styles.buttonCart}
           title={item.name}
         />
         <AddToFavoriteButton
           className={styles.buttonFavorite}
           product={currentProduct as Product}
-        />
+        /> */}
       </div>
       <ul className={styles.card__characteristics}>
         <li className={styles.characteristic}>

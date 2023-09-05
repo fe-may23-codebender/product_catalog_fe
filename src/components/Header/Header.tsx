@@ -51,7 +51,9 @@ export const Header: FC = () => {
               <li>
                 <NavLink
                   to="/"
-                  className={({ isActive }) => cn(styles.navigation__link, { [styles.active]: isActive })}
+                  className={({ isActive }) =>
+                    cn(styles.navigation__link, { [styles.active]: isActive })
+                  }
                 >
                   home
                 </NavLink>
@@ -61,7 +63,9 @@ export const Header: FC = () => {
                 <li key={category}>
                   <NavLink
                     to={category}
-                    className={({ isActive }) => cn(styles.navigation__link, isActive ? styles.active : '')}
+                    className={({ isActive }) =>
+                      cn(styles.navigation__link, isActive ? styles.active : '')
+                    }
                   >
                     {category}
                   </NavLink>
@@ -78,6 +82,7 @@ export const Header: FC = () => {
             <FavoriteLink
               className={cn(styles.actionsLink, styles.actionsLinkFav)}
             />
+
             <CartLink
               className={cn(styles.actionsLink, styles.actionsLinkCart)}
             />

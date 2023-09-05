@@ -50,11 +50,11 @@
 }
 .image {
   position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .functional {
   width: 100%;
@@ -79,7 +79,7 @@
 @include onDesctop {
   .flexBlock {
     justify-content: stretch;
-   }
+  }
   .photo {
     width: 560px;
     justify-content: space-between;
@@ -93,7 +93,7 @@
 
   .functional {
     width: 560px;
-    margin: 0 ;
+    margin: 0;
   }
 }
 

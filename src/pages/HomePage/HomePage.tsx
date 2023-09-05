@@ -5,7 +5,10 @@ import { Carousel } from '../../components/Carousel/Carousel';
 import { SwiperProducts } from '../../components/SwiperProducts/SwiperdProducts';
 import { Categories } from '../../components/Categories';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { selectProductsStats, selectSuggestedProducts } from '../../redux/selectors';
+import {
+  selectProductsStats,
+  selectSuggestedProducts,
+} from '../../redux/selectors';
 import { Loader } from '../../components/Loader';
 import { fecthProductsStats } from '../../redux/slices/productsStatsSlice';
 import { fecthSuggestedProducts } from '../../redux/slices/suggestedProductsSlice';
@@ -16,10 +19,8 @@ import styles from './HomePage.module.scss';
 export const HomePage = () => {
   const dispatch = useAppDispatch();
 
-  const {
-    countByGroup,
-    loaded: statsLoaded,
-  } = useAppSelector(selectProductsStats);
+  const { countByGroup, loaded: statsLoaded } =
+    useAppSelector(selectProductsStats);
 
   const {
     data: { newest, discount },
@@ -55,19 +56,13 @@ export const HomePage = () => {
         <Carousel />
 
         <div className={styles.swiperContainer}>
-          <SwiperProducts
-            title="Brand new models"
-            items={newest}
-          />
+          <SwiperProducts title="Brand new models" items={newest} />
         </div>
 
         <Categories countByGroup={countByGroup} />
 
         <div className={styles.swiperContainer}>
-          <SwiperProducts
-            title="Hot prices"
-            items={discount}
-          />
+          <SwiperProducts title="Hot prices" items={discount} />
         </div>
       </div>
     </div>

@@ -17,9 +17,12 @@ export const App: FC = () => {
         <Route index element={<HomePage />} />
         <Route path="home" element={<Navigate to="/" replace />} />
 
-        {Object.values(ProductCategory).map(category => (
+        {Object.values(ProductCategory).map((category) => (
           <Route path={category} key={category}>
-            <Route index element={<ProductsPage productCategory={category} />} />
+            <Route
+              index
+              element={<ProductsPage productCategory={category} />}
+            />
             <Route path=":productId?" element={<ProductDetailsPage />} />
           </Route>
         ))}

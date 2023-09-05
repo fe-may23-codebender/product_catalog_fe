@@ -49,7 +49,9 @@ export const ProductDetailsPage = () => {
   const [activeImg, setActiveImg] = useState<string>(item.images[0]);
   const description: ProductDescription[] = []; // delete after
 
-  const { data: { discount } } = useAppSelector(selectSuggestedProducts);
+  const {
+    data: { discount },
+  } = useAppSelector(selectSuggestedProducts);
 
   return (
     <div className={styles.PhonesDetails}>
@@ -59,9 +61,7 @@ export const ProductDetailsPage = () => {
           <img src={arrowRightDisable} alt="arrow" />
           Back
         </Link>
-        <h2 className={styles.PhonesDetails__title}>
-          {item.name}
-        </h2>
+        <h2 className={styles.PhonesDetails__title}>{item.name}</h2>
 
         <div className={styles.flexBlock}>
           <div className={styles.photo}>
@@ -123,9 +123,7 @@ export const ProductDetailsPage = () => {
               </li>
               <li className={styles.TechInfo__characteristic}>
                 <p>Camera</p>
-                <p className={styles.TechInfo__value}>
-                  {item.camera}
-                </p>
+                <p className={styles.TechInfo__value}>{item.camera}</p>
               </li>
               <li className={styles.TechInfo__characteristic}>
                 <p>Zoom</p>
@@ -139,10 +137,7 @@ export const ProductDetailsPage = () => {
           </article>
         </div>
         <div className={styles.swiperContainer}>
-          <SwiperProducts
-            title="You may also like"
-            items={discount}
-          />
+          <SwiperProducts title="You may also like" items={discount} />
         </div>
       </div>
     </div>

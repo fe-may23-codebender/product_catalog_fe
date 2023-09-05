@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   FC, FormEvent, useRef, useState,
 } from 'react';
@@ -204,26 +205,20 @@ export const SearchInput: FC<Props> = ({
   const iconType = isOpenInput ? closeIcon : searchIcon;
 
   return (
-    <form
-      onSubmit={(e) => handleSubmit(e)}
-      className={styles.search}
-    >
-      {
-        isOpenInput && (
-          <input
-            type="text"
-            placeholder="Search..."
-            ref={inputRef}
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-              setIsDropdownOpen(!!e.target.value);
-            }}
-            className={styles.search__input}
-          />
-        )
-      }
-
+    <form onSubmit={(e) => handleSubmit(e)} className={styles.search}>
+      {isOpenInput && (
+        <input
+          type="text"
+          placeholder="Search..."
+          ref={inputRef}
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setIsDropdownOpen(!!e.target.value);
+          }}
+          className={styles.search__input}
+        />
+      )}
       <Button
         className={classNames(className)}
         type={ButtonType.Button}
@@ -256,6 +251,5 @@ export const SearchInput: FC<Props> = ({
         </div>
       )}
     </form>
-
   );
 };

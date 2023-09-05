@@ -51,12 +51,10 @@
 .slider__btn {
   display: none;
   padding-inline: 8px;
-  
 
   @include onTablet {
     display: block;
     margin-left: 16px;
     margin-right: 16px;
   }
-
 }

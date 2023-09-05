@@ -7,7 +7,7 @@ type Props = {
   title: string;
 };
 
-export const SelectImg:React.FC<Props> = ({
+export const SelectImg: React.FC<Props> = ({
   images,
   activeImg,
   setActiveImg,
