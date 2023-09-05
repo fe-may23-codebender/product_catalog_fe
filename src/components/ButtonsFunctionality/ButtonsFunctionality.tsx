@@ -29,7 +29,7 @@ export const ButtonsFunctionality: FC<Props> = ({ item }) => {
         </span>
       </div>
       <div className={styles.card__buttons}>
-        <AddToCartButton
+        {/* <AddToCartButton
           product={currentProduct as Product}
           className={styles.buttonCart}
           title={item.name}
@@ -37,7 +37,7 @@ export const ButtonsFunctionality: FC<Props> = ({ item }) => {
         <AddToFavoriteButton
           className={styles.buttonFavorite}
           product={currentProduct as Product}
-        />
+        /> */}
       </div>
       <ul className={styles.card__characteristics}>
         <li className={styles.characteristic}>
