@@ -51,6 +51,7 @@
 .slider__btn {
   display: none;
   padding-inline: 8px;
+  
 
   @include onTablet {
     display: block;
@@ -58,7 +59,4 @@
     margin-right: 16px;
   }
 
-  @include onDesctop {
-    height: 100%;
-  }
 }
