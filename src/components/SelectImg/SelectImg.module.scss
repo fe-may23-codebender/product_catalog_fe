@@ -9,13 +9,22 @@
     @include onTablet {
       flex-direction: column;
     }
+
+    @include onDesctop {
+      gap: 17px;
+
+      .select__item {
+        width: 80px;
+        height: 80px;
+      }
+    }
   }
 
   &__item {
     position: relative;
     width: 51px;
     height: 49px;
-    border: 1px solid $icons-color;
+    border: 1px solid $elements-color;
     background-color: $white-color;
     display: flex;
     justify-content: center;

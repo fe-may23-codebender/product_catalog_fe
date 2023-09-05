@@ -14,7 +14,7 @@ export const ButtonsFunctionality: FC<Props> = ({ item }) => {
   const { items } = useAppSelector(selectProducts);
 
   const currentProduct = useMemo(() => (
-    items.find(({ itemId }) => itemId === item.itemId) || null
+    items.find(({ itemId }) => itemId === item.itemId) || 0 // it doesn't render with null
   ), [item.id]);
 
   return (
