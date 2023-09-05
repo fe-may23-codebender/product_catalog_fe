@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import container from '../../styles/utils/container.module.scss';
 import { ProductDescription, ProductDetails } from '../../types';
@@ -31,7 +32,11 @@ const item: ProductDetails = {
   priceRegular: 900,
   priceDiscount: 960,
   colorsAvailable: ['silver', 'black', 'red'],
-  images: ['https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/img/phones/apple-iphone-11-pro-max/gold/02.jpg', 'dfdfdf'],
+  images: [
+    'https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/img/phones/apple-iphone-11-pro-max/gold/00.jpg',
+    'https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/img/phones/apple-iphone-11-pro-max/gold/02.jpg',
+    'https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/img/phones/apple-iphone-11-pro-max/gold/01.jpg',
+  ],
   resolution: '1024',
   processor: 'Bionic',
   camera: '42mp',
@@ -41,6 +46,7 @@ const item: ProductDetails = {
 };
 
 export const ProductDetailsPage = () => {
+  const [activeImg, setActiveImg] = useState<string>(item.images[0]);
   const description: ProductDescription[] = []; // delete after
 
   const { data: { discount } } = useAppSelector(selectSuggestedProducts);
@@ -56,13 +62,21 @@ export const ProductDetailsPage = () => {
         <h2 className={styles.PhonesDetails__title}>
           {item.name}
         </h2>
+
         <div className={styles.flexBlock}>
           <div className={styles.photo}>
-            <SelectImg />
+            <SelectImg
+              images={item.images}
+              activeImg={activeImg}
+              setActiveImg={setActiveImg}
+              title={item.name}
+            />
+
             <div className={styles.photo__current}>
-              <img className={styles.image} src="https://raw.githubusercontent.com/mate-academy/product_catalog/main/public/img/phones/apple-iphone-11-pro-max/gold/01.jpg" alt="iphone" />
+              <img className={styles.image} src={activeImg} alt="iphone" />
             </div>
           </div>
+
           <div className={styles.functional}>
             <ColorFunctionality />
             <CapacityFunctionality />
