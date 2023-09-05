@@ -52,9 +52,7 @@ export const AddToCartButton: FC<Props> = (props) => {
         {!isProductInCart ? 'Add to card' : 'Added to card'}
       </button>
 
-      {modalOpen && (
-        <Modal closeModal={closeModal} title={title} />
-      )}
+      {modalOpen && <Modal closeModal={closeModal} title={title} />}
     </>
   );
 };
