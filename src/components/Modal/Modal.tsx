@@ -7,7 +7,6 @@ import close from '../../assets/icons/close.svg';
 
 type Props = {
   closeModal: () => void;
-  isOpen: boolean;
   title?: string;
 };
 

@@ -21,14 +21,10 @@ export const ButtonsFunctionality: FC<Props> = ({ item }) => {
   return (
     <div className={styles.card}>
       <div className={styles.card__price}>
-        <span
-          className={styles.card__price__now}
-        >
+        <span className={styles.card__price__now}>
           {`$${item.priceRegular}`}
         </span>
-        <span
-          className={styles.card__price__old}
-        >
+        <span className={styles.card__price__old}>
           {`$${item.priceDiscount}`}
         </span>
       </div>

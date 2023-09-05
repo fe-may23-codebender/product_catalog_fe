@@ -135,6 +135,7 @@ $item-container-desktop: 752px;
     width: 100%;
     color: $white-color;
     transition: all 0.3s ease;
+    cursor: pointer;
 
     &:hover {
       color: $color-green;

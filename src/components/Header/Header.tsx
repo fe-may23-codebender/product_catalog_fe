@@ -78,6 +78,7 @@ export const Header: FC = () => {
             <FavoriteLink
               className={cn(styles.actionsLink, styles.actionsLinkFav)}
             />
+
             <CartLink
               className={cn(styles.actionsLink, styles.actionsLinkCart)}
             />

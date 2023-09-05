@@ -29,7 +29,7 @@ export const AddToCartButton: FC<Props> = (props) => {
   const dispatch = useAppDispatch();
   const { items } = useAppSelector(selectCart);
 
-  const isProductInCart = useMemo(() => product.id in items, [items]);
+  const isProductInCart = useMemo(() => product.itemId in items, [items]);
 
   const toggleCartProduct = () => {
     if (isProductInCart) {
@@ -53,7 +53,7 @@ export const AddToCartButton: FC<Props> = (props) => {
       </button>
 
       {modalOpen && (
-        <Modal isOpen={modalOpen} closeModal={closeModal} title={title} />
+        <Modal closeModal={closeModal} title={title} />
       )}
     </>
   );
