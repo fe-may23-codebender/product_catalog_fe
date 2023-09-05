@@ -11,16 +11,17 @@ import styles from './Carousel.module.scss';
 import arrowLeft from '../../assets/icons/black-arrows/arrow-left.svg';
 import arrowRight from '../../assets/icons/black-arrows/arrow-right.svg';
 
-import Baner1 from '../../assets/banners/banner-phones.png';
-import Baner2 from '../../assets/banners/banner-tablets.png';
-import Baner3 from '../../assets/banners/banner-iphone14.png';
-import Baner4 from '../../assets/banners/banner-accessories.png';
-import Baner5 from '../../assets/banners/banner-iphone14-small.png';
+import Banner1 from '../../assets/banners/banner-phones-new.png';
+import Banner2 from '../../assets/banners/banner-phones.png';
+import Banner3 from '../../assets/banners/banner-tablets.png';
+import Banner4 from '../../assets/banners/banner-accessories.png';
+import BannerIphoneBig from '../../assets/banners/banner-iphone14.png';
+import BannerIphoneSmall from '../../assets/banners/banner-iphone14-small.png';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let swiperInstance: any = null;
 
-const baners = [Baner1, Baner2, Baner4];
+const banners = [Banner1, Banner2, Banner3, Banner4];
 
 export const Carousel = () => {
   const breakpoint = useBreakpoint();
@@ -37,7 +38,9 @@ export const Carousel = () => {
     }
   };
 
-  const banerCheck = breakpoint === Breakpoint.Mobile ? Baner5 : Baner3;
+  const banerIphone = breakpoint === Breakpoint.Mobile
+    ? BannerIphoneSmall
+    : BannerIphoneBig;
 
   return (
     <div className={styles.carousel}>
@@ -77,12 +80,12 @@ export const Carousel = () => {
         }}
       >
         <SwiperSlide className={cn(styles.slide, styles.nextBtn)}>
-          <img className={styles.slide__img} src={banerCheck} alt="baner 1" />
+          <img className={styles.slide__img} src={banerIphone} alt="baner 1" />
         </SwiperSlide>
 
-        {baners.map((baner) => (
-          <SwiperSlide key={baner} className={styles.slide}>
-            <img className={styles.slide__img} src={baner} alt="baner 1" />
+        {banners.map((banner) => (
+          <SwiperSlide key={banner} className={styles.slide}>
+            <img className={styles.slide__img} src={banner} alt="baner 1" />
           </SwiperSlide>
         ))}
 
