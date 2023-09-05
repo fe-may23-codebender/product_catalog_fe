@@ -170,10 +170,14 @@ const items = [
 ];
 
 function filterProductsByQuery(products: Product[], query: string) {
-  return products.filter((product) => product.name.toLowerCase().includes(query.toLowerCase()));
+  return products.filter(
+    (product) => product.name.toLowerCase().includes(query.toLowerCase()),
+  );
 }
 
-export const SearchInput: FC<Props> = ({ className = '' }) => {
+export const SearchInput: FC<Props> = ({
+  className = '',
+}) => {
   const [query, setQuery] = useState('');
   const [isOpenInput, setIsOpenInput] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -201,6 +205,7 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
   const iconType = isOpenInput ? closeIcon : searchIcon;
 
   return (
+<<<<<<< HEAD
     <form onSubmit={(e) => handleSubmit(e)} className={styles.search}>
       {isOpenInput && (
         <input
@@ -215,7 +220,6 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
           className={styles.search__input}
         />
       )}
-
       <Button
         className={classNames(className)}
         type={ButtonType.Button}
@@ -226,8 +230,11 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
         <div className={styles.dropdown__menu}>
           <div className={styles.dropdown__content}>
             {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <div className={styles.dropdown__item} key={product.id}>
+              filteredProducts.map(product => (
+                <div
+                  className={styles.dropdown__item}
+                  key={product.id}
+                >
                   <Link
                     to={`../${product.category}/${product.itemId}`}
                     className={styles.dropdown__link}

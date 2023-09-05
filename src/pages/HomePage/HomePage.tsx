@@ -19,8 +19,8 @@ import styles from './HomePage.module.scss';
 export const HomePage = () => {
   const dispatch = useAppDispatch();
 
-  const { countByGroup, loaded: statsLoaded }
-    = useAppSelector(selectProductsStats);
+  const { countByGroup, loaded: statsLoaded } =
+    useAppSelector(selectProductsStats);
 
   const {
     data: { newest, discount },
