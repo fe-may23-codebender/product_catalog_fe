@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 import { Modal } from './Modal';
 import { CartCardLayout } from '../../components/CartCardLayout';
 import { useAppSelector } from '../../redux/hooks';
@@ -7,19 +8,21 @@ import { selectCart } from '../../redux/selectors';
 import container from '../../styles/utils/container.module.scss';
 import styles from './Cart.module.scss';
 import arrowLeft from '../../assets/icons/black-arrows/arrow-left.svg';
+import { Button } from '../../components/Buttons/Button';
+import { ButtonType } from '../../types';
 
 export const Cart: FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
   const { items, totalCount, totalPrice } = useAppSelector(selectCart);
 
-  function onHandleClick() {
+  const onHandleClick = () => {
     setIsModalOpened(true);
-  }
+  };
 
   return (
     <>
-      {isModalOpened && <Modal onHandleModalClose={setIsModalOpened} />}
+      {isModalOpened && <Modal />}
 
       <div className={`${container.limit} ${styles.Container}`}>
         <p className={styles.Container__Top}>
@@ -55,13 +58,13 @@ export const Cart: FC = () => {
                 </p>
               </div>
 
-              <button
-                type="button"
-                className={styles.TotalContainer__Button}
+              <Button
+                type={ButtonType.Button}
+                className={cn(styles.TotalContainer__Button)}
                 onClick={onHandleClick}
               >
                 Checkout
-              </button>
+              </Button>
             </div>
           </div>
         )}

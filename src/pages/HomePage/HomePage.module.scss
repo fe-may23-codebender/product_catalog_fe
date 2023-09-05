@@ -1,7 +1,6 @@
 @use '../../styles/utils' as *;
 
 .HomePage {
-  gap: 80px;
   &__title {
     grid-column: 1 /-1;
     margin-top: 24px;
