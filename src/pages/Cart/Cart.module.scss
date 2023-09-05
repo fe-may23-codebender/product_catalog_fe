@@ -74,6 +74,12 @@ $item-container-desktop: 752px;
   color: $secondary-color;
   display: inline-block;
   width: 60px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $primary-color
+  }
 }
 
 .ItemContainer {
@@ -138,10 +144,7 @@ $item-container-desktop: 752px;
     cursor: pointer;
 
     &:hover {
-      color: $color-green;
-      background-color: $white-color;
-      border: 1px solid $elements-color;
-      box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+      box-shadow: 0 3px 13px 0 rgba(23, 32, 49, 0.4);
     }
   }
 }

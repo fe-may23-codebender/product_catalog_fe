@@ -3,6 +3,12 @@
 .GridContainer {
   @include pageGrid;
   margin-top: 100px; // delete after adding slider block
+
+  &__title {
+    padding-bottom: 16px;
+    border-bottom: 1.4px solid $elements-color;
+    margin-bottom: 25px !important;
+  }
 }
 
 .breadcrumbs {
@@ -14,6 +20,12 @@
   line-height: normal;
   background-color: $white-color;
   color: $secondary-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $primary-color
+  }
 }
 
 .PhonesDetails {
@@ -142,11 +154,6 @@
   &__value {
     color: $primary-color;
   }
-}
-
-.line {
-  background-color: $elements-color;
-  margin-bottom: 30px;
 }
 
 .swiperContainer {
