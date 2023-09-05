@@ -88,10 +88,6 @@
     &.active::after {
       scale: 1;
     }
-
-    &:nth-child(n + 2) {
-      border-right: 1px solid $icons-color !important;
-    }
   }
 
   &LinkFav,

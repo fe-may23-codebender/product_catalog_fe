@@ -86,8 +86,9 @@ export const ProductDetailsPage = () => {
 
         <div className={styles.GridContainer}>
           <article className={styles.About}>
-            <h3 className={styles.About__title}>About</h3>
-            <hr className={styles.line} />
+            <h3 className={`${styles.GridContainer__title} ${styles.About__title}`}>
+              About
+            </h3>
             {description.map((items) => (
               <>
                 <h4 className={styles.About__info}>{items.title}</h4>
@@ -97,8 +98,9 @@ export const ProductDetailsPage = () => {
           </article>
 
           <article className={styles.TechInfo}>
-            <h3 className={styles.TechInfo__title}>Tech specs</h3>
-            <hr className={styles.line} />
+            <h3 className={`${styles.GridContainer__title} ${styles.TechInfo__title}`}>
+              Tech specs
+            </h3>
 
             <ul className={styles.card__characteristics}>
               <li className={styles.TechInfo__characteristic}>

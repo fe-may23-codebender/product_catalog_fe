@@ -1,28 +1,27 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
-
-import Baner1 from '../../assets/banners/banner-phones.png';
-import Baner2 from '../../assets/banners/banner-tablets.png';
-import Baner3 from '../../assets/banners/banner-iphone14.png';
-import Baner4 from '../../assets/banners/banner-accessories.png';
-import Baner5 from '../../assets/banners/banner-iphone14-small.png';
-
-import 'swiper/css';
-import 'swiper/swiper-bundle.min.css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import styles from './Carousel.module.scss';
+import { Navigation, Pagination, Autoplay } from 'swiper';
+import cn from 'classnames';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { Breakpoint, ButtonType } from '../../types';
 import { Button } from '../Buttons/Button';
+
+import 'swiper/swiper-bundle.min.css';
+import styles from './Carousel.module.scss';
+
 import arrowLeft from '../../assets/icons/black-arrows/arrow-left.svg';
 import arrowRight from '../../assets/icons/black-arrows/arrow-right.svg';
 
-SwiperCore.use([Navigation, Pagination]);
+import Banner1 from '../../assets/banners/banner-phones-new.png';
+import Banner2 from '../../assets/banners/banner-phones.png';
+import Banner3 from '../../assets/banners/banner-tablets.png';
+import Banner4 from '../../assets/banners/banner-accessories.png';
+import BannerIphoneBig from '../../assets/banners/banner-iphone14.png';
+import BannerIphoneSmall from '../../assets/banners/banner-iphone14-small.png';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let swiperInstance: any = null;
 
-const baners = [Baner1, Baner2, Baner4];
+const banners = [Banner1, Banner2, Banner3, Banner4];
 
 export const Carousel = () => {
   const breakpoint = useBreakpoint();
@@ -39,42 +38,63 @@ export const Carousel = () => {
     }
   };
 
-  const banerCheck = breakpoint === Breakpoint.Mobile ? Baner5 : Baner3;
+  const banerIphone = breakpoint === Breakpoint.Mobile
+    ? BannerIphoneSmall
+    : BannerIphoneBig;
 
   return (
-    <div className={styles.slider}>
+    <div className={styles.carousel}>
       <Button
         type={ButtonType.Button}
-        className={styles.slider__btn}
+        className={styles.carousel__btn}
         onClick={goPrev}
         iconPath={arrowLeft}
       />
 
       <Swiper
+        className={styles.content}
+        wrapperClass={styles.wrapper}
         onSwiper={(swiper) => {
           swiperInstance = swiper;
         }}
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={20}
         slidesPerView={1}
-        loop
         pagination={{
           clickable: true,
+          el: `.${styles.pagination}`,
+        }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        loop
+        speed={600}
+        breakpoints={{
+          [Breakpoint.Mobile]: {
+            allowTouchMove: true,
+          },
+          [Breakpoint.Desktop]: {
+            allowTouchMove: false,
+          },
         }}
       >
-        <SwiperSlide className={styles.slide}>
-          <img className={styles.slider__img} src={banerCheck} alt="baner 1" />
+        <SwiperSlide className={cn(styles.slide, styles.nextBtn)}>
+          <img className={styles.slide__img} src={banerIphone} alt="baner 1" />
         </SwiperSlide>
-        {baners.map((baner) => (
-          <SwiperSlide key={baner} className={styles.slide}>
-            <img className={styles.slider__img} src={baner} alt="baner 1" />
+
+        {banners.map((banner) => (
+          <SwiperSlide key={banner} className={styles.slide}>
+            <img className={styles.slide__img} src={banner} alt="baner 1" />
           </SwiperSlide>
         ))}
+
+        <div className={styles.pagination} />
       </Swiper>
 
       <Button
         type={ButtonType.Button}
-        className={styles.slider__btn}
+        className={cn(styles.carousel__btn, styles.prevBtn)}
         onClick={goNext}
         iconPath={arrowRight}
       />

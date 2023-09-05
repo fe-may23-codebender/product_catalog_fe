@@ -20,6 +20,11 @@
     margin-top: 16px;
     min-height: 42px;
     color: $primary-color;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $secondary-color;
+    }
   }
 
   &__link {

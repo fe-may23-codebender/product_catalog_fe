@@ -75,8 +75,8 @@
 
     @include smallText;
 
-    &:hover {
-      color: $primary-color;
+    &__text {
+      transition: all 0.3s ease;
     }
 
     &__arrow {
@@ -89,15 +89,19 @@
       border: 1px solid $icons-color;
       box-sizing: border-box;
 
-      &:hover {
-        border-color: $primary-color;
-      }
-
       &__up {
         padding-inline: 8px;
       }
     }
   }
+}
+
+.footer__button:hover .footer__button__text{
+  color: $primary-color;
+}
+
+.footer__button:hover .footer__button__arrow{
+  border-color: $primary-color;
 }
 
 .container {
