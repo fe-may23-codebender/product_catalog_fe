@@ -20,5 +20,4 @@ export const Category: FC<Props> = ({
     <h4 className={styles.Category_Title}>{title}</h4>
     <p className={styles.Category_Amount}>{`${amount} models`}</p>
   </article>
-
 );

@@ -19,9 +19,7 @@ export const getProducts = ({
     productType: productCategory,
   });
 
-  const normalizedSearchParams = preparedParams
-    ? `?${preparedParams}`
-    : '';
+  const normalizedSearchParams = preparedParams ? `?${preparedParams}` : '';
 
   return client.get<Product[]>(`/products${normalizedSearchParams}`);
 };

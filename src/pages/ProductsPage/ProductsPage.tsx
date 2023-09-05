@@ -4,10 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { Dropdown } from '../../components/Dropdown';
 import {
-  PageSize,
-  ProductCategory,
-  QueryParams,
-  SortField,
+  PageSize, ProductCategory, QueryParams, SortField,
 } from '../../types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectProducts, selectProductsStats } from '../../redux/selectors';
@@ -32,10 +29,8 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   const dispatch = useAppDispatch();
 
   const { items, loaded: productsLoaded } = useAppSelector(selectProducts);
-  const {
-    countByGroup,
-    loaded: statsLoaded,
-  } = useAppSelector(selectProductsStats);
+  const { countByGroup, loaded: statsLoaded }
+    = useAppSelector(selectProductsStats);
 
   const pageSize = {
     All: 'all',

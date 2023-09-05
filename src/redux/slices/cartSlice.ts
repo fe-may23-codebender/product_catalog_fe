@@ -1,46 +1,84 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../../types';
-import { getTotalPrice } from '../../helpers/getTotalPrice';
 
 const CART = 'cart';
 
-export interface CartState {
-  items: Product[];
+type CartItem = {
+  item: Product;
+  count: number;
+};
+
+export type CartState = {
+  items: Record<string, CartItem>;
   totalPrice: number;
-}
+  totalCount: number;
+};
 
 const storageValue = localStorage.getItem(CART);
-const parsedValue: Product[] = storageValue ? JSON.parse(storageValue) : [];
-
-const initialState: CartState = {
-  items: parsedValue,
-  totalPrice: getTotalPrice(parsedValue),
-};
+const initialState: CartState = storageValue
+  ? JSON.parse(storageValue)
+  : {
+    items: {},
+    totalCount: 0,
+    totalPrice: 0,
+  };
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Product>) => {
-      state.items.push(action.payload);
+    addOneModel: (state, action: PayloadAction<Product>) => {
+      const productId = action.payload.itemId;
+
+      if (!(productId in state.items)) {
+        state.items[productId] = {
+          item: action.payload,
+          count: 0,
+        };
+      }
+
+      state.items[productId].count++;
+      state.totalCount++;
       state.totalPrice += action.payload.price;
 
-      localStorage.setItem(CART, JSON.stringify(state.items));
+      localStorage.setItem(CART, JSON.stringify(state));
     },
-    remove: (state, action: PayloadAction<Product>) => {
-      const newItems = state.items.filter((product) => (
-        product.id !== action.payload.id
-      ));
+    removeOneModel: (state, action: PayloadAction<Product>) => {
+      const productId = action.payload.itemId;
 
-      state.items = newItems;
+      if (!(productId in state.items) || state.items[productId].count <= 1) {
+        return;
+      }
+
+      state.items[productId].count--;
+      state.totalCount--;
       state.totalPrice -= action.payload.price;
+      localStorage.setItem(CART, JSON.stringify(state));
+    },
+    removeModelsByType: (state, action: PayloadAction<Product>) => {
+      const { price, itemId: productId } = action.payload;
 
-      localStorage.setItem(CART, JSON.stringify(newItems));
+      state.totalPrice -= price * state.items[productId].count;
+      state.totalCount -= state.items[productId].count;
+      delete state.items[productId];
+
+      localStorage.setItem(CART, JSON.stringify(state));
+    },
+    clear: (state) => {
+      state.items = {};
+      state.totalCount = 0;
+      state.totalPrice = 0;
+
+      localStorage.setItem(CART, JSON.stringify(state));
     },
   },
 });
 
-export const { add, remove } = cartSlice.actions;
+export const {
+  addOneModel, removeOneModel, removeModelsByType, clear,
+}
+  = cartSlice.actions;
 
 export default cartSlice.reducer;

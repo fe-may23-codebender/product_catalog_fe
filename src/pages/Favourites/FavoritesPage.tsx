@@ -25,10 +25,7 @@ export const FavoritesPage: FC = () => {
         </p>
       )}
 
-      <ProductsList
-        products={favoritesProducts}
-        className={styles.products}
-      />
+      <ProductsList products={favoritesProducts} className={styles.products} />
     </div>
   );
 };

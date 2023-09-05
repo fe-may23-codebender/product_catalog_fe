@@ -19,9 +19,10 @@ export const AddToFavoriteButton: FC<Props> = ({ product, className = '' }) => {
 
   const favoriteProducts = useAppSelector(selectFavorites);
 
-  const isFavoriteProduct = useMemo(() => (
-    favoriteProducts.some(item => item.id === product.id)
-  ), [favoriteProducts, product]);
+  const isFavoriteProduct = useMemo(
+    () => favoriteProducts.some((item) => item.id === product.id),
+    [favoriteProducts, product],
+  );
 
   const toggleFavoriteProduct = () => {
     if (!isFavoriteProduct) {

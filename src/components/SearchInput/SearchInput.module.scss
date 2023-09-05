@@ -1,0 +1,55 @@
+@use '../../styles/utils' as *;
+
+.search {
+  display: flex;
+  position: relative;
+  padding-left: 10px;
+
+  &__input {
+    padding-left: 10px;
+    height: 100%;
+    align-items: center;
+
+    &::placeholder {
+      @include h2-text-mobile;
+      color: $secondary-color;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+    }
+
+    &:hover {
+      border: 1px solid $secondary-color;
+    }
+  }
+}
+
+.dropdown {
+  &__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    background-color: white;
+    border: 1px solid $secondary-color;
+    padding: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  &__content {
+    // overflow: scroll;
+    z-index: 15;
+  }
+  &__item {
+    margin-top: 10px;
+  }
+  &__link {
+    color: $secondary-color;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  &__error {
+    color: $secondary-color;
+  }
+}

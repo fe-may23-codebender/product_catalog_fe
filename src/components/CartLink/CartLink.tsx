@@ -2,6 +2,8 @@
 import { FC } from 'react';
 import { ButtonType } from '../../types';
 import { Button } from '../Buttons/Button';
+import { useAppSelector } from '../../redux/hooks';
+import { selectCart } from '../../redux/selectors';
 
 import basket from '../../assets/icons/shopping-bag.svg';
 
@@ -11,7 +13,7 @@ type Props = {
 };
 
 export const CartLink: FC<Props> = ({ className = '', onClick = () => {} }) => {
-  const count = 12;
+  const { totalCount } = useAppSelector(selectCart);
 
   return (
     <Button
@@ -19,7 +21,7 @@ export const CartLink: FC<Props> = ({ className = '', onClick = () => {} }) => {
       to="cart"
       iconPath={basket}
       className={className}
-      badge={count}
+      badge={totalCount}
       onClick={onClick}
     />
   );

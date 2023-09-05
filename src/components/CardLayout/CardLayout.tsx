@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
 import { Product } from '../../types';
-import { AddToCartButtonAction } from '../Buttons/AddCardButtonAction';
+import { AddToCartButton } from '../Buttons/AddToCartButton';
 import styles from './CardLayout.module.scss';
 
 type Props = {
@@ -14,7 +14,10 @@ type Props = {
 export const CardLayout: FC<Props> = ({ item, className = '' }) => {
   return (
     <article className={cn(styles.card, className)}>
-      <Link to={`../${item.category}/${item.itemId}`} className={styles.card__link}>
+      <Link
+        to={`../${item.category}/${item.itemId}`}
+        className={styles.card__link}
+      >
         <img
           className={styles.card__photo}
           src={`/product_catalog_fe/${item.image}`}
@@ -45,15 +48,13 @@ export const CardLayout: FC<Props> = ({ item, className = '' }) => {
         </li>
       </ul>
       <div className={styles.card__buttons}>
-        <AddToCartButtonAction
+        <AddToCartButton
+          product={item}
           className={styles.buttonCart}
           title={item.name}
         />
 
-        <AddToFavoriteButton
-          className={styles.buttonFavorite}
-          product={item}
-        />
+        <AddToFavoriteButton className={styles.buttonFavorite} product={item} />
       </div>
     </article>
   );
