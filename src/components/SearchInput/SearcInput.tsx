@@ -205,7 +205,6 @@ export const SearchInput: FC<Props> = ({
   const iconType = isOpenInput ? closeIcon : searchIcon;
 
   return (
-<<<<<<< HEAD
     <form onSubmit={(e) => handleSubmit(e)} className={styles.search}>
       {isOpenInput && (
         <input
