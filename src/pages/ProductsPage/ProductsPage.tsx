@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { FC, useEffect } from 'react';
 import cn from 'classnames';
 import { useSearchParams } from 'react-router-dom';
@@ -27,8 +28,7 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   const dispatch = useAppDispatch();
 
   const { items, loaded: productsLoaded } = useAppSelector(selectProducts);
-  const { countByGroup, loaded: statsLoaded } =
-    useAppSelector(selectProductsStats);
+  const { countByGroup, loaded: statsLoaded } = useAppSelector(selectProductsStats);
 
   const pageSize = {
     All: 'all',

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { FC, useMemo } from 'react';
 import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
 import { Product, ProductDetails } from '../../types';

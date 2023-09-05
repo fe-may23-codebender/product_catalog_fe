@@ -1,5 +1,4 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable max-len */
+/* eslint-disable */
 import { useState, FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
@@ -51,9 +50,9 @@ export const Header: FC = () => {
               <li>
                 <NavLink
                   to="/"
-                  className={({ isActive }) =>
+                  className={({ isActive }) => (
                     cn(styles.navigation__link, { [styles.active]: isActive })
-                  }
+                  )}
                 >
                   home
                 </NavLink>

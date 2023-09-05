@@ -20,10 +20,10 @@ const storageValue = localStorage.getItem(CART);
 const initialState: CartState = storageValue
   ? JSON.parse(storageValue)
   : {
-      items: {},
-      totalCount: 0,
-      totalPrice: 0,
-    };
+    items: {},
+    totalCount: 0,
+    totalPrice: 0,
+  };
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -76,7 +76,11 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addOneModel, removeOneModel, removeModelsByType, clear } =
-  cartSlice.actions;
+export const {
+  addOneModel,
+  removeOneModel,
+  removeModelsByType,
+  clear,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

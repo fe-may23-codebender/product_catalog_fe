@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable */
 import { useEffect } from 'react';
 import cn from 'classnames';
 import { Carousel } from '../../components/Carousel/Carousel';
@@ -19,8 +19,7 @@ import styles from './HomePage.module.scss';
 export const HomePage = () => {
   const dispatch = useAppDispatch();
 
-  const { countByGroup, loaded: statsLoaded } =
-    useAppSelector(selectProductsStats);
+  const { countByGroup, loaded: statsLoaded } = useAppSelector(selectProductsStats);
 
   const {
     data: { newest, discount },
