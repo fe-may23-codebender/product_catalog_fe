@@ -12,6 +12,7 @@ import { Button } from '../Buttons/Button';
 
 import styles from './Header.module.scss';
 import burger from '../../assets/icons/burger-menu.svg';
+import { SearchInput } from '../SearchInput/SearcInput';
 
 export const links = [
   {
@@ -70,6 +71,10 @@ export const Header: FC = () => {
           </nav>
 
           <div className={styles.actions}>
+            <SearchInput
+              className={cn(styles.actionsLink, styles.actionsLinkSearch)}
+            />
+
             <FavoriteLink
               className={cn(styles.actionsLink, styles.actionsLinkFav)}
             />
