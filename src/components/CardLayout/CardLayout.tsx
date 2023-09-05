@@ -25,7 +25,11 @@ export const CardLayout: FC<Props> = ({ item, className = '' }) => {
         />
       </Link>
 
-      <h2 className={styles.card__title}>{item.name}</h2>
+      <Link
+        to={`../${item.category}/${item.itemId}`}
+      >
+        <h2 className={styles.card__title}>{item.name}</h2>
+      </Link>
 
       <div className={styles.card__price}>
         <span className={styles.card__price__now}>{`$${item.price}`}</span>
