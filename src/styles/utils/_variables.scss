@@ -1,3 +1,15 @@
+:root[data-theme="light"] {
+  --primary-color: #313237;
+  --background-card-color: #fff;
+  --main-background-color: #fff;
+}
+
+:root[data-theme="dark"] {
+  --primary-color: #f1f2f9;
+  --background-card-color: #161827;
+  --main-background-color: #0F1121;
+}
+
 $primary-color: #313237;
 $secondary-color: #89939a;
 $icons-color: #b4bdc3;
