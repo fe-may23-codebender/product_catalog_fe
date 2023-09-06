@@ -10,12 +10,10 @@ const DESKTOP_IMAGE_HEIGHT = 420;
 
 export const SkeletonProductPage = () => {
   const screenWidth = window.innerWidth;
-  const imageWidth = screenWidth >= 768
-    ? DESKTOP_IMAGE_WIDTH
-    : MOBILE_IMAGE_WIDTH;
-  const imageHeight = screenWidth >= 768
-    ? DESKTOP_IMAGE_HEIGHT
-    : MOBILE_IMAGE_HEIGHT;
+  const imageWidth
+    = screenWidth >= 768 ? DESKTOP_IMAGE_WIDTH : MOBILE_IMAGE_WIDTH;
+  const imageHeight
+    = screenWidth >= 768 ? DESKTOP_IMAGE_HEIGHT : MOBILE_IMAGE_HEIGHT;
 
   return (
     <SkeletonTheme>
@@ -39,10 +37,7 @@ export const SkeletonProductPage = () => {
 
           <div className={styles.Skeleton__ItemDetails}>
             <div className={styles.Skeleton__Colors}>
-              <Skeleton
-                height={10}
-                width="70%"
-              />
+              <Skeleton height={10} width="70%" />
               <div className={styles.Skeleton__Colors__circles}>
                 <Skeleton
                   height={35}

@@ -3,59 +3,62 @@ import { FC, useMemo } from 'react';
 import { AddToFavoriteButton } from '../Buttons/AddToFavoriteButton';
 import { Product, ProductDetails } from '../../types';
 import { AddToCartButton } from '../Buttons/AddToCartButton';
-import { useAppSelector } from '../../redux/hooks';
-import { selectProducts } from '../../redux/selectors';
 import styles from './ButtonsFunctionality.module.scss';
 
 type Props = {
-  item: ProductDetails;
+  productDetails: ProductDetails;
+  product: Product;
 };
 
-export const ButtonsFunctionality: FC<Props> = ({ item }) => {
-  const { items } = useAppSelector(selectProducts);
-
-  const currentProduct = useMemo(
-    () => items.find(({ itemId }) => itemId === item.itemId) || null,
-    [item.id],
-  );
-
+export const ButtonsFunctionality: FC<Props> = ({
+  product,
+  productDetails,
+}) => {
   return (
     <div className={styles.card}>
       <div className={styles.card__price}>
         <span className={styles.card__price__now}>
-          {`$${item.priceRegular}`}
+          {`$${productDetails.priceDiscount}`}
         </span>
         <span className={styles.card__price__old}>
-          {`$${item.priceDiscount}`}
+          {`$${productDetails.priceRegular}`}
         </span>
       </div>
       <div className={styles.card__buttons}>
-        {/* <AddToCartButton
-          product={currentProduct as Product}
+        <AddToCartButton
+          product={product}
           className={styles.buttonCart}
-          title={item.name}
+          title={productDetails.name}
         />
         <AddToFavoriteButton
           className={styles.buttonFavorite}
-          product={currentProduct as Product}
-        /> */}
+          product={product}
+        />
       </div>
       <ul className={styles.card__characteristics}>
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>Screen</span>
-          <span className={styles.characteristicValue}>{item.screen}</span>
+          <span className={styles.characteristicValue}>
+            {productDetails.screen}
+          </span>
         </li>
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>Resolution</span>
-          <span className={styles.characteristicValue}>{item.capacity}</span>
+          <span className={styles.characteristicValue}>
+            {productDetails.capacity}
+          </span>
         </li>
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>Processor</span>
-          <span className={styles.characteristicValue}>{item.processor}</span>
+          <span className={styles.characteristicValue}>
+            {productDetails.processor}
+          </span>
         </li>
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>RAM</span>
-          <span className={styles.characteristicValue}>{item.ram}</span>
+          <span className={styles.characteristicValue}>
+            {productDetails.ram}
+          </span>
         </li>
       </ul>
     </div>

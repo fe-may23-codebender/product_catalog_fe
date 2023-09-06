@@ -8,7 +8,8 @@ import { SearchParams } from '../../types';
 import styles from './Dropdown.module.scss';
 
 import arrowUp from '../../assets/icons/black-arrows/arrow-up.svg';
-import arrowdown from '../../assets/icons/black-arrows/arrow-down.svg';
+import arrowDown from '../../assets/icons/black-arrows/arrow-down.svg';
+import arrowDownGray from '../../assets/icons/gray-arrows/arrow-down.svg';
 
 type Props = {
   label: string;
@@ -17,6 +18,7 @@ type Props = {
   options: Record<string, string>;
   additionalSearhParams?: SearchParams;
   className?: string;
+  isDisabled?: boolean;
 };
 
 export const Dropdown: FC<Props> = (props) => {
@@ -27,6 +29,7 @@ export const Dropdown: FC<Props> = (props) => {
     options,
     additionalSearhParams = {},
     className = '',
+    isDisabled = false,
   } = props;
 
   const [isActive, setIsActive] = useState(false);
@@ -63,9 +66,14 @@ export const Dropdown: FC<Props> = (props) => {
 
   useClickOutside(dropdownRef, disableDropdown);
 
+  const currentArrowDown = isDisabled ? arrowDownGray : arrowDown;
+
   return (
     <div
-      className={cn(styles.container, className, { [styles.active]: isActive })}
+      className={cn(styles.container, className, {
+        [styles.active]: isActive,
+        [styles.disabled]: isDisabled,
+      })}
       ref={dropdownRef}
     >
       <span className={styles.label}>{label}</span>
@@ -79,7 +87,7 @@ export const Dropdown: FC<Props> = (props) => {
 
         <div className={styles.icons}>
           <img
-            src={arrowdown}
+            src={currentArrowDown}
             alt="down"
             className={cn(styles.icon, styles['icon--down'])}
           />

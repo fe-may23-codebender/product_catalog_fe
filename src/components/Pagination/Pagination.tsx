@@ -47,6 +47,12 @@ export const Pagination: FC<Props> = (props) => {
   const currentLeftArrow = prevBtnIsDisabled ? grayArrowLeft : arrowLeft;
   const currentRightArrow = nextBtnIsDisabled ? grayArrowRight : arrowRight;
 
+  const noPagination = prevBtnIsDisabled && nextBtnIsDisabled;
+
+  if (noPagination) {
+    return null;
+  }
+
   return (
     <ul className={cn(styles.container, className)}>
       <li>
