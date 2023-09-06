@@ -2,19 +2,23 @@
   --primary-color: #313237;
   --background-card-color: #fff;
   --main-background-color: #fff;
+  --text-color: ;
+  --white-color: #fff;
 }
 
 :root[data-theme="dark"] {
   --primary-color: #f1f2f9;
   --background-card-color: #161827;
   --main-background-color: #0F1121;
+  --text-color: #75767F;
+  --white-color: #0F1121;
 }
 
-$primary-color: #313237;
+$primary-color: var(--primary-color);
 $secondary-color: #89939a;
 $icons-color: #b4bdc3;
 $elements-color: #e2e6e9;
 $hover-bg-color: #fafbfc;
-$white-color: #fff;
+$white-color: var(--white-color);
 $color-green: #27ae60;
 $color-red: #eb5757;

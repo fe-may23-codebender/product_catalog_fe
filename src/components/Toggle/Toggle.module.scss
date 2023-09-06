@@ -1,10 +1,8 @@
 .switch {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120px;
-  height: 50px;
-  transform: translate(-50%, -50%);
+  position: relative;
+  margin: 0 auto;
+  width: 60px;
+  height: 26px;
   input {
     display: none;
   }
@@ -16,7 +14,7 @@
     left: 0;
     z-index: 1;
     overflow: hidden;
-    background-color: #e74a42;
+    background-color: #000000;
     border-radius: 50px;
     cursor: pointer;
     transition: all 1.4s;
@@ -24,10 +22,10 @@
     &:after {
       content: "";
       position: absolute;
-      bottom: 5px;
+      top: 3px;
       left: 5px;
-      width: 40px;
-      height: 40px;
+      width: 20px;
+      height: 20px;
       background-color: #ffffff;
       border-radius: 30px;
     }
@@ -42,42 +40,21 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 120px;
-    height: 50px;
+    width: 60px;
+    height: 26px;
     border-radius: 40px;
     transition: all 1.4s;
-    &:after {
-      content: "";
-      position: absolute;
-      top: 3px;
-      left: 20%;
-      width: 60px;
-      height: 3px;
-      background: #ffffff;
-      border-radius: 100%;
-      opacity: 0.4;
-    }
-    &:before {
-      content: "";
-      position: absolute;
-      top: 10px;
-      left: 30%;
-      width: 35px;
-      height: 2px;
-      background: #ffffff;
-      border-radius: 100%;
-      opacity: 0.3;
-    }
   }
   input:checked + .slider {
     background-color: transparent;
     &:before,
     &:after {
-      transform: translateX(70px);
+      background-color: #000000;
+      transform: translateX(30px);
     }
   }
   input:checked ~ .wave {
     display: block;
-    background-color: #3398d9;
+    background-color: #ededed;
   }
 }

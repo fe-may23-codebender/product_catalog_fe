@@ -2,7 +2,12 @@
 import React from 'react';
 import styles from './Toggle.module.scss';
 
-const Toggle = ({ value, onChange }) => (
+type Props = {
+  value: any,
+  onChange: any,
+};
+
+const Toggle: React.FC<Props> = ({ value, onChange }) => (
   <label className={styles.switch} htmlFor="toggler">
     <input
       id="toggler"

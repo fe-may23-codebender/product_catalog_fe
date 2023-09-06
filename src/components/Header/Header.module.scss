@@ -53,7 +53,7 @@
     justify-content: center;
     align-items: center;
 
-    color: $secondary-color;
+    color: var(--text-color);
 
     @include uppercaseText;
     @include hover(color, $primary-color);
