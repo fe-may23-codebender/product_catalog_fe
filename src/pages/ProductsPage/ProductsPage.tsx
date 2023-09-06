@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { selectProducts, selectProductsStats } from '../../redux/selectors';
 import { getKeyByValue } from '../../helpers/getKeyByValue';
 import { ProductsList } from '../../components/ProductsList';
-import { Loader } from '../../components/Loader';
 import { Pagination } from '../../components/Pagination';
 import { NoResults } from '../../components/NoResults';
 import { fecthProducts } from '../../redux/slices/productsSlice';
@@ -18,6 +17,7 @@ import { getSearchWith } from '../../helpers/searchHelper';
 import styles from './ProductsPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
 import { fecthProductsStats } from '../../redux/slices/productsStatsSlice';
+import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
 
 type Props = {
   productCategory: ProductCategory;
@@ -76,10 +76,6 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   const categoryNotFound = productsNotFound && !query;
   const noMatchingQuery = productsNotFound && query;
 
-  if (!productsLoaded || !statsLoaded) {
-    return <Loader className={styles.loader} />;
-  }
-
   return (
     <div>
       <div className={cn(container.limit, styles.productsContainer)}>
@@ -88,7 +84,7 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
         <h1 className={styles.title}>{currentTitle}</h1>
         <span className={styles.text}>{`${productsCount} models`}</span>
 
-        {categoryNotFound && (
+        {categoryNotFound && (productsLoaded || statsLoaded) && (
           <div className={styles.NoResults}>
             <NoResults
               category={title[productCategory]}
@@ -97,27 +93,31 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
           </div>
         )}
 
+        <div className={styles.dropdowns}>
+          <Dropdown
+            label="Sort by"
+            searchParamName={QueryParams.SortBy}
+            startValue={sortBy}
+            options={SortField}
+            className={cn(styles['dropdown-wide'], styles.dropdown)}
+          />
+
+          <Dropdown
+            label="Items on page"
+            searchParamName={QueryParams.ItemsPerPage}
+            startValue={itemsPerPage}
+            options={pageSize}
+            className={styles.dropdown}
+            additionalSearhParams={{ [QueryParams.CurrentPage]: '1' }}
+          />
+        </div>
+
+        {(!productsLoaded) &&
+          <ProductsListSkeleton />
+        }
+
         {!categoryNotFound && !noMatchingQuery && (
           <>
-            <div className={styles.dropdowns}>
-              <Dropdown
-                label="Sort by"
-                searchParamName={QueryParams.SortBy}
-                startValue={sortBy}
-                options={SortField}
-                className={cn(styles['dropdown-wide'], styles.dropdown)}
-              />
-
-              <Dropdown
-                label="Items on page"
-                searchParamName={QueryParams.ItemsPerPage}
-                startValue={itemsPerPage}
-                options={pageSize}
-                className={styles.dropdown}
-                additionalSearhParams={{ [QueryParams.CurrentPage]: '1' }}
-              />
-            </div>
-
             <ProductsList products={items} />
 
             <Pagination
