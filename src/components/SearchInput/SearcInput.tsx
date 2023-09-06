@@ -3,17 +3,20 @@ import {
   FC, FormEvent, useCallback, useEffect, useRef, useState,
 } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import classNames from 'classnames';
+import cn from 'classnames';
 import { debounce } from 'lodash';
 import styles from './SearchInput.module.scss';
 import searchIcon from '../../assets/icons/search.svg';
 import closeIcon from '../../assets/icons/close.svg';
 import { Button } from '../Buttons/Button';
-import { ButtonType, ProductCategory, SearchParams } from '../../types';
+import { ButtonType, QueryParams, SearchParams } from '../../types';
 import { getSearchWith } from '../../helpers/searchHelper';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fecthProducts } from '../../redux/slices/productsSlice';
-import { selectProducts } from '../../redux/selectors';
+import { selectQueryProducts } from '../../redux/selectors';
+import {
+  clearQueryProducts,
+  fecthQueryProducts,
+} from '../../redux/slices/queryProductsSlice';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { Loader } from '../Loader';
 
@@ -21,18 +24,16 @@ type Props = {
   className?: string;
 };
 
-export const SearchInput: FC<Props> = ({
-  className = '',
-}) => {
+export const SearchInput: FC<Props> = ({ className = '' }) => {
   const [isOpenInput, setIsOpenInput] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const queryParam = searchParams.get('search') || '';
+  const queryParam = searchParams.get(QueryParams.Query) || '';
   const [query, setQuery] = useState('');
 
   const dispatch = useAppDispatch();
-  const { items, loaded } = useAppSelector(selectProducts);
+  const { items, loaded } = useAppSelector(selectQueryProducts);
 
   const iconType = isOpenInput ? closeIcon : searchIcon;
   const inputRef = useRef<null | HTMLFormElement>(null);
@@ -43,9 +44,8 @@ export const SearchInput: FC<Props> = ({
       return;
     }
 
-    dispatch(fecthProducts({ searchParams, productCategory: ProductCategory.Phone }));
-  },
-  [queryParam]);
+    dispatch(fecthQueryProducts(queryParam));
+  }, [queryParam]);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -79,7 +79,10 @@ export const SearchInput: FC<Props> = ({
     });
   });
 
-  const aplyQuery = useCallback(debounce(setSearchWith, 3000), [searchParams, pathname]);
+  const aplyQuery = useCallback(debounce(setSearchWith, 1000), [
+    searchParams,
+    pathname,
+  ]);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value.trim());
@@ -105,40 +108,44 @@ export const SearchInput: FC<Props> = ({
     return () => clearAplyQuery();
   }, [searchParams, pathname]);
 
+  useEffect(() => {
+    dispatch(clearQueryProducts());
+  }, [pathname, isOpenInput]);
+
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
       className={styles.search}
       ref={inputRef}
     >
-      {isOpenInput && (
-        <div className={styles.search__wrapper}>
-          <img src={searchIcon} alt="icon" />
-          <input
-            type="text"
-            placeholder="Search..."
-            value={query}
-            onChange={handleQueryChange}
-            className={styles.search__input}
-          />
-        </div>
+      <div
+        className={cn(styles.search__wrapper, {
+          [styles.isOpened]: isOpenInput,
+        })}
+      >
+        <img src={searchIcon} alt="icon" />
+        <input
+          type="text"
+          placeholder="Search..."
+          value={query}
+          onChange={handleQueryChange}
+          className={styles.search__input}
+        />
+      </div>
 
-      )}
       <Button
-        className={classNames(className)}
+        className={cn(className, styles.trigger)}
         type={ButtonType.Button}
         iconPath={iconType}
         onClick={toggleButton}
       />
+
       {isDropdownOpen && (
         <div className={styles.dropdown__menu}>
           <div className={styles.dropdown__content}>
-            {items.length > 0 && (
-              items.map(item => (
-                <div
-                  className={styles.dropdown__item}
-                  key={item.id}
-                >
+            {items.length > 0
+              && items.map((item) => (
+                <div className={styles.dropdown__item} key={item.id}>
                   <Link
                     to={`../${item.category}/${item.itemId}`}
                     className={styles.dropdown__link}
@@ -147,14 +154,11 @@ export const SearchInput: FC<Props> = ({
                     {item.name}
                   </Link>
                 </div>
-              ))
-            )}
+              ))}
 
-            { !loaded && (
-              <Loader />
-            )}
+            {!loaded && <Loader />}
 
-            { loaded && !items.length && (
+            {loaded && !items.length && (
               <div className={styles.dropdown__error}>
                 <p>No results found</p>
               </div>

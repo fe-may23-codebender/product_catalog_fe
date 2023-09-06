@@ -1,20 +1,30 @@
 @use '../../styles/utils' as *;
 
+.isOpened {
+  width: 150px !important;
+  opacity: 1 !important;
+  pointer-events: all !important;
+
+  @include onTablet {
+    width: 200px !important;
+  }
+}
+
 .search {
   display: flex;
   position: relative;
   padding-left: 10px;
 
   &__wrapper {
-    
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
     padding-left: 5px;
     display: flex;
-    border: 1px solid $secondary-color;
-    width: 150px;
-
-    @include onTablet {
-      width: 200px;
-    }
+    border-left: 1px solid $icons-color;
+    transition:
+      width 0.3s ease,
+      opacity 0.3s ease;
   }
 
   &__input {
@@ -30,6 +40,10 @@
       line-height: 21px;
     }
   }
+}
+
+.trigger {
+  max-width: 65px;
 }
 
 .dropdown {
@@ -57,13 +71,11 @@
   }
   &__item {
     padding: 10px 5px;
-
   }
   &__link {
     color: $secondary-color;
-    &:hover {
-      color: $primary-color;
-    }
+
+    @include hover(color, $primary-color);
   }
   &__error {
     padding: 10px 5px;
