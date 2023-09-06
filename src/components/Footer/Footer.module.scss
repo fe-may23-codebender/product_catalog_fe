@@ -2,6 +2,7 @@
 
 .footer {
   box-sizing: border-box;
+  background-color: var(--main-background-color);
   border-top: 1px solid $elements-color;
 
   @include uppercaseText;
