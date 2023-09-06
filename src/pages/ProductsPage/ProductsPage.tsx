@@ -87,18 +87,13 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   }, [productCategory]);
 
   const productsNotFound = !items.length;
-  const categoryNotFound = productsNotFound && !query;
-  const noMatchingQuery = productsNotFound && query;
 
   const hasError = productsError || statsError;
   const isLoading = !productsLoaded || !statsLoaded;
 
-  const dropdownIsDisabled =
-    hasError ||
-    isLoading ||
-    productsNotFound ||
-    categoryNotFound ||
-    (noMatchingQuery as boolean);
+  const dropdownIsDisabled = hasError
+    || isLoading
+    || productsNotFound
 
   return (
     <div>
@@ -133,7 +128,7 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
           <ProductsListSkeleton className={styles.listContainer} />
         )}
 
-        {!categoryNotFound && !noMatchingQuery && productsLoaded && (
+        {!productsNotFound && productsLoaded && (
           <>
             <ProductsList products={items} className={styles.listContainer} />
 
@@ -146,7 +141,7 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
           </>
         )}
 
-        {categoryNotFound && productsLoaded && statsLoaded && (
+        {productsNotFound && productsLoaded && statsLoaded && (
           <div className={styles.NoResults}>
             <NoResults
               category={title[productCategory]}

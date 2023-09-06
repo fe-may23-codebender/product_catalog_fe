@@ -21,11 +21,12 @@ import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { fecthSuggestedProducts } from '../../redux/slices/suggestedProductsSlice';
 import { scrollToTop } from '../../helpers/scrollToTop';
 import { fecthProductDetails } from '../../redux/slices/productDetailsSlice';
+import { SkeletonProductPage } from '../../components/Skeletons/SkeletonProductPage/SkeletonProductPage';
+import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
 
 import container from '../../styles/utils/container.module.scss';
 import styles from './ProductDetailsPage.module.scss';
 import arrowRightDisable from '../../assets/icons/gray-arrows/arrow-left.svg';
-import { SkeletonProductPage } from '../../components/Skeletons/SkeletonProductPage/SkeletonProductPage';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -133,11 +134,15 @@ export const ProductDetailsPage = () => {
   return (
     <div className={styles.PhonesDetails}>
       <div className={container.limit}>
+        <Breadcrumbs className={styles.breadcrumbs} />
+
         {!detailsLoaded || !currentProduct || !suggestedLoaded ? (
-          <SkeletonProductPage />
+          <>
+            <SkeletonProductPage />
+            <ProductsListSkeleton className={styles.skeletonList} />
+          </>
         ) : (
           <>
-            <Breadcrumbs className={styles.breadcrumbs} />
             <Link to="/phones" className={styles.button}>
               <img src={arrowRightDisable} alt="arrow" />
               Back
