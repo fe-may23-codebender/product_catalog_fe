@@ -15,6 +15,7 @@ import { fecthSuggestedProducts } from '../../redux/slices/suggestedProductsSlic
 import container from '../../styles/utils/container.module.scss';
 import styles from './HomePage.module.scss';
 import { SkeletonHomePage } from '../../components/Skeletons/SkeletonHomePage/SkeletonHomePage';
+import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
 
 export const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -51,7 +52,10 @@ export const HomePage = () => {
         </h2>
 
         {!statsLoaded || !suggestedLoaded ? (
-          <SkeletonHomePage />
+          <>
+            <SkeletonHomePage />
+            <ProductsListSkeleton className={styles.swiperContainer} />
+          </>
         ) : (
           <>
             <Carousel />
