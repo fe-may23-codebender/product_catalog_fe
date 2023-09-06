@@ -25,5 +25,7 @@ export type ProductDescription = {
 };
 
 export type ProductDetails = ProductInfo & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
   description: ProductDescription[];
 };

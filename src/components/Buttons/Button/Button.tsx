@@ -41,7 +41,7 @@ export const Button: FC<Props> = (props) => {
     badge = 0,
   } = props;
 
-  const buttonClassnames = cn(styles.container, className as string);
+  const buttonClassnames = cn(styles.container, className);
 
   const commonProps = {
     className: buttonClassnames,

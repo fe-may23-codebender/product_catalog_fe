@@ -13,12 +13,12 @@ import { Pagination } from '../../components/Pagination';
 import { NoResults } from '../../components/NoResults';
 import { fecthProducts } from '../../redux/slices/productsSlice';
 import { getSearchWith } from '../../helpers/searchHelper';
-
-import styles from './ProductsPage.module.scss';
-import container from '../../styles/utils/container.module.scss';
 import { fecthProductsStats } from '../../redux/slices/productsStatsSlice';
 import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
 import { scrollToTop } from '../../helpers/scrollToTop';
+
+import styles from './ProductsPage.module.scss';
+import container from '../../styles/utils/container.module.scss';
 
 type Props = {
   productCategory: ProductCategory;
@@ -28,9 +28,17 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
 
-  const { items, loaded: productsLoaded } = useAppSelector(selectProducts);
-  const { countByGroup, loaded: statsLoaded } =
-    useAppSelector(selectProductsStats);
+  const {
+    items,
+    loaded: productsLoaded,
+    hasError: productsError,
+  } = useAppSelector(selectProducts);
+
+  const {
+    countByGroup,
+    loaded: statsLoaded,
+    hasError: statsError,
+  } = useAppSelector(selectProductsStats);
 
   const pageSize = {
     All: 'all',
@@ -82,6 +90,16 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   const categoryNotFound = productsNotFound && !query;
   const noMatchingQuery = productsNotFound && query;
 
+  const hasError = productsError || statsError;
+  const isLoading = !productsLoaded || !statsLoaded;
+
+  const dropdownIsDisabled =
+    hasError ||
+    isLoading ||
+    productsNotFound ||
+    categoryNotFound ||
+    (noMatchingQuery as boolean);
+
   return (
     <div>
       <div className={cn(container.limit, styles.productsContainer)}>
@@ -97,6 +115,7 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
             startValue={sortBy}
             options={SortField}
             className={cn(styles['dropdown-wide'], styles.dropdown)}
+            isDisabled={dropdownIsDisabled}
           />
 
           <Dropdown
@@ -106,14 +125,17 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
             options={pageSize}
             className={styles.dropdown}
             additionalSearhParams={{ [QueryParams.CurrentPage]: '1' }}
+            isDisabled={dropdownIsDisabled}
           />
         </div>
 
-        {!productsLoaded && <ProductsListSkeleton />}
+        {!productsLoaded && (
+          <ProductsListSkeleton className={styles.listContainer} />
+        )}
 
         {!categoryNotFound && !noMatchingQuery && productsLoaded && (
           <>
-            <ProductsList products={items} />
+            <ProductsList products={items} className={styles.listContainer} />
 
             <Pagination
               currentPage={currentPage}

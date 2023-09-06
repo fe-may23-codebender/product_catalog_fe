@@ -1,7 +1,12 @@
-/* eslint-disable max-len */
-import { useState, useEffect, useMemo } from 'react';
+/* eslint-disable */
+import { useState, useEffect, useMemo, Fragment } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ColorKey, ProductDetails } from '../../types';
+import {
+  ColorKey,
+  Product,
+  ProductCategory,
+  ProductDetails,
+} from '../../types';
 import { SelectImg } from '../../components/SelectImg/SelectImg';
 import { ColorFunctionality } from '../../components/ColorFunctionality/ColorFunctionality';
 import { CapacityFunctionality } from '../../components/CapacityFunctionality/CapacityFunctionality';
@@ -25,17 +30,17 @@ import arrowRightDisable from '../../assets/icons/gray-arrows/arrow-left.svg';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
-  const dispatch = useAppDispatch();
 
-  const { item: productDetails, loaded: detailsLoaded }
-    = useAppSelector(selectProductDetails);
+  const dispatch = useAppDispatch();
+  const [activeImg, setActiveImg] = useState('');
+
+  const { item: productDetails, loaded: detailsLoaded } =
+    useAppSelector(selectProductDetails);
 
   const {
     data: { discount },
     loaded: suggestedLoaded,
   } = useAppSelector(selectSuggestedProducts);
-
-  const [activeImg, setActiveImg] = useState('');
 
   const productImages = useMemo(() => {
     if (!detailsLoaded) {
@@ -47,7 +52,41 @@ export const ProductDetailsPage = () => {
     );
   }, [productId, detailsLoaded]);
 
-  const getLinkToProduct = (
+  const currentProduct = useMemo(() => {
+    if (!detailsLoaded) {
+      return null;
+    }
+
+    const { priceDiscount, priceRegular } = productDetails;
+
+    const product: Product = {
+      id: '',
+      category: '' as ProductCategory,
+      phoneId: '',
+      itemId: '',
+      name: '',
+      fullPrice: priceRegular,
+      price: priceDiscount,
+      screen: '',
+      capacity: '',
+      color: '',
+      ram: '',
+      year: 0,
+      image: activeImg,
+    };
+
+    for (const key in productDetails) {
+      if (!(key in product)) {
+        continue;
+      }
+
+      product[key] = productDetails[key];
+    }
+
+    return product;
+  }, [productId, detailsLoaded, activeImg]);
+
+  const redirectToProduct = (
     options: Partial<Pick<ProductDetails, 'capacity' | 'color'>>,
   ) => {
     if (!productDetails) {
@@ -58,10 +97,11 @@ export const ProductDetailsPage = () => {
 
     const { namespaceId } = productDetails;
 
-    const currentColor = color || productDetails.color;
-    const currentCapacity = capacity || productDetails.capacity;
+    const currentColor = color || productDetails.color || '';
+    const currentCapacity = capacity || productDetails.capacity || '';
 
-    const url = `../${namespaceId}-${currentCapacity}-${currentColor}`;
+    const url = [`../${namespaceId}`, currentCapacity, currentColor].join('-');
+    // const url = `../${namespaceId}-${currentCapacity}-${currentColor}`;
 
     return url.toLowerCase().trim();
   };
@@ -92,7 +132,7 @@ export const ProductDetailsPage = () => {
     setActiveImg(productImages[0]);
   }, [productImages]);
 
-  if (!detailsLoaded) {
+  if (!detailsLoaded || !currentProduct) {
     return <Loader />;
   }
 
@@ -125,17 +165,26 @@ export const ProductDetailsPage = () => {
           </div>
 
           <div className={styles.functional}>
-            <ColorFunctionality
-              colors={productDetails.colorsAvailable as ColorKey[]}
-              redirect={getLinkToProduct}
-            />
+            {productDetails.colorsAvailable &&
+              productDetails.colorsAvailable.length > 0 && (
+                <ColorFunctionality
+                  colors={productDetails.colorsAvailable as ColorKey[]}
+                  redirect={redirectToProduct}
+                />
+              )}
 
-            <CapacityFunctionality
-              capacityList={productDetails.capacityAvailable}
-              redirect={getLinkToProduct}
-            />
+            {productDetails.capacityAvailable &&
+              productDetails.capacityAvailable.length > 0 && (
+                <CapacityFunctionality
+                  capacityList={productDetails.capacityAvailable}
+                  redirect={redirectToProduct}
+                />
+              )}
 
-            <ButtonsFunctionality item={productDetails} />
+            <ButtonsFunctionality
+              product={currentProduct as Product}
+              productDetails={productDetails}
+            />
           </div>
         </div>
 
@@ -147,10 +196,10 @@ export const ProductDetailsPage = () => {
               About
             </h3>
             {productDetails.description.map((info) => (
-              <>
+              <Fragment key={info.title}>
                 <h4 className={styles.About__info}>{info.title}</h4>
                 <p className={styles.About__text}>{info.text.join()}</p>
-              </>
+              </Fragment>
             ))}
           </article>
 
@@ -207,7 +256,7 @@ export const ProductDetailsPage = () => {
               <li className={styles.TechInfo__characteristic}>
                 <p>Cell</p>
                 <p className={styles.TechInfo__value}>
-                  {!productDetails.cell.length
+                  {!productDetails.cell || !productDetails.cell.length
                     ? '-'
                     : productDetails.cell.join(' ')}
                 </p>
