@@ -1,5 +1,6 @@
 .main {
   display: flex;
+  background-color: var(--main-background-color);
   flex-direction: column;
   flex: 1 0 auto;
 }

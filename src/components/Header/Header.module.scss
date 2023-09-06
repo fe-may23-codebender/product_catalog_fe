@@ -2,6 +2,7 @@
 
 .header {
   position: relative;
+  background-color: var(--main-background-color);
   box-shadow: 0 1px 0 0 $elements-color;
   z-index: 3;
 
@@ -52,7 +53,7 @@
     justify-content: center;
     align-items: center;
 
-    color: $secondary-color;
+    color: var(--text-color);
 
     @include uppercaseText;
     @include hover(color, $primary-color);

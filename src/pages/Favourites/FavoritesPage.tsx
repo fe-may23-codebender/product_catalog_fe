@@ -19,13 +19,17 @@ export const FavoritesPage: FC = () => {
       <h1 className={styles.title}>Favorites</h1>
       <h3 className={styles.text}>{`${productsCount} items`}</h3>
 
-      {productsCount < 1 && (
-        <p className={styles.emptyMessage}>
-          You have not added anything to Favorites yet
-        </p>
-      )}
+      {!productsCount ? (
+        <h2 className={styles.emptyFavorite}>
+          There are no items in your favorite 🧐
+        </h2>
+      ) : (
+        <ProductsList
+          products={favoritesProducts}
+          className={styles.products}
+        />
 
-      <ProductsList products={favoritesProducts} className={styles.products} />
+      )}
     </div>
   );
 };
