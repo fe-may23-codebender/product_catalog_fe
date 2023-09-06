@@ -13,9 +13,9 @@ export const FavoritesPage: FC = () => {
 
   return (
     <div className={`${container.limit} ${styles.Container}`}>
-      <p className={styles.Container__Top}>
+      <div className={styles.Container__Top}>
         <Breadcrumbs />
-      </p>
+      </div>
       <h1 className={styles.title}>Favorites</h1>
       <h3 className={styles.text}>{`${productsCount} items`}</h3>
 

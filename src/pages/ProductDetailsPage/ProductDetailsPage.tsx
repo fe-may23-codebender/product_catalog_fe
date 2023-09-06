@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { useState, useEffect, useMemo, Fragment } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import {
   ColorKey,
   Product,
@@ -27,9 +27,11 @@ import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkel
 import container from '../../styles/utils/container.module.scss';
 import styles from './ProductDetailsPage.module.scss';
 import arrowRightDisable from '../../assets/icons/gray-arrows/arrow-left.svg';
+import { normalizeImage } from '../../helpers/normalizeImage';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
+  const { pathname } = useLocation();
 
   const dispatch = useAppDispatch();
   const [activeImg, setActiveImg] = useState('');
@@ -47,9 +49,7 @@ export const ProductDetailsPage = () => {
       return [];
     }
 
-    return productDetails.images.map(
-      (imageURL) => `/product_catalog_fe/${imageURL}`,
-    );
+    return productDetails.images.map(normalizeImage);
   }, [productId, detailsLoaded]);
 
   const currentProduct = useMemo(() => {
@@ -58,10 +58,11 @@ export const ProductDetailsPage = () => {
     }
 
     const { priceDiscount, priceRegular } = productDetails;
+    const [productCategory] = pathname.split('/').filter(Boolean);
 
     const product: Product = {
       id: '',
-      category: '' as ProductCategory,
+      category: productCategory as ProductCategory,
       phoneId: '',
       itemId: '',
       name: '',
