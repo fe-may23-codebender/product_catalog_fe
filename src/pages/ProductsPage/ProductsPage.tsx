@@ -18,6 +18,7 @@ import styles from './ProductsPage.module.scss';
 import container from '../../styles/utils/container.module.scss';
 import { fecthProductsStats } from '../../redux/slices/productsStatsSlice';
 import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
+import { scrollToTop } from '../../helpers/scrollToTop';
 
 type Props = {
   productCategory: ProductCategory;
@@ -72,6 +73,10 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
 
     dispatch(fecthProductsStats());
   }, [statsLoaded]);
+
+  useEffect(() => {
+    scrollToTop();
+  }, [productCategory]);
 
   const productsNotFound = !items.length;
   const categoryNotFound = productsNotFound && !query;
