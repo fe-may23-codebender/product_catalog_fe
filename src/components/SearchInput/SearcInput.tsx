@@ -25,14 +25,17 @@ export const SearchInput: FC<Props> = ({
 }) => {
   const [isOpenInput, setIsOpenInput] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
+  const queryParam = searchParams.get('search') || '';
   const [query, setQuery] = useState('');
+
   const dispatch = useAppDispatch();
   const { items } = useAppSelector(selectProducts);
 
   const iconType = isOpenInput ? closeIcon : searchIcon;
   const inputRef = useRef<null | HTMLFormElement>(null);
-  const queryParam = searchParams.get('search') || '';
+
 
   useEffect(() => {
     setQuery(queryParam);
@@ -79,7 +82,7 @@ export const SearchInput: FC<Props> = ({
     });
   });
 
-  const aplyQuery = useCallback(debounce(setSearchWith, 500), [searchParams]);
+  const aplyQuery = useCallback(debounce(setSearchWith, 1000), [searchParams]);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value.trim());
@@ -102,7 +105,7 @@ export const SearchInput: FC<Props> = ({
     >
       {isOpenInput && (
         <div className={styles.search__wrapper}>
-          <img src={searchIcon} alt="" />
+          <img src={searchIcon} alt="icon" />
           <input
             type="text"
             placeholder="Search..."
