@@ -5,6 +5,18 @@
   position: relative;
   padding-left: 10px;
 
+  &__wrapper {
+    
+    padding-left: 5px;
+    display: flex;
+    border: 1px solid $secondary-color;
+    width: 150px;
+
+    @include onTablet {
+      width: 200px;
+    }
+  }
+
   &__input {
     padding-left: 10px;
     height: 100%;
@@ -17,10 +29,6 @@
       font-weight: 600;
       line-height: 21px;
     }
-
-    &:hover {
-      border: 1px solid $secondary-color;
-    }
   }
 }
 
@@ -28,20 +36,28 @@
   &__menu {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 10;
     z-index: 10;
     background-color: white;
     border: 1px solid $secondary-color;
-    padding: 10px;
+
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 216px;
+
+    @include onTablet {
+      width: 266px;
+    }
   }
   &__content {
-    overflow: scroll;
+    overflow-y: scroll;
+
     z-index: 15;
+    min-height: 20px;
+    max-height: 300px;
   }
   &__item {
-    margin-top: 10px;
+    padding: 10px 5px;
+
   }
   &__link {
     color: $secondary-color;
@@ -50,6 +66,7 @@
     }
   }
   &__error {
+    padding: 10px 5px;
     color: $secondary-color;
   }
 }
