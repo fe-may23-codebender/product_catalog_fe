@@ -50,9 +50,9 @@ export const Header: FC = () => {
               <li>
                 <NavLink
                   to="/"
-                  className={({ isActive }) => (
+                  className={({ isActive }) =>
                     cn(styles.navigation__link, { [styles.active]: isActive })
-                  )}
+                  }
                 >
                   home
                 </NavLink>

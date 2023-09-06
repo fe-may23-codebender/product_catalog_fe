@@ -15,7 +15,7 @@ export const CardLayout: FC<Props> = ({ item, className = '' }) => {
   return (
     <article className={cn(styles.card, className)}>
       <Link
-        to={`../${item.category}/${item.itemId}`}
+        to={`../../${item.category}/${item.itemId}`}
         className={styles.card__link}
       >
         <img
@@ -25,9 +25,7 @@ export const CardLayout: FC<Props> = ({ item, className = '' }) => {
         />
       </Link>
 
-      <Link
-        to={`../${item.category}/${item.itemId}`}
-      >
+      <Link to={`../${item.category}/${item.itemId}`}>
         <h2 className={styles.card__title}>{item.name}</h2>
       </Link>
 

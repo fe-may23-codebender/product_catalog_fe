@@ -2,7 +2,7 @@
 import {
   FC, FormEvent, useCallback, useEffect, useRef, useState,
 } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { debounce } from 'lodash';
 import styles from './SearchInput.module.scss';
@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fecthProducts } from '../../redux/slices/productsSlice';
 import { selectProducts } from '../../redux/selectors';
 import { useClickOutside } from '../../hooks/useClickOutside';
+import { Loader } from '../Loader';
 
 type Props = {
   className?: string;
@@ -31,15 +32,11 @@ export const SearchInput: FC<Props> = ({
   const [query, setQuery] = useState('');
 
   const dispatch = useAppDispatch();
-  const { items } = useAppSelector(selectProducts);
+  const { items, loaded } = useAppSelector(selectProducts);
 
   const iconType = isOpenInput ? closeIcon : searchIcon;
   const inputRef = useRef<null | HTMLFormElement>(null);
-
-
-  useEffect(() => {
-    setQuery(queryParam);
-  }, [searchParams]);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (!queryParam) {
@@ -82,7 +79,7 @@ export const SearchInput: FC<Props> = ({
     });
   });
 
-  const aplyQuery = useCallback(debounce(setSearchWith, 1000), [searchParams]);
+  const aplyQuery = useCallback(debounce(setSearchWith, 3000), [searchParams, pathname]);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value.trim());
@@ -96,6 +93,17 @@ export const SearchInput: FC<Props> = ({
       setIsDropdownOpen(false);
     }
   };
+
+  const clearAplyQuery = () => {
+    aplyQuery.cancel();
+    setQuery('');
+  };
+
+  useEffect(() => {
+    setQuery(queryParam);
+
+    return () => clearAplyQuery();
+  }, [searchParams, pathname]);
 
   return (
     <form
@@ -125,7 +133,7 @@ export const SearchInput: FC<Props> = ({
       {isDropdownOpen && (
         <div className={styles.dropdown__menu}>
           <div className={styles.dropdown__content}>
-            {items.length > 0 ? (
+            {items.length > 0 && (
               items.map(item => (
                 <div
                   className={styles.dropdown__item}
@@ -140,7 +148,13 @@ export const SearchInput: FC<Props> = ({
                   </Link>
                 </div>
               ))
-            ) : (
+            )}
+
+            { !loaded && (
+              <Loader />
+            )}
+
+            { loaded && !items.length && (
               <div className={styles.dropdown__error}>
                 <p>No results found</p>
               </div>

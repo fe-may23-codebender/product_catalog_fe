@@ -7,17 +7,13 @@ export const SkeletonHomePage = () => {
   return (
     <SkeletonTheme>
       <div className={styles.Skeleton}>
-        <div
-          className={styles.SkeletonCarousel}
-        >
+        <div className={styles.SkeletonCarousel}>
           <Skeleton height={400} />
           <Skeleton height={400} />
           <Skeleton height={400} />
         </div>
 
-        <div
-          className={styles.SkeletonSlider}
-        >
+        <div className={styles.SkeletonSlider}>
           <Skeleton height={4} />
           <Skeleton height={0} />
           <Skeleton height={4} />
