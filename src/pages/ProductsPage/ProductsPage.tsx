@@ -72,7 +72,7 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
         });
 
     dispatch(fecthProducts({ searchParams: params, productCategory }));
-  }, [productCategory, searchParams]);
+  }, [productCategory, pageParam, sortParam, perPageParam]);
 
   useEffect(() => {
     if (statsLoaded) {
@@ -91,9 +91,7 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   const hasError = productsError || statsError;
   const isLoading = !productsLoaded || !statsLoaded;
 
-  const dropdownIsDisabled = hasError
-    || isLoading
-    || productsNotFound
+  const dropdownIsDisabled = hasError || isLoading || productsNotFound;
 
   return (
     <div>
