@@ -77,10 +77,8 @@ const cartSlice = createSlice({
 });
 
 export const {
-  addOneModel,
-  removeOneModel,
-  removeModelsByType,
-  clear,
-} = cartSlice.actions;
+  addOneModel, removeOneModel, removeModelsByType, clear,
+}
+  = cartSlice.actions;
 
 export default cartSlice.reducer;

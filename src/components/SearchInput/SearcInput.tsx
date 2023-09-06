@@ -170,14 +170,10 @@ const items = [
 ];
 
 function filterProductsByQuery(products: Product[], query: string) {
-  return products.filter(
-    (product) => product.name.toLowerCase().includes(query.toLowerCase()),
-  );
+  return products.filter((product) => product.name.toLowerCase().includes(query.toLowerCase()));
 }
 
-export const SearchInput: FC<Props> = ({
-  className = '',
-}) => {
+export const SearchInput: FC<Props> = ({ className = '' }) => {
   const [query, setQuery] = useState('');
   const [isOpenInput, setIsOpenInput] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -229,11 +225,8 @@ export const SearchInput: FC<Props> = ({
         <div className={styles.dropdown__menu}>
           <div className={styles.dropdown__content}>
             {filteredProducts.length > 0 ? (
-              filteredProducts.map(product => (
-                <div
-                  className={styles.dropdown__item}
-                  key={product.id}
-                >
+              filteredProducts.map((product) => (
+                <div className={styles.dropdown__item} key={product.id}>
                   <Link
                     to={`../${product.category}/${product.itemId}`}
                     className={styles.dropdown__link}

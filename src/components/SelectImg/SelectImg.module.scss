@@ -29,10 +29,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
-    &:hover {
-      border-color: $primary-color;
-    }
+    @include hover(border-color, $primary-color);
 
     &__img {
       position: absolute;

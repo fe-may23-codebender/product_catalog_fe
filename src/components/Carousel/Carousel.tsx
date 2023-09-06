@@ -38,9 +38,8 @@ export const Carousel = () => {
     }
   };
 
-  const banerIphone = breakpoint === Breakpoint.Mobile
-    ? BannerIphoneSmall
-    : BannerIphoneBig;
+  const banerIphone
+    = breakpoint === Breakpoint.Mobile ? BannerIphoneSmall : BannerIphoneBig;
 
   return (
     <div className={styles.carousel}>

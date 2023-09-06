@@ -1,34 +1,26 @@
+/* eslint-disable max-len */
 import { useEffect } from 'react';
 import cn from 'classnames';
 import { Carousel } from '../../components/Carousel/Carousel';
-import {
-  SwiperProducts,
-} from '../../components/SwiperProducts/SwiperdProducts';
+import { SwiperProducts } from '../../components/SwiperProducts/SwiperdProducts';
 import { Categories } from '../../components/Categories';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import {
   selectProductsStats,
   selectSuggestedProducts,
 } from '../../redux/selectors';
-import {
-  fecthProductsStats,
-} from '../../redux/slices/productsStatsSlice';
-import {
-  fecthSuggestedProducts,
-} from '../../redux/slices/suggestedProductsSlice';
+import { fecthProductsStats } from '../../redux/slices/productsStatsSlice';
+import { fecthSuggestedProducts } from '../../redux/slices/suggestedProductsSlice';
 
 import container from '../../styles/utils/container.module.scss';
 import styles from './HomePage.module.scss';
-import {
-  SkeletonHomePage,
-} from '../../components/Skeletons/SkeletonHomePage/SkeletonHomePage';
+import { SkeletonHomePage } from '../../components/Skeletons/SkeletonHomePage/SkeletonHomePage';
 
 export const HomePage = () => {
   const dispatch = useAppDispatch();
 
-  const {
-    countByGroup, loaded: statsLoaded,
-  } = useAppSelector(selectProductsStats);
+  const { countByGroup, loaded: statsLoaded }
+    = useAppSelector(selectProductsStats);
 
   const {
     data: { newest, discount },
@@ -58,24 +50,23 @@ export const HomePage = () => {
           Welcome to Nice Gadgets store!
         </h2>
 
-        {!statsLoaded || !suggestedLoaded
-          ? (
-            <SkeletonHomePage />
-          ) : (
-            <>
-              <Carousel />
+        {!statsLoaded || !suggestedLoaded ? (
+          <SkeletonHomePage />
+        ) : (
+          <>
+            <Carousel />
 
-              <div className={styles.swiperContainer}>
-                <SwiperProducts title="Brand new models" items={newest} />
-              </div>
+            <div className={styles.swiperContainer}>
+              <SwiperProducts title="Brand new models" items={newest} />
+            </div>
 
-              <Categories countByGroup={countByGroup} />
+            <Categories countByGroup={countByGroup} />
 
-              <div className={styles.swiperContainer}>
-                <SwiperProducts title="Hot prices" items={discount} />
-              </div>
-            </>
-          )}
+            <div className={styles.swiperContainer}>
+              <SwiperProducts title="Hot prices" items={discount} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

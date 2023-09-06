@@ -24,11 +24,8 @@ export const getProducts = ({
   return client.get<Product[]>(`/products${normalizedSearchParams}`);
 };
 
-export const getProductInfo = (
-  productCategory: ProductCategory,
-  productId: string,
-) => {
-  return client.get<ProductInfo>(`/${productCategory}/${productId}`);
+export const getProductInfo = (productId: string) => {
+  return client.get<ProductInfo[]>(`/details/${productId}`);
 };
 
 export const getProductDescription = (productId: string) => {

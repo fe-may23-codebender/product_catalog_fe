@@ -4,11 +4,12 @@
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo/Logo';
-import container from '../../styles/utils/container.module.scss';
-import styles from './Footer.module.scss';
+import { scrollToTop } from '../../helpers/scrollToTop';
 import { Button } from '../Buttons/Button';
 import { ButtonType } from '../../types';
 
+import styles from './Footer.module.scss';
+import container from '../../styles/utils/container.module.scss';
 import arrow_up from '../../assets/icons/black-arrows/arrow-up.svg';
 
 const footerLinks = [
@@ -21,10 +22,6 @@ const footerLinks = [
 ];
 
 export const Footer = () => {
-  function goUp() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
   return (
     <footer className={styles.footer}>
       <div className={cn(styles.container, container.limit)}>
@@ -48,7 +45,11 @@ export const Footer = () => {
           </ul>
         </div>
 
-        <div role="button" className={styles.footer__button} onClick={goUp}>
+        <div
+          role="button"
+          className={styles.footer__button}
+          onClick={scrollToTop}
+        >
           <span className={styles.footer__button__text}>Back to top</span>
           <Button
             type={ButtonType.Button}
