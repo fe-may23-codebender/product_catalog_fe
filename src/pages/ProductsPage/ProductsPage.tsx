@@ -28,7 +28,8 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   const dispatch = useAppDispatch();
 
   const { items, loaded: productsLoaded } = useAppSelector(selectProducts);
-  const { countByGroup, loaded: statsLoaded } = useAppSelector(selectProductsStats);
+  const { countByGroup, loaded: statsLoaded } =
+    useAppSelector(selectProductsStats);
 
   const pageSize = {
     All: 'all',
@@ -84,15 +85,6 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
         <h1 className={styles.title}>{currentTitle}</h1>
         <span className={styles.text}>{`${productsCount} models`}</span>
 
-        {categoryNotFound && (productsLoaded || statsLoaded) && (
-          <div className={styles.NoResults}>
-            <NoResults
-              category={title[productCategory]}
-              className={styles.NoResultsText}
-            />
-          </div>
-        )}
-
         <div className={styles.dropdowns}>
           <Dropdown
             label="Sort by"
@@ -112,11 +104,9 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
           />
         </div>
 
-        {(!productsLoaded) &&
-          <ProductsListSkeleton />
-        }
+        {!productsLoaded && <ProductsListSkeleton />}
 
-        {!categoryNotFound && !noMatchingQuery && (
+        {!categoryNotFound && !noMatchingQuery && productsLoaded && (
           <>
             <ProductsList products={items} />
 
@@ -127,6 +117,15 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
               className={styles.pagination}
             />
           </>
+        )}
+
+        {categoryNotFound && productsLoaded && statsLoaded && (
+          <div className={styles.NoResults}>
+            <NoResults
+              category={title[productCategory]}
+              className={styles.NoResultsText}
+            />
+          </div>
         )}
       </div>
     </div>

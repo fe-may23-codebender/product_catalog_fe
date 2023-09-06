@@ -1,30 +1,25 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getProductDescription, getProductInfo } from '../../api/products';
-import { ProductDetails, ProductCategory } from '../../types';
+import { ProductDetails } from '../../types';
 
 export interface ProductDetailsState {
-  item: ProductDetails | null;
+  item: ProductDetails;
   loaded: boolean;
   hasError: boolean;
 }
 
-type ProductParams = {
-  productCategory: ProductCategory;
-  productId: string;
-};
-
 const initialState: ProductDetailsState = {
-  item: null,
+  item: {} as ProductDetails,
   loaded: false,
   hasError: false,
 };
 
 export const fecthProductDetails = createAsyncThunk(
   'productDetails/fetch',
-  ({ productCategory, productId }: ProductParams) => {
+  (productId: string) => {
     return Promise.all([
-      getProductInfo(productCategory, productId),
+      getProductInfo(productId),
       getProductDescription(productId),
     ]);
   },
@@ -42,9 +37,10 @@ export const productDetailsSlice = createSlice({
       })
       .addCase(fecthProductDetails.fulfilled, (state, action) => {
         const [productInfo, productDescription] = action.payload;
+        const [details] = productInfo;
 
         state.item = {
-          ...productInfo,
+          ...details,
           description: productDescription,
         };
 

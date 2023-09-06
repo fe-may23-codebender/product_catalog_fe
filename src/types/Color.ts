@@ -14,3 +14,5 @@ export enum Color {
   starlight = '#f8f9ec',
   midnight = '#191970',
 }
+
+export type ColorKey = keyof typeof Color;
