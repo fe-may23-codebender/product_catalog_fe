@@ -27,6 +27,18 @@
       pointer-events: all;
     }
   }
+
+  &.disabled {
+    .trigger {
+      border-color: $elements-color;
+      color: $elements-color;
+      pointer-events: none;
+    }
+
+    .label {
+      color: $elements-color;
+    }
+  }
 }
 
 .label {

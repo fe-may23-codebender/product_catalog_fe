@@ -101,6 +101,10 @@
       display: block !important;
     }
   }
+
+  &LinkCart {
+    border-right-color: $icons-color !important;
+  }
 }
 
 .burger {

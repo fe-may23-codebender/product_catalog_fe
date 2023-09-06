@@ -1,7 +1,10 @@
+/* eslint-disable max-len */
 import { FC } from 'react';
+import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
+import { ProductDetails } from '../../types';
 import styles from './CapacityFunctionality.module.scss';
-import { ButtonType, ProductDetails } from '../../types';
-import { Button } from '../Buttons/Button';
+import btnStyles from '../Buttons/Button/Button.module.scss';
 
 type Props = {
   capacityList: string[];
@@ -19,13 +22,14 @@ export const CapacityFunctionality: FC<Props> = ({
       <ul className={styles.capacity__list}>
         {capacityList.map((capacity) => (
           <li key={capacity}>
-            <Button
-              type={ButtonType.Link}
+            <NavLink
               to={redirect({ capacity })}
-              className={styles.capacity__list__item}
+              className={({ isActive }) => cn(styles.capacity__list__item, btnStyles.container, {
+                [styles.is__active]: isActive,
+              })}
             >
               {capacity}
-            </Button>
+            </NavLink>
           </li>
         ))}
       </ul>

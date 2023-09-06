@@ -37,6 +37,9 @@ export const CartCardLayout: FC<Props> = ({ product, count }) => {
 
   const currentMinusIcon = minusBtnIsDisabled ? grayMinus : minus;
 
+  const imagePath = `/product_catalog_fe/${product.image}`;
+  const normalizedImgPath = Array.from(new Set(imagePath.split('/'))).join('/');
+
   return (
     <div className={styles.card}>
       <div className={styles.card__firstBlock}>
@@ -47,7 +50,7 @@ export const CartCardLayout: FC<Props> = ({ product, count }) => {
         />
         <img
           className={styles.card__photo}
-          src={`/product_catalog_fe/${product.image}`}
+          src={normalizedImgPath}
           alt={product.name}
         />
         <h2 className={styles.card__title}>{product.name}</h2>

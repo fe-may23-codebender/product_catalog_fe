@@ -1,6 +1,8 @@
 import { ProductCategory } from './ProductCategory';
 
 export interface Product {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
   id: string;
   category: ProductCategory;
   phoneId: string;
