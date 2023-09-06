@@ -20,7 +20,7 @@ export const AddToFavoriteButton: FC<Props> = ({ product, className = '' }) => {
   const favoriteProducts = useAppSelector(selectFavorites);
 
   const isFavoriteProduct = useMemo(
-    () => favoriteProducts.some((item) => item.id === product.id),
+    () => favoriteProducts.some(({ itemId }) => itemId === product.itemId),
     [favoriteProducts, product],
   );
 
