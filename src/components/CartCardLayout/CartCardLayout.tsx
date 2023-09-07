@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import cn from 'classnames';
 import { ButtonType, Product } from '../../types';
 import { Button } from '../Buttons/Button';
@@ -11,7 +11,10 @@ import btnStyles from '../Buttons/Button/Button.module.scss';
 
 import minus from '../../assets/icons/minus.svg';
 import grayMinus from '../../assets/icons/gray-minus.svg';
+import grayMinusDark from '../../assets/icons-dark/Minus.svg';
 import plus from '../../assets/icons/plus.svg';
+import plusDark from '../../assets/icons-dark/Plus.svg';
+import { ThemeContext } from '../../context/ThemeContext';
 
 type Props = {
   product: Product;
@@ -35,10 +38,16 @@ export const CartCardLayout: FC<Props> = ({ product, count }) => {
 
   const minusBtnIsDisabled = count <= 1;
 
-  const currentMinusIcon = minusBtnIsDisabled ? grayMinus : minus;
-
   const imagePath = `/product_catalog_fe/${product.image}`;
   const normalizedImgPath = Array.from(new Set(imagePath.split('/'))).join('/');
+
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const currentMinusIconlight = minusBtnIsDisabled ? grayMinus : minus;
+  const currentMinusIcondark = minusBtnIsDisabled ? minus : grayMinusDark;
+  const currentMinus = isThemeModeDark
+    ? currentMinusIcondark
+    : currentMinusIconlight;
+  const currentPlus = isThemeModeDark ? plusDark : plus;
 
   return (
     <div className={styles.card}>
@@ -58,7 +67,7 @@ export const CartCardLayout: FC<Props> = ({ product, count }) => {
       <div className={styles.card__secondBlock}>
         <div className={styles.card__button}>
           <Button
-            iconPath={currentMinusIcon}
+            iconPath={currentMinus}
             className={cn(styles.card__button__minus, {
               [btnStyles.disabled]: minusBtnIsDisabled,
             })}
@@ -69,7 +78,7 @@ export const CartCardLayout: FC<Props> = ({ product, count }) => {
           <span className={styles.card__button__count}>{count}</span>
 
           <Button
-            iconPath={plus}
+            iconPath={currentPlus}
             className={styles.card__button__plus}
             onClick={addOneToOrder}
             type={ButtonType.Button}

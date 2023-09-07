@@ -1,6 +1,5 @@
-/* eslint-disable max-len */
 /* eslint-disable import/no-extraneous-dependencies */
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useContext } from 'react';
 import cn from 'classnames';
 import { toast } from 'react-toastify';
 import { ButtonType, Product } from '../../../types';
@@ -10,8 +9,9 @@ import { selectFavorites } from '../../../redux/selectors';
 import * as favoritesService from '../../../redux/slices/favoritesSlice';
 
 import styles from './AddToFavoriteButton.module.scss';
-import buttonStyles from '../Button/Button.module.scss';
 import notifStyles from '../../../styles/utils/notification.module.scss';
+import buttonStyles from '../Button/Button.module.scss';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 type Props = {
   product: Product;
@@ -52,21 +52,25 @@ export const AddToFavoriteButton: FC<Props> = ({ product, className = '' }) => {
     );
   };
 
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const icon = isThemeModeDark
+    ? styles.AddToFavBtnIconDark
+    : styles.AddToFavBtnIcon;
+
   return (
-    <>
-      <Button
-        type={ButtonType.Button}
-        className={cn(styles.AddToFavBtn, className, {
-          [buttonStyles.element]: isFavoriteProduct,
+    <Button
+      type={ButtonType.Button}
+      className={cn(styles.AddToFavBtn, className, {
+        [buttonStyles.element]: isFavoriteProduct,
+
+      })}
+      onClick={toggleFavoriteProduct}
+    >
+      <div
+        className={cn(icon, {
+          [styles.selected]: isFavoriteProduct,
         })}
-        onClick={toggleFavoriteProduct}
-      >
-        <div
-          className={cn(styles.AddToFavBtnIcon, {
-            [styles.selected]: isFavoriteProduct,
-          })}
-        />
-      </Button>
-    </>
+      />
+    </Button>
   );
 };

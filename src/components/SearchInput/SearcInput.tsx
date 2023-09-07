@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import {
-  FC, FormEvent, useCallback, useEffect, useRef, useState,
+  FC, FormEvent, useCallback, useContext, useEffect, useRef, useState,
 } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
@@ -8,6 +8,8 @@ import { debounce } from 'lodash';
 import styles from './SearchInput.module.scss';
 import searchIcon from '../../assets/icons/search.svg';
 import closeIcon from '../../assets/icons/close.svg';
+import searchIconDark from '../../assets/icons-dark/Search.svg';
+import closeIconDark from '../../assets/icons-dark/Close.svg';
 import { Button } from '../Buttons/Button';
 import { ButtonType, QueryParams, SearchParams } from '../../types';
 import { getSearchWith } from '../../helpers/searchHelper';
@@ -19,6 +21,7 @@ import {
 } from '../../redux/slices/queryProductsSlice';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { Loader } from '../Loader';
+import { ThemeContext } from '../../context/ThemeContext';
 
 type Props = {
   className?: string;
@@ -36,7 +39,11 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
 
   const queryParam = searchParams.get(QueryParams.Query) || '';
 
-  const iconType = isOpenInput ? closeIcon : searchIcon;
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const iconTypeLight = isOpenInput ? closeIconDark : searchIconDark;
+  const iconTypeDark = isOpenInput ? closeIcon : searchIcon;
+  const icon = isThemeModeDark ? iconTypeLight : iconTypeDark;
+  const currnetSearchIcon = isThemeModeDark ? searchIconDark : searchIcon;
   const inputRef = useRef<null | HTMLFormElement>(null);
 
   useEffect(() => {
@@ -132,7 +139,7 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
           [styles.isOpened]: isOpenInput,
         })}
       >
-        <img src={searchIcon} alt="icon" />
+        <img src={currnetSearchIcon} alt="icon" />
         <input
           type="text"
           placeholder="Search..."
@@ -145,7 +152,7 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
       <Button
         className={cn(className, styles.trigger)}
         type={ButtonType.Button}
-        iconPath={iconType}
+        iconPath={icon}
         onClick={toggleButton}
       />
 

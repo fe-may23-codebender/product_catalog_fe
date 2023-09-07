@@ -2,8 +2,8 @@
 
 .footer {
   box-sizing: border-box;
-  background-color: var(--main-background-color);
   border-top: 1px solid $elements-color;
+  transition-duration: 0.3s;
 
   @include uppercaseText;
 
@@ -89,6 +89,10 @@
       background-color: $white-color;
       border: 1px solid $icons-color;
       box-sizing: border-box;
+
+      &:hover {
+        background-color: transparent !important;
+      }
 
       &__up {
         padding-inline: 8px;

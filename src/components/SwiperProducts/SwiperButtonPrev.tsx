@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useSwiper } from 'swiper/react';
 import cn from 'classnames';
+import { ThemeContext } from '../../context/ThemeContext';
 import { ButtonType } from '../../types';
 import { Button } from '../Buttons/Button';
 import styles from './SwiperProducts.module.scss';
@@ -21,6 +22,11 @@ export const SwiperButtonPrev = () => {
     swiper.slidePrev();
   };
 
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+
+  const lightmode = isThemeModeDark ? arrowLeft : arrowLeftDisable;
+  const darkmode = isThemeModeDark ? arrowLeftDisable : arrowLeft;
+
   return (
     <Button
       type={ButtonType.Button}
@@ -28,7 +34,7 @@ export const SwiperButtonPrev = () => {
         [btnStyles.disabled]: isDisable,
       })}
       onClick={goPrev}
-      iconPath={isDisable ? arrowLeftDisable : arrowLeft}
+      iconPath={isDisable ? lightmode : darkmode}
     />
   );
 };
