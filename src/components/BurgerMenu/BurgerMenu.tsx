@@ -11,6 +11,8 @@ import { Button } from '../Buttons/Button';
 import { ButtonType } from '../../types';
 
 import close from '../../assets/icons/close.svg';
+import { ThemeContext, themes } from '../../context/ThemeContext';
+import Toggle from '../Toggle/Toggle';
 
 type Props = {
   isOpen: boolean;
@@ -61,6 +63,24 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
               </NavLink>
             </li>
           ))}
+          <div className={styles.nav__togleSwitch}>
+            <ThemeContext.Consumer>
+              {({ theme, setTheme }) => (
+                <Toggle
+                  onChange={() => {
+                    if (theme === themes.light) {
+                      setTheme(themes.dark);
+                    }
+
+                    if (theme === themes.dark) {
+                      setTheme(themes.light);
+                    }
+                  }}
+                  value={theme === themes.dark}
+                />
+              )}
+            </ThemeContext.Consumer>
+          </div>
         </ul>
       </nav>
 
