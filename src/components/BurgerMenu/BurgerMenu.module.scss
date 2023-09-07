@@ -97,9 +97,9 @@
     }
   }
   &__togleSwitch {
-    margin: 0;
-    display: flex;
-}
+    flex: 0.2;
+    padding-inline: 10px;
+  }
 }
 
 .is_activeLink {

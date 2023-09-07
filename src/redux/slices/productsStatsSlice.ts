@@ -17,7 +17,9 @@ const initialState: ProductsStatsState = {
   hasError: false,
 };
 
-export const fecthProductsStats = createAsyncThunk('productsStats/fetch', () => getProductsStats());
+export const fecthProductsStats = createAsyncThunk('productsStats/fetch', () =>
+  getProductsStats(),
+);
 
 export const productsStatsSlice = createSlice({
   name: 'productsStats',

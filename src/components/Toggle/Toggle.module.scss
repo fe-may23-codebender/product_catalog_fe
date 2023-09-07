@@ -1,9 +1,8 @@
 .switch {
   position: relative;
-  top: 23px;
-
   width: 40px;
   height: 20px;
+  pointer-events: none;
   input {
     display: none;
   }
@@ -19,6 +18,7 @@
     border-radius: 30px;
     cursor: pointer;
     transition: all 1.4s;
+
     &:before,
     &:after {
       content: '';

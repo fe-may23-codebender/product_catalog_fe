@@ -62,7 +62,6 @@ export const AddToFavoriteButton: FC<Props> = ({ product, className = '' }) => {
       type={ButtonType.Button}
       className={cn(styles.AddToFavBtn, className, {
         [buttonStyles.element]: isFavoriteProduct,
-
       })}
       onClick={toggleFavoriteProduct}
     >

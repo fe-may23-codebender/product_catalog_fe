@@ -19,7 +19,6 @@
   --dropdown: #b4bdc3;
   --hover-bg-color: #fafbfc;
   --card-hover: var(--primary-color);
-
 }
 
 :root[data-theme='dark'] {
@@ -28,22 +27,21 @@
   --main-background-color: #0f1121;
   --text-color: #75767f;
   --white-color: #0f1121;
-  --elements-color: #3B3E4A;
+  --elements-color: #3b3e4a;
   --icons-color: transparent;
   --card-bord-color: #161827;
   --secondary-color: #e2e6e9;
   --shadow: 1px 1px 11px rgba(94, 78, 195, 0.5);
-  --button-color: #905BFF;
+  --button-color: #905bff;
   --button-selected-text: #f1f2f9;
   --button-selected-backg: #323542;
   --icon-bckg: #323542;
   --icon-bckg-disable: #323542;
   --icon-hover: transparent;
-  --icon-hover-bckg: #4A4D58;
+  --icon-hover-bckg: #4a4d58;
   --dropdown: #323542;
   --hover-bg-color: #323542;
   --card-hover: #161827;
-  ;
 }
 
 $primary-color: var(--primary-color);

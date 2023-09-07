@@ -1,4 +1,4 @@
-/* eslint-disable import/no-cycle */
+/* eslint-disable */
 import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
@@ -22,6 +22,16 @@ type Props = {
 
 export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
   const [activeLink, setActiveLink] = useState<string>('');
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const closeButton = isThemeModeDark ? closeDark : close;
+
+  const toggleTheme = () => {
+    const newTheme = theme === themes.light ? themes.dark : themes.light;
+
+    setTheme(newTheme);
+  };
 
   const handleLinkClick = (linkIndex: string) => {
     setActiveLink(linkIndex);
@@ -35,9 +45,6 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
       document.body.classList.remove(styles.overflow__hidden);
     }
   }, [isOpen]);
-
-  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
-  const closeButton = isThemeModeDark ? closeDark : close;
 
   return (
     <aside className={`${styles.burgerMenu} ${isOpen ? styles.open : ''}`}>
@@ -58,33 +65,17 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
             <li key={link.title} className={styles.nav__item}>
               <NavLink
                 to={link.path}
-                className={({ isActive }) => cn(styles.nav__link, {
-                  [styles.is_activeLink]: isActive,
-                })}
+                className={({ isActive }) =>
+                  cn(styles.nav__link, {
+                    [styles.is_activeLink]: isActive,
+                  })
+                }
                 onClick={() => handleLinkClick(link.path)}
               >
                 {link.title}
               </NavLink>
             </li>
           ))}
-          <div className={styles.nav__togleSwitch}>
-            <ThemeContext.Consumer>
-              {({ theme, setTheme }) => (
-                <Toggle
-                  onChange={() => {
-                    if (theme === themes.light) {
-                      setTheme(themes.dark);
-                    }
-
-                    if (theme === themes.dark) {
-                      setTheme(themes.light);
-                    }
-                  }}
-                  value={theme === themes.dark}
-                />
-              )}
-            </ThemeContext.Consumer>
-          </div>
         </ul>
       </nav>
 
@@ -95,6 +86,14 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
           }`}
           onClick={() => handleLinkClick('favorites')}
         />
+
+        <Button
+          type={ButtonType.Button}
+          className={styles.nav__togleSwitch}
+          onClick={toggleTheme}
+        >
+          <Toggle onChange={() => {}} value={theme === themes.dark} />
+        </Button>
 
         <CartLink
           className={`${styles.menuButtons__button} ${
