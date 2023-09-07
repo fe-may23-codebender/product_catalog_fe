@@ -35,8 +35,6 @@
     text-decoration: none;
     color: $secondary-color;
 
-    &:hover {
-      color: var(--button-color);
-    }
+    @include hover(color, var(--button-color));
   }
 }
