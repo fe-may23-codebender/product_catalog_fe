@@ -64,9 +64,6 @@
 
   &__close {
     padding-inline: 24px;
-    // width: 16px;
-    // height: 16px;
-    // background: url('../../assets/icons/close.svg') no-repeat;
   }
 }
 
@@ -78,13 +75,18 @@
     flex-direction: column;
     align-items: center;
     margin-top: 24px;
-    gap: 16px;
+    gap: 50px;
   }
 
   &__item {
+    display: block;
     text-decoration: none;
     align-items: center;
     cursor: pointer;
+
+    @include uppercaseText;
+
+    font-size: 20px;
   }
 
   &__link {
@@ -98,17 +100,6 @@
 
 .is_activeLink {
   color: $primary-color;
-}
-
-.is_activeLink::after {
-  content: '';
-  display: block;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 3px;
-  background-color: $primary-color;
 }
 
 .menuButtons {

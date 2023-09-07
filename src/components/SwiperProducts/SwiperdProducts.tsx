@@ -24,12 +24,12 @@ export const SwiperProducts: React.FC<Props> = ({ title, items }) => {
         spaceBetween={16}
         slidesPerGroup={1}
         slidesPerView={1}
-        speed={700}
-        allowTouchMove={false}
         breakpoints={{
           480: {
             slidesPerView: 2,
             slidesPerGroup: 2,
+            allowTouchMove: true,
+            speed: 400,
           },
           768: {
             slidesPerView: 3,
@@ -38,6 +38,8 @@ export const SwiperProducts: React.FC<Props> = ({ title, items }) => {
           1020: {
             slidesPerView: 4,
             slidesPerGroup: 4,
+            speed: 700,
+            allowTouchMove: false,
           },
         }}
       >

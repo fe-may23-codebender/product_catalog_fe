@@ -1,7 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import styles from './NotFoundPage.module.scss';
+import { Link } from 'react-router-dom';
 import NotFoundImg from '../../assets/images/404.svg';
+import styles from './NotFoundPage.module.scss';
 
 export const NotFound: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ export const NotFound: React.FC = () => {
         Sorry, that page doesn&apos;t seem to exist.
       </p>
       <div className={styles.Container__Button}>
-        <a href="/">Start shopping</a>
+        <Link to="/">Start shopping</Link>
       </div>
     </div>
   );

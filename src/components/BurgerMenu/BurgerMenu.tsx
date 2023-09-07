@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo/Logo';
 import { links } from '../Header/Header';
@@ -50,15 +50,15 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
         <ul className={styles.nav__list}>
           {links.map((link) => (
             <li key={link.title} className={styles.nav__item}>
-              <Link
+              <NavLink
                 to={link.path}
-                className={`${styles.nav__link} ${
-                  activeLink === link.path ? styles.is_activeLink : ''
-                }`}
+                className={({ isActive }) => cn(styles.nav__link, {
+                  [styles.is_activeLink]: isActive,
+                })}
                 onClick={() => handleLinkClick(link.path)}
               >
                 {link.title}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>

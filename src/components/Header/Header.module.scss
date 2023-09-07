@@ -8,10 +8,9 @@
 
   &__container {
     display: flex;
-    padding-left: 24px;
+    padding-left: 16px;
     max-width: 1440px;
     margin: 0 auto;
-    padding-inline: 0;
 
     @include onTablet {
       gap: 64px;
