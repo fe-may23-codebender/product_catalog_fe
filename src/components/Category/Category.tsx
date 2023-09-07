@@ -9,9 +9,7 @@ type Props = {
   img: string;
 };
 
-export const Category: FC<Props> = ({
-  title, name, amount, img,
-}) => (
+export const Category: FC<Props> = ({ title, name, amount, img }) => (
   <article className={styles.category}>
     <Link to={`/${name}`} className={styles.link}>
       <img src={img} alt={title} className={styles.Category_Img} />

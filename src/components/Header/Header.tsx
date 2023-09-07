@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
-import { ButtonType, ProductCategory,Breakpoint } from '../../types';
+import { ButtonType, ProductCategory, Breakpoint } from '../../types';
 import { FavoriteLink } from '../FavoriteLink';
 import { CartLink } from '../CartLink';
 import { Button } from '../Buttons/Button';
@@ -14,7 +14,6 @@ import burgerDark from '../../assets/icons-dark/Menu.svg';
 import { SearchInput } from '../SearchInput/SearcInput';
 import { ThemeContext, themes } from '../../context/ThemeContext';
 import Toggle from '../Toggle/Toggle';
-import { useBreakpoint } from '../../hooks/useBreakpoint';
 
 export const links = [
   {
@@ -40,7 +39,7 @@ export const Header: FC = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');
-  const breakpoint = useBreakpoint();
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -87,19 +86,19 @@ export const Header: FC = () => {
               ))}
             </ul>
           </nav>
-          {
-            (breakpoint === Breakpoint.Tablet || breakpoint === Breakpoint.Desktop) && (
-              <Toggle
-                onChange={toggleTheme}
-                value={theme === themes.dark}
-              />
-            )
-          }
 
           <div className={styles.actions}>
             <SearchInput
               className={cn(styles.actionsLink, styles.actionsLinkSearch)}
             />
+
+            <Button
+              type={ButtonType.Button}
+              className={cn(styles.actionsLink, styles.actionsLinkTheme)}
+              onClick={toggleTheme}
+            >
+              <Toggle onChange={() => {}} value={theme === themes.dark} />
+            </Button>
 
             <FavoriteLink
               className={cn(styles.actionsLink, styles.actionsLinkFav, {

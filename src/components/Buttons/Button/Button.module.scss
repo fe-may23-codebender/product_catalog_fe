@@ -14,7 +14,7 @@
   &.disabled {
     pointer-events: none;
     color: $icons-color;
-    border-color: var( --icon-bckg-disable);
+    border-color: var(--icon-bckg-disable);
     background-color: var(--main-background-color);
   }
 
@@ -30,9 +30,9 @@
 
   &:not(.disabled, .selected) {
     &:hover {
-    border: 1px solid var(--icon-hover);
-    background-color: var(--icon-hover-bckg);
-  }
+      border: 1px solid var(--icon-hover);
+      background-color: var(--icon-hover-bckg);
+    }
   }
 }
 

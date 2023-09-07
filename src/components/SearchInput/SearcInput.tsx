@@ -1,6 +1,12 @@
 /* eslint-disable max-len */
 import {
-  FC, FormEvent, useCallback, useContext, useEffect, useRef, useState,
+  FC,
+  FormEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import cn from 'classnames';
@@ -159,9 +165,9 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
       {isDropdownOpen && (
         <div className={styles.dropdown__menu}>
           <div className={styles.dropdown__content}>
-            {items.length > 0
-              && loaded
-              && items.map((item) => (
+            {items.length > 0 &&
+              loaded &&
+              items.map((item) => (
                 <div className={styles.dropdown__item} key={item.id}>
                   <Link
                     to={`../${item.category}/${item.itemId}`}

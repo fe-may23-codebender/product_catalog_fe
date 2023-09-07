@@ -42,8 +42,8 @@ export const Carousel = () => {
     }
   };
 
-  const banerIphone
-    = breakpoint === Breakpoint.Mobile ? BannerIphoneSmall : BannerIphoneBig;
+  const banerIphone =
+    breakpoint === Breakpoint.Mobile ? BannerIphoneSmall : BannerIphoneBig;
 
   const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
 

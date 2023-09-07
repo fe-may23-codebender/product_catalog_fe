@@ -16,10 +16,10 @@ export const SkeletonProductPage = () => {
   const darkSkeleton = theme === 'dark' ? '#75767f' : '#ebebeb';
 
   const screenWidth = window.innerWidth;
-  const imageWidth
-    = screenWidth >= 768 ? DESKTOP_IMAGE_WIDTH : MOBILE_IMAGE_WIDTH;
-  const imageHeight
-    = screenWidth >= 768 ? DESKTOP_IMAGE_HEIGHT : MOBILE_IMAGE_HEIGHT;
+  const imageWidth =
+    screenWidth >= 768 ? DESKTOP_IMAGE_WIDTH : MOBILE_IMAGE_WIDTH;
+  const imageHeight =
+    screenWidth >= 768 ? DESKTOP_IMAGE_HEIGHT : MOBILE_IMAGE_HEIGHT;
 
   return (
     <SkeletonTheme baseColor={darkSkeleton}>

@@ -97,9 +97,11 @@
     }
   }
   &__togleSwitch {
-    margin: 0;
-    display: flex;
-}
+    flex: 0.2;
+    padding-inline: 10px;
+    background: none !important;
+    border-left: 1px solid $elements-color !important;
+  }
 }
 
 .is_activeLink {

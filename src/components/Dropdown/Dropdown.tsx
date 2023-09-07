@@ -1,7 +1,5 @@
 /* eslint-disable react/require-default-props */
-import {
-  FC, useState, useRef, useContext,
-} from 'react';
+import { FC, useState, useRef, useContext } from 'react';
 import cn from 'classnames';
 import { capitalize } from 'lodash';
 import { SearchLink } from '../SearchLink';

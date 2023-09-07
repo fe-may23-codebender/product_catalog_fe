@@ -22,7 +22,7 @@
     flex-grow: 1;
     justify-content: end;
 
-    @media screen and (min-width: 820px) {
+    @media screen and (min-width: 1087px) {
       justify-content: space-between;
     }
   }
@@ -36,7 +36,7 @@
 .navigation {
   display: none;
 
-  @media screen and (min-width: 820px) {
+  @media screen and (min-width: 1087px) {
     display: block;
   }
 
@@ -67,6 +67,7 @@
   &Link {
     position: relative;
 
+    max-width: 65px;
     width: 16px;
     height: 16px;
     padding: 24px;
@@ -98,26 +99,29 @@
     }
   }
 
+  &LinkTheme,
   &LinkFav,
   &LinkCart {
     display: none !important;
 
-    @media screen and (min-width: 820px) {
-      display: block !important;
+    @media screen and (min-width: 1087px) {
+      display: flex !important;
     }
   }
 
   &LinkCart {
     border-right-color: $elements-color;
   }
-  &LinkCart:hover, &LinkFav:hover, &LinkSearch:hover{
-      background-color: transparent !important;
-      border-color: $primary-color !important;
+  &LinkCart:hover,
+  &LinkFav:hover,
+  &LinkSearch:hover {
+    background-color: transparent !important;
+    border-color: $primary-color !important;
   }
 }
 
 .burger {
-  @media screen and (min-width: 820px) {
+  @media screen and (min-width: 1087px) {
     display: none !important;
   }
 }

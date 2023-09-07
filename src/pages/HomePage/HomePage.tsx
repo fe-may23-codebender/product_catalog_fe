@@ -15,11 +15,11 @@ import { fecthProductsStats } from '../../redux/slices/productsStatsSlice';
 import { fecthSuggestedProducts } from '../../redux/slices/suggestedProductsSlice';
 import { SkeletonHomePage } from '../../components/Skeletons/SkeletonHomePage/SkeletonHomePage';
 import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
-import { GoToTopButton } from '../../components/GoToTopButton/GoToTopButton';
 
 import container from '../../styles/utils/container.module.scss';
 import styles from './HomePage.module.scss';
 import notifStyles from '../../styles/utils/notification.module.scss';
+import { GoToTopButton } from '../../components/GoToTopButton/GoToTopButton';
 
 export const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -89,9 +89,8 @@ export const HomePage = () => {
             </div>
           </>
         )}
-
-        <GoToTopButton />
       </div>
+      <GoToTopButton />
     </div>
   );
 };
