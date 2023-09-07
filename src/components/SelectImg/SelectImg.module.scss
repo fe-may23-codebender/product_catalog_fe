@@ -10,6 +10,15 @@
       flex-direction: column;
     }
 
+    @media screen and (min-width: 800px) {
+      gap: 12px;
+
+      .select__item {
+        width: 65px;
+        height: 65px;
+      }
+    }
+
     @include onDesctop {
       gap: 17px;
 

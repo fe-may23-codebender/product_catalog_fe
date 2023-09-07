@@ -23,7 +23,8 @@ export const GoToTopButton = () => {
       const documentHeight = document.documentElement.scrollHeight;
 
       const footerHeight = 100;
-      const isFooterVisible = scrollY + window.innerHeight < documentHeight - footerHeight;
+      const isFooterVisible
+        = scrollY + window.innerHeight < documentHeight - footerHeight;
 
       setShowButton(scrollY > scrollThreshold && isFooterVisible);
     }
