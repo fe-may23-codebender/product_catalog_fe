@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useContext, useMemo } from 'react';
 import cn from 'classnames';
 import { ButtonType, Product } from '../../../types';
 import { Button } from '../Button';
@@ -8,6 +8,7 @@ import * as favoritesService from '../../../redux/slices/favoritesSlice';
 
 import styles from './AddToFavoriteButton.module.scss';
 import buttonStyles from '../Button/Button.module.scss';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 type Props = {
   product: Product;
@@ -34,16 +35,22 @@ export const AddToFavoriteButton: FC<Props> = ({ product, className = '' }) => {
     dispatch(favoritesService.remove(product.id));
   };
 
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const icon = isThemeModeDark
+    ? styles.AddToFavBtnIconDark
+    : styles.AddToFavBtnIcon;
+
   return (
     <Button
       type={ButtonType.Button}
       className={cn(styles.AddToFavBtn, className, {
         [buttonStyles.element]: isFavoriteProduct,
+
       })}
       onClick={toggleFavoriteProduct}
     >
       <div
-        className={cn(styles.AddToFavBtnIcon, {
+        className={cn(icon, {
           [styles.selected]: isFavoriteProduct,
         })}
       />

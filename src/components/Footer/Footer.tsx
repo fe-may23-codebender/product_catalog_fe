@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
+import { useContext } from 'react';
 import { Logo } from '../Logo/Logo';
 import { scrollToTop } from '../../helpers/scrollToTop';
 import { Button } from '../Buttons/Button';
@@ -11,6 +12,8 @@ import { ButtonType } from '../../types';
 import styles from './Footer.module.scss';
 import container from '../../styles/utils/container.module.scss';
 import arrow_up from '../../assets/icons/black-arrows/arrow-up.svg';
+import arrow_up_dark from '../../assets/icons/gray-arrows/arrow-up.svg';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const footerLinks = [
   {
@@ -22,6 +25,9 @@ const footerLinks = [
 ];
 
 export const Footer = () => {
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const iconMode = isThemeModeDark ? arrow_up_dark : arrow_up;
+
   return (
     <footer className={styles.footer}>
       <div className={cn(styles.container, container.limit)}>
@@ -53,7 +59,7 @@ export const Footer = () => {
           <span className={styles.footer__button__text}>Back to top</span>
           <Button
             type={ButtonType.Button}
-            iconPath={arrow_up}
+            iconPath={iconMode}
             className={cn(
               styles.footer__button__arrow,
               styles.footer__button__arrow__up,

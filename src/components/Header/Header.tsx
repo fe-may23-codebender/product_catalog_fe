@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState, FC } from 'react';
+import { useState, FC, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo';
@@ -10,6 +10,7 @@ import { CartLink } from '../CartLink';
 import { Button } from '../Buttons/Button';
 import styles from './Header.module.scss';
 import burger from '../../assets/icons/burger-menu.svg';
+import burgerDark from '../../assets/icons-dark/Menu.svg';
 import { SearchInput } from '../SearchInput/SearcInput';
 import { ThemeContext, themes } from '../../context/ThemeContext';
 import Toggle from '../Toggle/Toggle';
@@ -42,6 +43,9 @@ export const Header: FC = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const currentBurger = isThemeModeDark ? burgerDark : burger;
 
   return (
     <header className={styles.header}>
@@ -114,7 +118,7 @@ export const Header: FC = () => {
 
             <Button
               type={ButtonType.Button}
-              iconPath={burger}
+              iconPath={currentBurger}
               className={cn(styles.actionsLink, styles.burger)}
               onClick={toggleMenu}
             />

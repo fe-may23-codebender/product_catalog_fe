@@ -6,7 +6,7 @@
 
   &.active {
     .trigger {
-      border-color: $primary-color;
+      border-color: var(button-selected-backg);
     }
 
     .icon {
@@ -54,13 +54,13 @@
   display: flex;
   align-items: center;
   padding: 10px 12px;
-  border: 1px solid $icons-color;
+  border: 1px solid var(--dropdown);
 
   @include buttonText;
   color: $primary-color;
 
   cursor: pointer;
-  background-color: transparent;
+  background-color: var(--button-selected-backg);
 
   @include hover(border-color, $secondary-color);
 }
@@ -115,7 +115,7 @@
 
   &:hover {
     color: $primary-color;
-    background-color: $hover-bg-color;
+    background-color: var(--hover-bg-color);
   }
 }
 

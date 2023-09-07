@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   border: 1px solid $icons-color;
-  background-color: transparent;
+  background-color: var(--icon-bckg);
   cursor: pointer;
   user-select: none;
   transition: all 0.3s ease;
@@ -14,13 +14,14 @@
   &.disabled {
     pointer-events: none;
     color: $icons-color;
-    border-color: $elements-color;
+    border-color: var( --icon-bckg-disable);
+    background-color: var(--main-background-color);
   }
 
   &.selected {
     border-color: transparent;
-    background-color: $primary-color;
-    color: $white-color;
+    background-color: var(--button-color);
+    color: #fff;
   }
 
   &.element {
@@ -28,7 +29,10 @@
   }
 
   &:not(.disabled, .selected) {
-    @include hover(border, 1px solid $primary-color !important);
+    &:hover {
+    border: 1px solid var(--icon-hover);
+    background-color: var(--icon-hover-bckg);
+  }
   }
 }
 
