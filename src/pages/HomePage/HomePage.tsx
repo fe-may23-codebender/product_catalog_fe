@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-len */
 import { useEffect } from 'react';
 import cn from 'classnames';
+import { toast } from 'react-toastify';
 import { Carousel } from '../../components/Carousel/Carousel';
 import { SwiperProducts } from '../../components/SwiperProducts/SwiperdProducts';
 import { Categories } from '../../components/Categories';
@@ -11,21 +13,26 @@ import {
 } from '../../redux/selectors';
 import { fecthProductsStats } from '../../redux/slices/productsStatsSlice';
 import { fecthSuggestedProducts } from '../../redux/slices/suggestedProductsSlice';
+import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
+import { SkeletonHomePage } from '../../components/Skeletons/SkeletonHomePage/SkeletonHomePage';
 
 import container from '../../styles/utils/container.module.scss';
 import styles from './HomePage.module.scss';
-import { SkeletonHomePage } from '../../components/Skeletons/SkeletonHomePage/SkeletonHomePage';
-import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
+import notifStyles from '../../styles/utils/notification.module.scss';
 
 export const HomePage = () => {
   const dispatch = useAppDispatch();
 
-  const { countByGroup, loaded: statsLoaded }
-    = useAppSelector(selectProductsStats);
+  const {
+    countByGroup,
+    loaded: statsLoaded,
+    hasError: statsError,
+  } = useAppSelector(selectProductsStats);
 
   const {
     data: { newest, discount },
     loaded: suggestedLoaded,
+    hasError: suggestedError,
   } = useAppSelector(selectSuggestedProducts);
 
   useEffect(() => {
@@ -44,6 +51,16 @@ export const HomePage = () => {
     dispatch(fecthSuggestedProducts());
   }, [suggestedLoaded]);
 
+  useEffect(() => {
+    if (!suggestedError || !statsError) {
+      return;
+    }
+
+    toast.error('Something went wrong!', {
+      bodyClassName: notifStyles.notification,
+    });
+  }, [suggestedError, statsError]);
+
   return (
     <div className={styles.HomePage}>
       <div className={cn(container.limit, styles.container)}>
@@ -51,7 +68,7 @@ export const HomePage = () => {
           Welcome to Nice Gadgets store!
         </h2>
 
-        {!statsLoaded || !suggestedLoaded ? (
+        {!statsLoaded || !suggestedLoaded || statsError || suggestedError ? (
           <>
             <SkeletonHomePage />
             <ProductsListSkeleton className={styles.swiperContainer} />

@@ -1,7 +1,8 @@
 /* eslint-disable */
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { Dropdown } from '../../components/Dropdown';
 import { PageSize, ProductCategory, QueryParams, SortField } from '../../types';
@@ -18,6 +19,7 @@ import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkel
 import { scrollToTop } from '../../helpers/scrollToTop';
 
 import styles from './ProductsPage.module.scss';
+import notifStyles from '../../styles/utils/notification.module.scss';
 import container from '../../styles/utils/container.module.scss';
 
 type Props = {
@@ -56,7 +58,6 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   const pageParam = searchParams.get(QueryParams.CurrentPage) || '';
   const currentPage = +(pageParam || 1);
   const sortParam = searchParams.get(QueryParams.SortBy) || '';
-  const query = searchParams.get(QueryParams.Query) || '';
   const sortBy = getKeyByValue(SortField, sortParam) || 'Choose option';
   const perPageParam = searchParams.get(QueryParams.ItemsPerPage) || '';
   const itemsPerPage = perPageParam || PageSize.Four;
@@ -87,11 +88,20 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
   }, [productCategory]);
 
   const productsNotFound = !items.length;
-
   const hasError = productsError || statsError;
   const isLoading = !productsLoaded || !statsLoaded;
 
   const dropdownIsDisabled = hasError || isLoading || productsNotFound;
+
+  useEffect(() => {
+    if (!productsError || !statsError) {
+      return;
+    }
+
+    toast.error('Something went wrong!', {
+      bodyClassName: notifStyles.notification,
+    });
+  }, [productsError, statsError]);
 
   return (
     <div>

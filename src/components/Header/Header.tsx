@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState, FC } from 'react';
+import { useState, FC, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo';
@@ -8,12 +8,12 @@ import { ButtonType, ProductCategory } from '../../types';
 import { FavoriteLink } from '../FavoriteLink';
 import { CartLink } from '../CartLink';
 import { Button } from '../Buttons/Button';
-
-import styles from './Header.module.scss';
 import burger from '../../assets/icons/burger-menu.svg';
 import { SearchInput } from '../SearchInput/SearcInput';
 import { ThemeContext, themes } from '../../context/ThemeContext';
 import Toggle from '../Toggle/Toggle';
+
+import styles from './Header.module.scss';
 
 export const links = [
   {
@@ -35,12 +35,19 @@ export const links = [
 ];
 
 export const Header: FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, setTheme } = useContext(ThemeContext);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleTheme = () => {
+    const newTheme = theme === themes.light ? themes.dark : themes.light;
+
+    setTheme(newTheme);
   };
 
   return (
@@ -76,17 +83,7 @@ export const Header: FC = () => {
               ))}
             </ul>
           </nav>
-          <ThemeContext.Consumer>
-            {({ theme, setTheme }) => (
-              <Toggle
-                onChange={() => {
-                  if (theme === themes.light) setTheme(themes.dark);
-                  if (theme === themes.dark) setTheme(themes.light);
-                }}
-                value={theme === themes.dark}
-              />
-            )}
-          </ThemeContext.Consumer>
+          <Toggle onChange={toggleTheme} value={theme === themes.dark} />
 
           <div className={styles.actions}>
             <SearchInput
