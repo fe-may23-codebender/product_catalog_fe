@@ -24,11 +24,9 @@ export const CapacityFunctionality: FC<Props> = ({
           <li key={capacity}>
             <NavLink
               to={redirect({ capacity })}
-              className={({ isActive }) =>
-                cn(styles.capacity__list__item, btnStyles.container, {
-                  [styles.is__active]: isActive,
-                })
-              }
+              className={({ isActive }) => cn(styles.capacity__list__item, btnStyles.container, {
+                [styles.is__active]: isActive,
+              })}
             >
               {capacity}
             </NavLink>

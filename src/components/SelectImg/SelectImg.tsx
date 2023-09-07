@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import styles from './SelectImg.module.scss';
 
 type Props = {
@@ -5,6 +6,7 @@ type Props = {
   activeImg: string;
   setActiveImg: (imagePath: string) => void;
   title: string;
+  className?: string;
 };
 
 export const SelectImg: React.FC<Props> = ({
@@ -12,13 +14,14 @@ export const SelectImg: React.FC<Props> = ({
   activeImg,
   setActiveImg,
   title,
+  className = '',
 }) => {
   function selectActiveImg(imagePath: string) {
     setActiveImg(imagePath);
   }
 
   return (
-    <ul className={styles.select__list}>
+    <ul className={cn(styles.select__list, className)}>
       {images.map((image) => (
         <li key={image}>
           <button

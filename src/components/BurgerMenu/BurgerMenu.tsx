@@ -53,22 +53,20 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
 
         <div className={styles.burgerMenu__header__bottons}>
           <Button
-          type={ButtonType.Button}
-          className={styles.togleSwitch}
-          onClick={toggleTheme}
-        >
-          <Toggle onChange={() => {}} value={theme === themes.dark} />
-        </Button>
+            type={ButtonType.Button}
+            className={styles.togleSwitch}
+            onClick={toggleTheme}
+          >
+            <Toggle onChange={() => {}} value={theme === themes.dark} />
+          </Button>
 
-        <Button
-          type={ButtonType.Button}
-          iconPath={closeButton}
-          className={cn(styles.closeButton__link, styles.closeButton__close)}
-          onClick={toggleMenu}
-        />
+          <Button
+            type={ButtonType.Button}
+            iconPath={closeButton}
+            className={cn(styles.closeButton__link, styles.closeButton__close)}
+            onClick={toggleMenu}
+          />
         </div>
-
-
       </div>
 
       <nav className={styles.nav}>

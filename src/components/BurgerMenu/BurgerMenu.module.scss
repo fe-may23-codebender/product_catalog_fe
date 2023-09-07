@@ -44,9 +44,17 @@
 }
 
 .togleSwitch {
-  padding-inline: 10px;
+  position: relative;
+  width: 64px;
   background: none !important;
-  border-left: 1px solid $elements-color !important;
+  border-color: transparent !important;
+  box-shadow: -1px 0px 0px 0px $elements-color;
+  z-index: 3;
+  transition: all 0.3s ease !important;
+
+  &:hover {
+    border: 1px solid $primary-color !important;
+  }
 }
 
 .closeButton {
@@ -63,17 +71,19 @@
     align-items: center;
     padding: 0;
     margin: 0;
-    background-color: transparent !important;
     box-shadow: -1px 0px 0px 0px $elements-color;
     cursor: pointer;
+    border: none !important;
+    transition: all 0.3s ease;
 
     &:hover {
-      border: 1px solid $primary-color;
+      border: 1px solid $primary-color !important;
     }
   }
 
   &__close {
     padding-inline: 24px;
+    background: none !important;
   }
 }
 
@@ -134,7 +144,7 @@
     align-items: center;
     background-color: transparent !important;
     height: 100%;
-    box-shadow: -1px 0px 0px 0px $elements-color;
+    // box-shadow: -1px 0px 0px 0px $elements-color;
     cursor: pointer;
 
     &:first-child:hover {

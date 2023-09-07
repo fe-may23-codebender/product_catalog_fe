@@ -1,5 +1,5 @@
 .theme {
-  --bg-color: #F1F2F9;
+  --bg-color: #f1f2f9;
   --main-color: #323232;
   display: flex;
   justify-content: center;
@@ -25,7 +25,6 @@
 
 .icon.icon-sun {
   stroke: var(--main-color);
-
 }
 
 .input:checked ~ .icon.icon-sun {
@@ -35,4 +34,3 @@
 .input:checked ~ .icon.icon-moon {
   display: block;
 }
-

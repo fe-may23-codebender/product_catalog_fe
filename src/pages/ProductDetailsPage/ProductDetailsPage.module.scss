@@ -3,10 +3,12 @@
 .GridContainer {
   @include pageGrid;
 
+  @include onTablet {
+    margin-top: 64px;
+  }
+
   @include onDesctop {
-    --columns: 12;
     margin-top: 80px;
-    gap: 65px;
   }
 
   &__title {
@@ -31,7 +33,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 
   @include onTablet {
     @include h2-text;
@@ -62,15 +63,13 @@
   }
 }
 
-.flexBlock {
-  padding: 0;
+.detailsCard {
+  @include pageGrid;
   margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 17px;
 }
 
 .photo {
+  grid-column: 1 / -1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -79,8 +78,36 @@
 
   &__current {
     position: relative;
-    width: 288px;
-    height: 288px;
+    width: 100%;
+
+    padding-top: 70%;
+    height: auto;
+    flex: 1;
+
+    @include onTablet {
+      padding-top: 75%;
+    }
+
+    @media screen and (min-width: 860px) {
+      padding-top: 70%;
+    }
+  }
+
+  @include onTablet {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    grid-column: span 7;
+  }
+
+  @include onDesctop {
+    grid-column: span 12;
+  }
+}
+
+.thumbsImages {
+  @include onTablet {
+    grid-column: span 1;
   }
 }
 
@@ -91,66 +118,35 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center center;
 }
 
 .functional {
-  width: 100%;
-}
+  margin-top: 40px;
+  grid-column: 1 / -1;
 
-@include onTablet {
-  .flexBlock {
-    flex-direction: row;
-    justify-content: stretch;
+  @include onTablet {
+    margin-top: 0;
+    grid-column: 8 / -1;
   }
 
-  .photo {
-    flex-direction: row;
-    align-items: normal;
-  }
-
-  .functional {
-    max-width: 320px;
-  }
-}
-
-@include onDesctop {
-  .flexBlock {
-    justify-content: stretch;
-  }
-  .photo {
-    width: 560px;
-    justify-content: space-between;
-
-    &__current {
-      margin: 0 auto;
-      height: 464px;
-      width: 464px;
-    }
-  }
-
-  .functional {
-    width: 560px;
-    margin: 0;
+  @include onDesctop {
+    grid-column: 14 / -1;
   }
 }
 
 .About {
+  margin-top: 56px;
   color: $primary-color;
   grid-column: span 4;
-  margin-top: 56px;
-  margin-bottom: 56px;
-  @include h3-text-mobile;
 
   @include onTablet {
-    grid-column: span 12;
+    grid-column: 1 / -1;
     margin-top: 64px;
-    margin-bottom: 64px;
   }
 
   @include onDesctop {
-    grid-column: span 7;
-    margin-top: 0;
-    margin-bottom: 0;
+    grid-column: span 12;
   }
 
   &__title {
@@ -167,22 +163,20 @@
     color: $secondary-color;
     @include bodyText;
     margin-bottom: 32px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 }
 
 .TechInfo {
+  margin-top: 56px;
   grid-column: span 4;
 
   @include onTablet {
-    grid-column: span 12;
+    grid-column: 1 / -1;
+    margin-top: 64px;
   }
 
   @include onDesctop {
-    grid-column: span 5;
+    grid-column: 14 / -1;
   }
 
   &__title {
@@ -190,15 +184,19 @@
     margin-bottom: 16px;
   }
 
+  &__characteristics {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   &__characteristic {
     @include bodyText;
     color: $secondary-color;
+
     display: flex;
     justify-content: space-between;
-
-    &:not(:last-child) {
-      margin-bottom: 8px;
-    }
+    gap: 15px;
   }
 
   &__value {

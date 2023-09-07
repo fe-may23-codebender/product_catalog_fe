@@ -1,25 +1,28 @@
+/* eslint-disable max-len */
 /* eslint-disable import/no-extraneous-dependencies */
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useContext } from 'react';
 import styles from './SkeletonProductPage.module.scss';
 import { ThemeContext } from '../../../context/ThemeContext';
+import { useBreakpoint } from '../../../hooks/useBreakpoint';
+import { Breakpoint } from '../../../types';
 
-const MOBILE_IMAGE_WIDTH = 220;
+const MOBILE_IMAGE_WIDTH = 210;
 const DESKTOP_IMAGE_WIDTH = 340;
 const MOBILE_IMAGE_HEIGHT = 300;
 const DESKTOP_IMAGE_HEIGHT = 420;
 
 export const SkeletonProductPage = () => {
   const { theme } = useContext(ThemeContext);
+  const breakpoint = useBreakpoint();
 
   const darkSkeleton = theme === 'dark' ? '#75767f' : '#ebebeb';
 
-  const screenWidth = window.innerWidth;
-  const imageWidth =
-    screenWidth >= 768 ? DESKTOP_IMAGE_WIDTH : MOBILE_IMAGE_WIDTH;
-  const imageHeight =
-    screenWidth >= 768 ? DESKTOP_IMAGE_HEIGHT : MOBILE_IMAGE_HEIGHT;
+  const [imageWidth, imageHeight]
+    = breakpoint !== Breakpoint.Desktop
+      ? [MOBILE_IMAGE_WIDTH, MOBILE_IMAGE_HEIGHT]
+      : [DESKTOP_IMAGE_WIDTH, DESKTOP_IMAGE_HEIGHT];
 
   return (
     <SkeletonTheme baseColor={darkSkeleton}>
@@ -35,9 +38,9 @@ export const SkeletonProductPage = () => {
             </div>
 
             <div className={styles.Skeleton__Images}>
-              <Skeleton height={60} width={60} />
-              <Skeleton height={60} width={60} />
-              <Skeleton height={60} width={60} />
+              <Skeleton height={50} width={50} />
+              <Skeleton height={50} width={50} />
+              <Skeleton height={50} width={50} />
             </div>
           </div>
 

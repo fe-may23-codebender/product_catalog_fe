@@ -195,13 +195,14 @@ export const ProductDetailsPage = () => {
               {productDetails.name}
             </h2>
 
-            <div className={styles.flexBlock}>
+            <div className={styles.detailsCard}>
               <div className={styles.photo}>
                 <SelectImg
                   images={productImages}
                   activeImg={activeImg}
                   setActiveImg={setActiveImg}
                   title={productDetails.name}
+                  className={styles.thumbImages}
                 />
 
                 <div className={styles.photo__current}>
@@ -262,7 +263,7 @@ export const ProductDetailsPage = () => {
                   Tech specs
                 </h3>
 
-                <ul className={styles.card__characteristics}>
+                <ul className={styles.TechInfo__characteristics}>
                   <li className={styles.TechInfo__characteristic}>
                     <p>Screen</p>
                     <p className={styles.TechInfo__value}>
