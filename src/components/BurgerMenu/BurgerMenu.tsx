@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo/Logo';
@@ -11,6 +11,7 @@ import { Button } from '../Buttons/Button';
 import { ButtonType } from '../../types';
 
 import close from '../../assets/icons/close.svg';
+import closeDark from '../../assets/icons-dark/Close.svg';
 import { ThemeContext, themes } from '../../context/ThemeContext';
 import Toggle from '../Toggle/Toggle';
 
@@ -35,6 +36,9 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
     }
   }, [isOpen]);
 
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const closeButton = isThemeModeDark ? closeDark : close;
+
   return (
     <aside className={`${styles.burgerMenu} ${isOpen ? styles.open : ''}`}>
       <div className={styles.burgerMenu__header}>
@@ -42,7 +46,7 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
 
         <Button
           type={ButtonType.Button}
-          iconPath={close}
+          iconPath={closeButton}
           className={cn(styles.closeButton__link, styles.closeButton__close)}
           onClick={toggleMenu}
         />

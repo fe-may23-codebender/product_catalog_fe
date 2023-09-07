@@ -1,5 +1,7 @@
 /* eslint-disable react/require-default-props */
-import { FC, useState, useRef } from 'react';
+import {
+  FC, useState, useRef, useContext,
+} from 'react';
 import cn from 'classnames';
 import { capitalize } from 'lodash';
 import { SearchLink } from '../SearchLink';
@@ -8,8 +10,11 @@ import { SearchParams } from '../../types';
 import styles from './Dropdown.module.scss';
 
 import arrowUp from '../../assets/icons/black-arrows/arrow-up.svg';
+import arrowUpDark from '../../assets/icons/gray-arrows/arrow-up.svg';
+
 import arrowDown from '../../assets/icons/black-arrows/arrow-down.svg';
 import arrowDownGray from '../../assets/icons/gray-arrows/arrow-down.svg';
+import { ThemeContext } from '../../context/ThemeContext';
 
 type Props = {
   label: string;
@@ -66,7 +71,15 @@ export const Dropdown: FC<Props> = (props) => {
 
   useClickOutside(dropdownRef, disableDropdown);
 
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+
   const currentArrowDown = isDisabled ? arrowDownGray : arrowDown;
+  const currentArrowDownDark = isDisabled ? arrowDown : arrowDownGray;
+  const currentArrow = isThemeModeDark
+    ? currentArrowDownDark
+    : currentArrowDown;
+
+  const arrowUper = isThemeModeDark ? arrowUpDark : arrowUp;
 
   return (
     <div
@@ -87,13 +100,13 @@ export const Dropdown: FC<Props> = (props) => {
 
         <div className={styles.icons}>
           <img
-            src={currentArrowDown}
+            src={currentArrow}
             alt="down"
             className={cn(styles.icon, styles['icon--down'])}
           />
 
           <img
-            src={arrowUp}
+            src={arrowUper}
             alt="up"
             className={cn(styles.icon, styles['icon--up'])}
           />

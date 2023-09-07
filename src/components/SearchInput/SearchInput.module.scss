@@ -31,10 +31,12 @@
     padding-left: 10px;
     height: 100%;
     align-items: center;
+    color: $primary-color;
+    background-color: transparent;
 
     &::placeholder {
       @include h2-text-mobile;
-      color: $secondary-color;
+      color: var(--secondary-color);
       font-size: 14px;
       font-weight: 600;
       line-height: 21px;
@@ -52,7 +54,7 @@
     top: 100%;
     left: 10;
     z-index: 10;
-    background-color: white;
+    background-color: var(--main-background-color);
     border: 1px solid $secondary-color;
 
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -73,12 +75,12 @@
     padding: 10px 5px;
   }
   &__link {
-    color: $secondary-color;
+    color: $primary-color;
 
-    @include hover(color, $primary-color);
+    @include hover(color, $secondary-color);
   }
   &__error {
     padding: 10px 5px;
-    color: $secondary-color;
+    color: $primary-color;
   }
 }

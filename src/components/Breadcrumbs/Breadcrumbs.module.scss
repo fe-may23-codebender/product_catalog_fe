@@ -16,6 +16,10 @@
 
     &__home {
       background: url('../../assets/icons/home.svg');
+
+      &__dark {
+        background: url('../../assets/icons-dark/Home.svg');
+      }
     }
 
     &__arrow {
@@ -28,7 +32,7 @@
     color: $secondary-color;
 
     &:hover {
-      color: $primary-color;
+      color: var(--button-color);
     }
   }
 }

@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import cn from 'classnames';
@@ -10,6 +11,8 @@ import styles from './Carousel.module.scss';
 
 import arrowLeft from '../../assets/icons/black-arrows/arrow-left.svg';
 import arrowRight from '../../assets/icons/black-arrows/arrow-right.svg';
+import arrowLeftDark from '../../assets/icons/gray-arrows/arrow-left.svg';
+import arrowRightDark from '../../assets/icons/gray-arrows/arrow-right.svg';
 
 import Banner1 from '../../assets/banners/banner-phones-new.png';
 import Banner2 from '../../assets/banners/banner-phones.png';
@@ -17,6 +20,7 @@ import Banner3 from '../../assets/banners/banner-tablets.png';
 import Banner4 from '../../assets/banners/banner-accessories.png';
 import BannerIphoneBig from '../../assets/banners/banner-iphone14.png';
 import BannerIphoneSmall from '../../assets/banners/banner-iphone14-small.png';
+import { ThemeContext } from '../../context/ThemeContext';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let swiperInstance: any = null;
@@ -41,13 +45,18 @@ export const Carousel = () => {
   const banerIphone
     = breakpoint === Breakpoint.Mobile ? BannerIphoneSmall : BannerIphoneBig;
 
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+
+  const currentArrowLeft = isThemeModeDark ? arrowLeftDark : arrowLeft;
+  const currentArrowRight = isThemeModeDark ? arrowRightDark : arrowRight;
+
   return (
     <div className={styles.carousel}>
       <Button
         type={ButtonType.Button}
         className={styles.carousel__btn}
         onClick={goPrev}
-        iconPath={arrowLeft}
+        iconPath={currentArrowLeft}
       />
 
       <Swiper
@@ -95,7 +104,7 @@ export const Carousel = () => {
         type={ButtonType.Button}
         className={cn(styles.carousel__btn, styles.prevBtn)}
         onClick={goNext}
-        iconPath={arrowRight}
+        iconPath={currentArrowRight}
       />
     </div>
   );

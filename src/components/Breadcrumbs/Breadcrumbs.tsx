@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import {
@@ -6,6 +6,7 @@ import {
   formatProductName,
 } from '../../helpers/breadcrumbsHelper';
 import styles from './Breadcrumbs.module.scss';
+import { ThemeContext } from '../../context/ThemeContext';
 
 type Props = {
   className?: string;
@@ -28,11 +29,16 @@ export const Breadcrumbs: FC<Props> = ({ className = '' }) => {
     productName = formatProductName(productPath);
   }
 
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const iconHome = isThemeModeDark
+    ? styles.breadcrumbs__icon__home__dark
+    : styles.breadcrumbs__icon__home;
+
   return (
     <div className={cn(styles.breadcrumbs, className)}>
       <Link
         to="/"
-        className={`${styles.breadcrumbs__icon} ${styles.breadcrumbs__icon__home}`}
+        className={`${styles.breadcrumbs__icon} ${iconHome}`}
       />
 
       <div
