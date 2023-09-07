@@ -1,7 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useContext } from 'react';
 import styles from './SkeletonProductPage.module.scss';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const MOBILE_IMAGE_WIDTH = 220;
 const DESKTOP_IMAGE_WIDTH = 340;
@@ -9,6 +11,10 @@ const MOBILE_IMAGE_HEIGHT = 300;
 const DESKTOP_IMAGE_HEIGHT = 420;
 
 export const SkeletonProductPage = () => {
+  const { theme } = useContext(ThemeContext);
+
+  const darkSkeleton = theme === 'dark' ? '#75767f' : '#ebebeb';
+
   const screenWidth = window.innerWidth;
   const imageWidth
     = screenWidth >= 768 ? DESKTOP_IMAGE_WIDTH : MOBILE_IMAGE_WIDTH;
@@ -16,7 +22,7 @@ export const SkeletonProductPage = () => {
     = screenWidth >= 768 ? DESKTOP_IMAGE_HEIGHT : MOBILE_IMAGE_HEIGHT;
 
   return (
-    <SkeletonTheme>
+    <SkeletonTheme baseColor={darkSkeleton}>
       <div className={styles.Skeleton}>
         <div className={styles.Skeleton__Title}>
           <Skeleton height={35} width="90%" />
