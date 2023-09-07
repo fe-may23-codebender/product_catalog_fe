@@ -28,7 +28,6 @@ export const FavoritesPage: FC = () => {
           products={favoritesProducts}
           className={styles.products}
         />
-
       )}
     </div>
   );

@@ -36,11 +36,10 @@ export const productDetailsSlice = createSlice({
         state.hasError = false;
       })
       .addCase(fecthProductDetails.fulfilled, (state, action) => {
-        const [productInfo, productDescription] = action.payload;
-        const [details] = productInfo;
+        const [productDetails, productDescription] = action.payload;
 
         state.item = {
-          ...details,
+          ...productDetails,
           description: productDescription,
         };
 

@@ -29,7 +29,7 @@ export const productsByQuery = (query: string) => {
 };
 
 export const getProductInfo = (productId: string) => {
-  return client.get<ProductInfo[]>(`/details/${productId}`);
+  return client.get<ProductInfo>(`/details/${productId}`);
 };
 
 export const getProductDescription = (productId: string) => {

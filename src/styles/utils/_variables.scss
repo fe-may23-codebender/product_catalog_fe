@@ -1,4 +1,4 @@
-:root[data-theme="light"] {
+:root[data-theme='light'] {
   --primary-color: #313237;
   --background-card-color: #fff;
   --main-background-color: #fff;
@@ -6,12 +6,12 @@
   --white-color: #fff;
 }
 
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
   --primary-color: #f1f2f9;
   --background-card-color: #161827;
-  --main-background-color: #0F1121;
-  --text-color: #75767F;
-  --white-color: #0F1121;
+  --main-background-color: #0f1121;
+  --text-color: #75767f;
+  --white-color: #0f1121;
 }
 
 $primary-color: var(--primary-color);

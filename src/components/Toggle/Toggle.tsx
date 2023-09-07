@@ -3,8 +3,8 @@ import React from 'react';
 import styles from './Toggle.module.scss';
 
 type Props = {
-  value: any,
-  onChange: any,
+  value: boolean;
+  onChange: () => void;
 };
 
 const Toggle: React.FC<Props> = ({ value, onChange }) => (
@@ -12,7 +12,7 @@ const Toggle: React.FC<Props> = ({ value, onChange }) => (
     <input
       id="toggler"
       type="checkbox"
-      onClick={onChange}
+      onChange={onChange}
       checked={value}
       readOnly
     />
