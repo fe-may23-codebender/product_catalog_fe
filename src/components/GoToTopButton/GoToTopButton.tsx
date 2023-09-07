@@ -1,13 +1,15 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { scrollToTop } from '../../helpers/scrollToTop';
 import { Button } from '../Buttons/Button';
 import { ButtonType } from '../../types';
 
 import styles from './GoToTopButton.module.scss';
 import arrow_up from '../../assets/icons/black-arrows/arrow-up.svg';
+import arrow_up_gray from '../../assets/icons/gray-arrows/arrow-up.svg';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const GoToTopButton = () => {
   const [displayStyle, setDisplayStyle] = useState('none');
@@ -30,6 +32,9 @@ export const GoToTopButton = () => {
     };
   }, []);
 
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
+  const button = isThemeModeDark ? arrow_up_gray : arrow_up;
+
   return (
     <div
       role="button"
@@ -39,7 +44,7 @@ export const GoToTopButton = () => {
     >
       <Button
         type={ButtonType.Button}
-        iconPath={arrow_up}
+        iconPath={button}
         className={styles.Button__arrow}
       />
     </div>
