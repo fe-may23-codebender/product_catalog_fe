@@ -37,6 +37,8 @@ export const links = [
 export const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [activeLink, setActiveLink] = useState('');
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -92,11 +94,17 @@ export const Header: FC = () => {
             />
 
             <FavoriteLink
-              className={cn(styles.actionsLink, styles.actionsLinkFav)}
+              className={cn(styles.actionsLink, styles.actionsLinkFav, {
+                [styles.active]: activeLink === 'favorite',
+              })}
+              onClick={() => setActiveLink('favorite')}
             />
 
             <CartLink
-              className={cn(styles.actionsLink, styles.actionsLinkCart)}
+              className={cn(styles.actionsLink, styles.actionsLinkCart, {
+                [styles.active]: activeLink === 'cart',
+              })}
+              onClick={() => setActiveLink('cart')}
             />
 
             <Button
