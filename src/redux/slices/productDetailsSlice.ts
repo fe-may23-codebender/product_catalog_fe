@@ -28,12 +28,19 @@ export const fecthProductDetails = createAsyncThunk(
 export const productDetailsSlice = createSlice({
   name: 'productDetails',
   initialState,
-  reducers: {},
+  reducers: {
+    clearDetails: (state) => {
+      state.hasError = false;
+      state.loaded = false;
+      state.item = {} as ProductDetails;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fecthProductDetails.pending, (state) => {
         state.loaded = false;
         state.hasError = false;
+        state.item = {} as ProductDetails;
       })
       .addCase(fecthProductDetails.fulfilled, (state, action) => {
         const [productDetails, productDescription] = action.payload;
@@ -49,8 +56,11 @@ export const productDetailsSlice = createSlice({
       .addCase(fecthProductDetails.rejected, (state) => {
         state.loaded = true;
         state.hasError = true;
+        state.item = {} as ProductDetails;
       });
   },
 });
+
+export const { clearDetails } = productDetailsSlice.actions;
 
 export default productDetailsSlice.reducer;

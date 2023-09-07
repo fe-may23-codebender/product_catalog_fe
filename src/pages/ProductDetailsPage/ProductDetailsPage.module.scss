@@ -2,7 +2,6 @@
 
 .GridContainer {
   @include pageGrid;
-  margin-top: 100px; // delete after adding slider block
 
   &__title {
     padding-bottom: 16px;
@@ -17,6 +16,20 @@
 
 .breadcrumbs {
   grid-column: 1 / -1;
+}
+
+.error {
+  @include h2-text-mobile;
+  color: $primary-color;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @include onTablet {
+    @include h2-text;
+  }
 }
 
 .button {

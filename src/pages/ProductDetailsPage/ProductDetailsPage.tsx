@@ -9,6 +9,7 @@ import {
 } from '../../types';
 import { SelectImg } from '../../components/SelectImg/SelectImg';
 import { ColorFunctionality } from '../../components/ColorFunctionality/ColorFunctionality';
+import { toast } from 'react-toastify';
 import { CapacityFunctionality } from '../../components/CapacityFunctionality/CapacityFunctionality';
 import { ButtonsFunctionality } from '../../components/ButtonsFunctionality/ButtonsFunctionality';
 import { SwiperProducts } from '../../components/SwiperProducts/SwiperdProducts';
@@ -20,14 +21,18 @@ import {
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { fecthSuggestedProducts } from '../../redux/slices/suggestedProductsSlice';
 import { scrollToTop } from '../../helpers/scrollToTop';
-import { fecthProductDetails } from '../../redux/slices/productDetailsSlice';
+import {
+  clearDetails,
+  fecthProductDetails,
+} from '../../redux/slices/productDetailsSlice';
 import { SkeletonProductPage } from '../../components/Skeletons/SkeletonProductPage/SkeletonProductPage';
 import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
+import { normalizeImage } from '../../helpers/normalizeImage';
 
 import container from '../../styles/utils/container.module.scss';
 import styles from './ProductDetailsPage.module.scss';
+import notifStyles from '../../styles/utils/notification.module.scss';
 import arrowRightDisable from '../../assets/icons/gray-arrows/arrow-left.svg';
-import { normalizeImage } from '../../helpers/normalizeImage';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -36,21 +41,25 @@ export const ProductDetailsPage = () => {
   const dispatch = useAppDispatch();
   const [activeImg, setActiveImg] = useState('');
 
-  const { item: productDetails, loaded: detailsLoaded } =
-    useAppSelector(selectProductDetails);
+  const {
+    item: productDetails,
+    loaded: detailsLoaded,
+    hasError: detailsError,
+  } = useAppSelector(selectProductDetails);
 
   const {
     data: { discount },
     loaded: suggestedLoaded,
+    hasError: suggestedError,
   } = useAppSelector(selectSuggestedProducts);
 
   const productImages = useMemo(() => {
-    if (!detailsLoaded) {
+    if (!detailsLoaded || !Object.keys(productDetails).length) {
       return [];
     }
 
     return productDetails.images.map(normalizeImage);
-  }, [productId, detailsLoaded]);
+  }, [productId, detailsLoaded, productDetails]);
 
   const currentProduct = useMemo(() => {
     if (!detailsLoaded) {
@@ -136,10 +145,44 @@ export const ProductDetailsPage = () => {
     setActiveImg(productImages[0]);
   }, [productImages]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(clearDetails());
+    };
+  }, [productId]);
+
+  if (
+    ((!currentProduct || !Object.keys(productDetails).length) &&
+      detailsLoaded) ||
+    suggestedError
+  ) {
+    toast.error('Something went wrong!', {
+      bodyClassName: notifStyles.notification,
+    });
+
+    return (
+      <div className={styles.PhonesDetails}>
+        <div className={container.limit}>
+          <Breadcrumbs className={styles.breadcrumbs} />
+          <Link to="/phones" className={styles.button}>
+            <img src={arrowRightDisable} alt="arrow" />
+            Back
+          </Link>
+
+          <h2 className={styles.error}>No such product was found 🧐</h2>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.PhonesDetails}>
       <div className={container.limit}>
         <Breadcrumbs className={styles.breadcrumbs} />
+        <Link to="/phones" className={styles.button}>
+          <img src={arrowRightDisable} alt="arrow" />
+          Back
+        </Link>
 
         {!detailsLoaded || !currentProduct || !suggestedLoaded ? (
           <>
@@ -148,10 +191,6 @@ export const ProductDetailsPage = () => {
           </>
         ) : (
           <>
-            <Link to="/phones" className={styles.button}>
-              <img src={arrowRightDisable} alt="arrow" />
-              Back
-            </Link>
             <h2 className={styles.PhonesDetails__title}>
               {productDetails.name}
             </h2>
@@ -191,10 +230,12 @@ export const ProductDetailsPage = () => {
                     />
                   )}
 
-                <ButtonsFunctionality
-                  product={currentProduct as Product}
-                  productDetails={productDetails}
-                />
+                {!detailsError && (
+                  <ButtonsFunctionality
+                    product={currentProduct}
+                    productDetails={productDetails}
+                  />
+                )}
               </div>
             </div>
 
@@ -205,12 +246,13 @@ export const ProductDetailsPage = () => {
                 >
                   About
                 </h3>
-                {productDetails.description.map((info) => (
-                  <Fragment key={info.title}>
-                    <h4 className={styles.About__info}>{info.title}</h4>
-                    <p className={styles.About__text}>{info.text.join()}</p>
-                  </Fragment>
-                ))}
+                {!detailsError &&
+                  productDetails.description.map((info) => (
+                    <Fragment key={info.title}>
+                      <h4 className={styles.About__info}>{info.title}</h4>
+                      <p className={styles.About__text}>{info.text.join()}</p>
+                    </Fragment>
+                  ))}
               </article>
 
               <article className={styles.TechInfo}>
@@ -274,9 +316,11 @@ export const ProductDetailsPage = () => {
                 </ul>
               </article>
             </div>
-            <div className={styles.swiperContainer}>
-              <SwiperProducts title="You may also like" items={discount} />
-            </div>
+            {!suggestedError && (
+              <div className={styles.swiperContainer}>
+                <SwiperProducts title="You may also like" items={discount} />
+              </div>
+            )}
           </>
         )}
       </div>

@@ -1,11 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { FC, useState, useMemo } from 'react';
 import cn from 'classnames';
+import { toast } from 'react-toastify';
 import { Product } from '../../../types';
 import { Modal } from '../../Modal';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { selectCart } from '../../../redux/selectors';
 import * as cartService from '../../../redux/slices/cartSlice';
 import styles from './AddToCartButton.module.scss';
+import notifStyles from '../../../styles/utils/notification.module.scss';
 
 type Props = {
   product: Product;
@@ -33,6 +36,10 @@ export const AddToCartButton: FC<Props> = (props) => {
 
   const toggleCartProduct = () => {
     if (isProductInCart) {
+      toast.error('This item has already been added to your cart!', {
+        bodyClassName: notifStyles.notification,
+      });
+
       return;
     }
 

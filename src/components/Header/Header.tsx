@@ -36,12 +36,19 @@ export const links = [
 ];
 
 export const Header: FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme, setTheme } = useContext(ThemeContext);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');
   const breakpoint = useBreakpoint();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleTheme = () => {
+    const newTheme = theme === themes.light ? themes.dark : themes.light;
+
+    setTheme(newTheme);
   };
 
   const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
@@ -82,20 +89,12 @@ export const Header: FC = () => {
           </nav>
           {
             (breakpoint === Breakpoint.Tablet || breakpoint === Breakpoint.Desktop) && (
-          <ThemeContext.Consumer>
-            {({ theme, setTheme }) => (
               <Toggle
-                onChange={() => {
-                  if (theme === themes.light) setTheme(themes.dark);
-                  if (theme === themes.dark) setTheme(themes.light);
-                }}
+                onChange={toggleTheme}
                 value={theme === themes.dark}
               />
-            )}
-          </ThemeContext.Consumer>
             )
           }
-
 
           <div className={styles.actions}>
             <SearchInput
