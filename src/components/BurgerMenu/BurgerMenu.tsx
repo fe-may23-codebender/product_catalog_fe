@@ -51,12 +51,24 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
       <div className={styles.burgerMenu__header}>
         <Logo />
 
+        <div className={styles.burgerMenu__header__bottons}>
+          <Button
+          type={ButtonType.Button}
+          className={styles.togleSwitch}
+          onClick={toggleTheme}
+        >
+          <Toggle onChange={() => {}} value={theme === themes.dark} />
+        </Button>
+
         <Button
           type={ButtonType.Button}
           iconPath={closeButton}
           className={cn(styles.closeButton__link, styles.closeButton__close)}
           onClick={toggleMenu}
         />
+        </div>
+
+
       </div>
 
       <nav className={styles.nav}>
@@ -86,14 +98,6 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
           }`}
           onClick={() => handleLinkClick('favorites')}
         />
-
-        <Button
-          type={ButtonType.Button}
-          className={styles.nav__togleSwitch}
-          onClick={toggleTheme}
-        >
-          <Toggle onChange={() => {}} value={theme === themes.dark} />
-        </Button>
 
         <CartLink
           className={`${styles.menuButtons__button} ${
