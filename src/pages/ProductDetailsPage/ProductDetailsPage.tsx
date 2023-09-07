@@ -101,7 +101,11 @@ export const ProductDetailsPage = () => {
     const currentColor = color || productDetails.color || '';
     const currentCapacity = capacity || productDetails.capacity || '';
 
-    const url = [`../${namespaceId}`, currentCapacity, currentColor].join('-');
+    const urlPaths = [namespaceId, currentCapacity, currentColor].filter(
+      Boolean,
+    );
+
+    const url = `../${urlPaths.join('-')}`;
 
     return url.toLowerCase().trim();
   };

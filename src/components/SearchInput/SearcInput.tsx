@@ -27,17 +27,17 @@ type Props = {
 export const SearchInput: FC<Props> = ({ className = '' }) => {
   const [isOpenInput, setIsOpenInput] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   const [searchParams, setSearchParams] = useSearchParams();
-  const queryParam = searchParams.get(QueryParams.Query) || '';
   const [query, setQuery] = useState('');
+  const { pathname } = useLocation();
 
   const dispatch = useAppDispatch();
   const { items, loaded } = useAppSelector(selectQueryProducts);
 
+  const queryParam = searchParams.get(QueryParams.Query) || '';
+
   const iconType = isOpenInput ? closeIcon : searchIcon;
   const inputRef = useRef<null | HTMLFormElement>(null);
-  const { pathname } = useLocation();
 
   useEffect(() => {
     if (!queryParam) {
@@ -57,32 +57,37 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
     setSearchParams(newSearchParams);
   };
 
+  const aplyQuery = useCallback(debounce(setSearchWith, 1000), [
+    searchParams,
+    pathname,
+  ]);
+
+  const clearAplyQuery = () => {
+    aplyQuery.cancel();
+    setQuery('');
+  };
+
+  const onCloseSeacrh = () => {
+    setIsOpenInput(false);
+    setIsDropdownOpen(false);
+    setSearchWith({
+      search: null,
+    });
+
+    clearAplyQuery();
+  };
+
   const toggleButton = () => {
     if (!isOpenInput) {
       setIsOpenInput(true);
     }
 
     if (isOpenInput) {
-      setIsOpenInput(false);
-      setIsDropdownOpen(false);
-      setSearchWith({
-        search: null,
-      });
+      onCloseSeacrh();
     }
   };
 
-  useClickOutside(inputRef, () => {
-    setIsOpenInput(false);
-    setIsDropdownOpen(false);
-    setSearchWith({
-      search: null,
-    });
-  });
-
-  const aplyQuery = useCallback(debounce(setSearchWith, 1000), [
-    searchParams,
-    pathname,
-  ]);
+  useClickOutside(inputRef, onCloseSeacrh);
 
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value.trim());
@@ -97,11 +102,6 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
     }
   };
 
-  const clearAplyQuery = () => {
-    aplyQuery.cancel();
-    setQuery('');
-  };
-
   useEffect(() => {
     setQuery(queryParam);
 
@@ -110,7 +110,16 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
 
   useEffect(() => {
     dispatch(clearQueryProducts());
-  }, [pathname, isOpenInput]);
+  }, [pathname, isOpenInput, queryParam]);
+
+  useEffect(() => {
+    if (!queryParam) {
+      return;
+    }
+
+    setIsDropdownOpen(true);
+    setIsOpenInput(true);
+  }, [queryParam]);
 
   return (
     <form
@@ -144,6 +153,7 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
         <div className={styles.dropdown__menu}>
           <div className={styles.dropdown__content}>
             {items.length > 0
+              && loaded
               && items.map((item) => (
                 <div className={styles.dropdown__item} key={item.id}>
                   <Link
