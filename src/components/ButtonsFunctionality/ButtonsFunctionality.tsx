@@ -39,25 +39,25 @@ export const ButtonsFunctionality: FC<Props> = ({
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>Screen</span>
           <span className={styles.characteristicValue}>
-            {productDetails.screen}
+            {productDetails.screen || '-'}
           </span>
         </li>
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>Resolution</span>
           <span className={styles.characteristicValue}>
-            {productDetails.capacity}
+            {productDetails.capacity || '-'}
           </span>
         </li>
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>Processor</span>
           <span className={styles.characteristicValue}>
-            {productDetails.processor}
+            {productDetails.processor || '-'}
           </span>
         </li>
         <li className={styles.characteristic}>
           <span className={styles.characteristicTitle}>RAM</span>
           <span className={styles.characteristicValue}>
-            {productDetails.ram}
+            {productDetails.ram || '-'}
           </span>
         </li>
       </ul>

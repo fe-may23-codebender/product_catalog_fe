@@ -131,7 +131,7 @@
   }
 
   @include onDesctop {
-    grid-column: 14 / -1;
+    grid-column: 14 / span 7;
   }
 }
 
