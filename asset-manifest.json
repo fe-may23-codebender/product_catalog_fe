@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/product_catalog_fe/static/css/main.d94e345f.css",
-    "main.js": "/product_catalog_fe/static/js/main.ee84ce39.js",
+    "main.css": "/product_catalog_fe/static/css/main.bfcaaba7.css",
+    "main.js": "/product_catalog_fe/static/js/main.6eebc0de.js",
     "static/media/banner-phones-new.png": "/product_catalog_fe/static/media/banner-phones-new.078a97d350463be7f88a.png",
     "static/media/banner-iphone14.png": "/product_catalog_fe/static/media/banner-iphone14.261bd492f40f5bbdd589.png",
     "static/media/banner-iphone14-small.png": "/product_catalog_fe/static/media/banner-iphone14-small.280b98ab31445ae14fe3.png",
@@ -38,11 +38,11 @@
     "static/media/gray-minus.svg": "/product_catalog_fe/static/media/gray-minus.4b7c4fa33c66c0b35185058bd5da5567.svg",
     "static/media/Minus.svg": "/product_catalog_fe/static/media/Minus.0365a13e7f5baa53bce8c439c4e812c3.svg",
     "static/media/minus.svg": "/product_catalog_fe/static/media/minus.cecb4be39afa7b933ec169dd495a73ff.svg",
-    "main.d94e345f.css.map": "/product_catalog_fe/static/css/main.d94e345f.css.map",
-    "main.ee84ce39.js.map": "/product_catalog_fe/static/js/main.ee84ce39.js.map"
+    "main.bfcaaba7.css.map": "/product_catalog_fe/static/css/main.bfcaaba7.css.map",
+    "main.6eebc0de.js.map": "/product_catalog_fe/static/js/main.6eebc0de.js.map"
   },
   "entrypoints": [
-    "static/css/main.d94e345f.css",
-    "static/js/main.ee84ce39.js"
+    "static/css/main.bfcaaba7.css",
+    "static/js/main.6eebc0de.js"
   ]
 }
