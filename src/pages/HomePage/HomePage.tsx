@@ -16,6 +16,7 @@ import container from '../../styles/utils/container.module.scss';
 import styles from './HomePage.module.scss';
 import { SkeletonHomePage } from '../../components/Skeletons/SkeletonHomePage/SkeletonHomePage';
 import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
+import { GoToTopButton } from '../../components/GoToTopButton/GoToTopButton';
 
 export const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -71,6 +72,8 @@ export const HomePage = () => {
             </div>
           </>
         )}
+
+        <GoToTopButton />
       </div>
     </div>
   );
