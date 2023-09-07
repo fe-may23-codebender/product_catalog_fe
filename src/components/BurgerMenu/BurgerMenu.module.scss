@@ -36,7 +36,17 @@
     padding: 0 0 0 16px;
 
     z-index: 1;
+
+    &__bottons {
+      display: flex;
+    }
   }
+}
+
+.togleSwitch {
+  padding-inline: 10px;
+  background: none !important;
+  border-left: 1px solid $elements-color !important;
 }
 
 .closeButton {
@@ -95,12 +105,6 @@
     &:hover {
       color: $primary-color;
     }
-  }
-  &__togleSwitch {
-    flex: 0.2;
-    padding-inline: 10px;
-    background: none !important;
-    border-left: 1px solid $elements-color !important;
   }
 }
 

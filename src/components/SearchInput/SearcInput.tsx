@@ -165,9 +165,9 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
       {isDropdownOpen && (
         <div className={styles.dropdown__menu}>
           <div className={styles.dropdown__content}>
-            {items.length > 0 &&
-              loaded &&
-              items.map((item) => (
+            {items.length > 0
+              && loaded
+              && items.map((item) => (
                 <div className={styles.dropdown__item} key={item.id}>
                   <Link
                     to={`../${item.category}/${item.itemId}`}
