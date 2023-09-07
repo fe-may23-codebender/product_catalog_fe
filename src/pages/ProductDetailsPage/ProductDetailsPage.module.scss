@@ -3,6 +3,12 @@
 .GridContainer {
   @include pageGrid;
 
+  @include onDesctop {
+    --columns: 12;
+    margin-top: 80px;
+    gap: 65px;
+  }
+
   &__title {
     padding-bottom: 16px;
     border-bottom: 1.4px solid $elements-color;
@@ -77,6 +83,7 @@
     height: 288px;
   }
 }
+
 .image {
   position: absolute;
   top: 0;
@@ -85,6 +92,7 @@
   height: 100%;
   object-fit: contain;
 }
+
 .functional {
   width: 100%;
 }
@@ -92,7 +100,7 @@
 @include onTablet {
   .flexBlock {
     flex-direction: row;
-    justify-content: center;
+    justify-content: stretch;
   }
 
   .photo {
@@ -129,10 +137,22 @@
 .About {
   color: $primary-color;
   grid-column: span 4;
+  margin-top: 56px;
+  margin-bottom: 56px;
+  @include h3-text-mobile;
 
   @include onTablet {
     grid-column: span 12;
+    margin-top: 64px;
+    margin-bottom: 64px;
   }
+
+  @include onDesctop {
+    grid-column: span 7;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   &__title {
     @include h3-text;
     margin-bottom: 16px;
@@ -147,6 +167,10 @@
     color: $secondary-color;
     @include bodyText;
     margin-bottom: 32px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -157,15 +181,24 @@
     grid-column: span 12;
   }
 
+  @include onDesctop {
+    grid-column: span 5;
+  }
+
   &__title {
     @include h3-text;
     margin-bottom: 16px;
   }
+
   &__characteristic {
     @include bodyText;
     color: $secondary-color;
     display: flex;
     justify-content: space-between;
+
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
   }
 
   &__value {
