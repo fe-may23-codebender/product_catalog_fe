@@ -112,6 +112,7 @@
   }
   &LinkCart:hover, &LinkFav:hover, &LinkSearch:hover{
       background-color: transparent !important;
+      border-color: $primary-color !important;
   }
 }
 

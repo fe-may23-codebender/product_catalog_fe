@@ -29,8 +29,10 @@
   }
 
   &:not(.disabled, .selected) {
-    @include hover(border, 1px solid $primary-color);
-    &:hover {background-color: var(--icon-hover-bckg);}
+    &:hover {
+    border: 1px solid var(--icon-hover);
+    background-color: var(--icon-hover-bckg);
+  }
   }
 }
 
