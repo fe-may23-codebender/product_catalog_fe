@@ -5,8 +5,12 @@
   flex-direction: row;
   align-items: center;
   color: $secondary-color;
-  margin: 25px 0 40px;
+  margin: 25px 0 24px;
   gap: 8px;
+
+  @include onTablet {
+    margin: 25px 0 40px;
+  }
 
   @include smallText;
 
