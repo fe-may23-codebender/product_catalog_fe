@@ -1,5 +1,5 @@
 /* eslint-disable react/require-default-props */
-import { FC, useMemo } from 'react';
+import { FC, useContext, useMemo } from 'react';
 import cn from 'classnames';
 import { Button } from '../Buttons/Button';
 import { ButtonType, PageSize, QueryParams } from '../../types';
@@ -13,6 +13,7 @@ import arrowLeft from '../../assets/icons/black-arrows/arrow-left.svg';
 import grayArrowLeft from '../../assets/icons/gray-arrows/arrow-left.svg';
 import arrowRight from '../../assets/icons/black-arrows/arrow-right.svg';
 import grayArrowRight from '../../assets/icons/gray-arrows/arrow-right.svg';
+import { ThemeContext } from '../../context/ThemeContext';
 
 type Props = {
   total: number;
@@ -44,14 +45,22 @@ export const Pagination: FC<Props> = (props) => {
   const prevBtnIsDisabled = currentPage <= 1;
   const nextBtnIsDisabled = currentPage >= pageCount;
 
-  const currentLeftArrow = prevBtnIsDisabled ? grayArrowLeft : arrowLeft;
-  const currentRightArrow = nextBtnIsDisabled ? grayArrowRight : arrowRight;
+  const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
 
   const noPagination = prevBtnIsDisabled && nextBtnIsDisabled;
 
   if (noPagination) {
     return null;
   }
+
+  const rightlight = isThemeModeDark ? arrowRight : grayArrowRight;
+  const rightdark = isThemeModeDark ? grayArrowRight : arrowRight;
+
+  const leftlight = isThemeModeDark ? arrowLeft : grayArrowLeft;
+  const leftdark = isThemeModeDark ? grayArrowLeft : arrowLeft;
+
+  const currentLeftArrow = prevBtnIsDisabled ? leftlight : leftdark;
+  const currentRightArrow = nextBtnIsDisabled ? rightlight : rightdark;
 
   return (
     <ul className={cn(styles.container, className)}>
