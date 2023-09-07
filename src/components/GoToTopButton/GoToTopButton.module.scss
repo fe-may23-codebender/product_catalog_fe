@@ -9,11 +9,14 @@
   bottom: 0%;
   right: 0%;
   z-index: 3;
+  opacity: 0;
+  transform: translateX(100%);
 
   background-color: var(--main-background-color);
   text-transform: none;
   gap: 16px;
   cursor: pointer;
+  transition: all 0.3s ease;
 
   &__text {
     transition: all 0.3s ease;
@@ -23,6 +26,11 @@
     width: 40px;
     height: 40px;
   }
+}
+
+.show {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .Button:hover .footer__button__text {

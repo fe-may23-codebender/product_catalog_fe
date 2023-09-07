@@ -21,6 +21,7 @@ import { scrollToTop } from '../../helpers/scrollToTop';
 import styles from './ProductsPage.module.scss';
 import notifStyles from '../../styles/utils/notification.module.scss';
 import container from '../../styles/utils/container.module.scss';
+import { GoToTopButton } from '../../components/GoToTopButton/GoToTopButton';
 
 type Props = {
   productCategory: ProductCategory;
@@ -158,6 +159,7 @@ export const ProductsPage: FC<Props> = ({ productCategory }) => {
           </div>
         )}
       </div>
+      <GoToTopButton />
     </div>
   );
 };

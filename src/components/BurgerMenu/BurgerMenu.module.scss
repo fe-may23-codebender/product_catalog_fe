@@ -99,6 +99,8 @@
   &__togleSwitch {
     flex: 0.2;
     padding-inline: 10px;
+    background: none !important;
+    border-left: 1px solid $elements-color !important;
   }
 }
 

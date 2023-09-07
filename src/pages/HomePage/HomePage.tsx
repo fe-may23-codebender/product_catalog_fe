@@ -19,6 +19,7 @@ import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkel
 import container from '../../styles/utils/container.module.scss';
 import styles from './HomePage.module.scss';
 import notifStyles from '../../styles/utils/notification.module.scss';
+import { GoToTopButton } from '../../components/GoToTopButton/GoToTopButton';
 
 export const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -89,6 +90,7 @@ export const HomePage = () => {
           </>
         )}
       </div>
+      <GoToTopButton />
     </div>
   );
 };
