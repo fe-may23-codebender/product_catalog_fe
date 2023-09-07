@@ -4,16 +4,16 @@ import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
-import { ButtonType, ProductCategory } from '../../types';
+import { ButtonType, ProductCategory,Breakpoint } from '../../types';
 import { FavoriteLink } from '../FavoriteLink';
 import { CartLink } from '../CartLink';
 import { Button } from '../Buttons/Button';
+import styles from './Header.module.scss';
 import burger from '../../assets/icons/burger-menu.svg';
 import { SearchInput } from '../SearchInput/SearcInput';
 import { ThemeContext, themes } from '../../context/ThemeContext';
 import Toggle from '../Toggle/Toggle';
-
-import styles from './Header.module.scss';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 
 export const links = [
   {
@@ -39,7 +39,7 @@ export const Header: FC = () => {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('');
-
+  const breakpoint = useBreakpoint();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -83,7 +83,14 @@ export const Header: FC = () => {
               ))}
             </ul>
           </nav>
-          <Toggle onChange={toggleTheme} value={theme === themes.dark} />
+          {
+            (breakpoint === Breakpoint.Tablet || breakpoint === Breakpoint.Desktop) && (
+              <Toggle
+                onChange={toggleTheme}
+                value={theme === themes.dark}
+              />
+            )
+          }
 
           <div className={styles.actions}>
             <SearchInput

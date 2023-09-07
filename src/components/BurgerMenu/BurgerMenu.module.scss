@@ -96,6 +96,10 @@
       color: $primary-color;
     }
   }
+  &__togleSwitch {
+    margin: 0;
+    display: flex;
+}
 }
 
 .is_activeLink {

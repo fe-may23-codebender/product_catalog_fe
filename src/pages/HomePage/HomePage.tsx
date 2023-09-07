@@ -13,8 +13,9 @@ import {
 } from '../../redux/selectors';
 import { fecthProductsStats } from '../../redux/slices/productsStatsSlice';
 import { fecthSuggestedProducts } from '../../redux/slices/suggestedProductsSlice';
-import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
 import { SkeletonHomePage } from '../../components/Skeletons/SkeletonHomePage/SkeletonHomePage';
+import { ProductsListSkeleton } from '../../components/Skeletons/ProductListSkeleton/ProductListSkeleton';
+import { GoToTopButton } from '../../components/GoToTopButton/GoToTopButton';
 
 import container from '../../styles/utils/container.module.scss';
 import styles from './HomePage.module.scss';
@@ -88,6 +89,8 @@ export const HomePage = () => {
             </div>
           </>
         )}
+
+        <GoToTopButton />
       </div>
     </div>
   );
