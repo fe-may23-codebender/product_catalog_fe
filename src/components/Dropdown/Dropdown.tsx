@@ -3,10 +3,12 @@ import {
   FC, useState, useRef, useContext, useCallback, useEffect,
 } from 'react';
 import cn from 'classnames';
+import { useLocation } from 'react-router-dom';
 import { capitalize } from 'lodash';
 import { SearchLink } from '../SearchLink';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { SearchParams } from '../../types';
+import { ThemeContext } from '../../context/ThemeContext';
 import styles from './Dropdown.module.scss';
 
 import arrowUp from '../../assets/icons/black-arrows/arrow-up.svg';
@@ -14,8 +16,6 @@ import arrowUpDark from '../../assets/icons/gray-arrows/arrow-up.svg';
 
 import arrowDown from '../../assets/icons/black-arrows/arrow-down.svg';
 import arrowDownGray from '../../assets/icons/gray-arrows/arrow-down.svg';
-import { ThemeContext } from '../../context/ThemeContext';
-import { useLocation } from 'react-router-dom';
 
 type Props = {
   label: string;
@@ -65,7 +65,9 @@ export const Dropdown: FC<Props> = (props) => {
     return params;
   };
 
-  useClickOutside(dropdownRef, useCallback(() => setIsActive(false), [pathname, label, search]));
+  useClickOutside(dropdownRef, useCallback(() => {
+    setIsActive(false);
+  }, [pathname, label, search]));
 
   const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
 

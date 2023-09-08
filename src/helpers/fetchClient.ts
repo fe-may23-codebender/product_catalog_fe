@@ -3,11 +3,11 @@ const BASE_URL = 'https://codebender-catalog.onrender.com';
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
-function wait(delay: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
+// function wait(delay: number) {
+//   return new Promise((resolve) => {
+//     setTimeout(resolve, delay);
+//   });
+// }
 
 function request<T>(
   url: string,
