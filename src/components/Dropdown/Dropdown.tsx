@@ -43,9 +43,7 @@ export const Dropdown: FC<Props> = (props) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const disableDropdown = () => {
-    if (isActive) {
-      setIsActive(false);
-    }
+    setIsActive(false);
   };
 
   const changeOption = (newOption: string) => {
