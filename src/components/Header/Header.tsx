@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { useState, FC, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useState, FC, useContext, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import cn from 'classnames';
 import { Logo } from '../Logo';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
@@ -37,8 +37,12 @@ export const links = [
 export const Header: FC = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
+  const { pathname } = useLocation();
+
+  const [currentPage] = pathname.split('/').filter(Boolean);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('');
+  const [activeLink, setActiveLink] = useState(currentPage);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -67,6 +71,7 @@ export const Header: FC = () => {
                   className={({ isActive }) =>
                     cn(styles.navigation__link, { [styles.active]: isActive })
                   }
+                  onClick={() => setActiveLink('')}
                 >
                   home
                 </NavLink>
@@ -79,6 +84,7 @@ export const Header: FC = () => {
                     className={({ isActive }) =>
                       cn(styles.navigation__link, isActive ? styles.active : '')
                     }
+                    onClick={() => setActiveLink('')}
                   >
                     {category}
                   </NavLink>
@@ -102,9 +108,9 @@ export const Header: FC = () => {
 
             <FavoriteLink
               className={cn(styles.actionsLink, styles.actionsLinkFav, {
-                [styles.active]: activeLink === 'favorite',
+                [styles.active]: activeLink === 'favorites',
               })}
-              onClick={() => setActiveLink('favorite')}
+              onClick={() => setActiveLink('favorites')}
             />
 
             <CartLink
@@ -122,7 +128,12 @@ export const Header: FC = () => {
             />
           </div>
 
-          <BurgerMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+          <BurgerMenu
+            isOpen={isMenuOpen}
+            toggleMenu={toggleMenu}
+            activeLink={activeLink}
+            onChangeLink={setActiveLink}
+          />
         </div>
       </div>
     </header>

@@ -23,7 +23,7 @@ function request<T>(
     };
   }
 
-  return wait(500)
+  return fetch(BASE_URL + url, options)
     .then(() => fetch(BASE_URL + url, options))
     .then((response) => {
       if (!response.ok) {

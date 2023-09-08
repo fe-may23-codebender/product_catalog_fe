@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 import {
-  FC, useState, useRef, useContext,
+  FC, useState, useRef, useContext, useCallback, useEffect,
 } from 'react';
 import cn from 'classnames';
 import { capitalize } from 'lodash';
@@ -15,6 +15,7 @@ import arrowUpDark from '../../assets/icons/gray-arrows/arrow-up.svg';
 import arrowDown from '../../assets/icons/black-arrows/arrow-down.svg';
 import arrowDownGray from '../../assets/icons/gray-arrows/arrow-down.svg';
 import { ThemeContext } from '../../context/ThemeContext';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   label: string;
@@ -37,18 +38,15 @@ export const Dropdown: FC<Props> = (props) => {
     isDisabled = false,
   } = props;
 
+  const { pathname, search } = useLocation();
   const [isActive, setIsActive] = useState(false);
   const [option, setOption] = useState(startValue);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const disableDropdown = () => {
-    setIsActive(false);
-  };
-
   const changeOption = (newOption: string) => {
     setOption(newOption);
-    disableDropdown();
+    setIsActive(false);
   };
 
   const getSearchParams = (paramValue: string) => {
@@ -67,7 +65,7 @@ export const Dropdown: FC<Props> = (props) => {
     return params;
   };
 
-  useClickOutside(dropdownRef, disableDropdown);
+  useClickOutside(dropdownRef, useCallback(() => setIsActive(false), [pathname, label, search]));
 
   const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
 
@@ -78,6 +76,10 @@ export const Dropdown: FC<Props> = (props) => {
     : currentArrowDown;
 
   const arrowUper = isThemeModeDark ? arrowUpDark : arrowUp;
+
+  useEffect(() => {
+    setOption(startValue);
+  }, [pathname]);
 
   return (
     <div
