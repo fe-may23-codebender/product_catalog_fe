@@ -29,8 +29,23 @@ const ThemeProvider: React.FC<Props> = ({ children }) => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    const userMedia = window.matchMedia('(prefers-color-scheme: light)');
+
+    const handleThemeChange = (e: MediaQueryListEvent) => {
+      const newTheme = e.matches ? 'light' : 'dark';
+
+      setTheme(newTheme);
+    };
+
+    userMedia.addEventListener('change', handleThemeChange);
+
+    return () => {
+      userMedia.removeEventListener('change', handleThemeChange);
+    };
+  }, []);
+
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
