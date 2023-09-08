@@ -53,8 +53,10 @@ export const ProductDetailsPage = () => {
     hasError: suggestedError,
   } = useAppSelector(selectSuggestedProducts);
 
+  const emptyDetails = !detailsLoaded || !Object.keys(productDetails).length;
+
   const productImages = useMemo(() => {
-    if (!detailsLoaded || !Object.keys(productDetails).length) {
+    if (emptyDetails) {
       return [];
     }
 
@@ -62,7 +64,7 @@ export const ProductDetailsPage = () => {
   }, [productId, detailsLoaded, productDetails]);
 
   const currentProduct = useMemo(() => {
-    if (!detailsLoaded) {
+    if (emptyDetails) {
       return null;
     }
 
@@ -151,15 +153,16 @@ export const ProductDetailsPage = () => {
     };
   }, [productId]);
 
-  if (
-    ((!currentProduct || !Object.keys(productDetails).length) &&
-      detailsLoaded) ||
-    suggestedError
-  ) {
-    toast.error('Something went wrong!', {
-      bodyClassName: notifStyles.notification,
-    });
+  useEffect(() => {
+    if (!currentProduct && detailsLoaded) {
+      toast.error('Something went wrong!', {
+        bodyClassName: notifStyles.notification,
+      });
+    }
 
+  }, [currentProduct, detailsLoaded])
+
+  if (!currentProduct && detailsLoaded) {
     return (
       <div className={styles.PhonesDetails}>
         <div className={container.limit}>

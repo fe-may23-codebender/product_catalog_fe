@@ -38,7 +38,7 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState('');
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   const dispatch = useAppDispatch();
   const { items, loaded } = useAppSelector(selectQueryProducts);
@@ -80,7 +80,7 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
     setQuery('');
   };
 
-  const onCloseSeacrh = () => {
+  const onCloseSeacrh = useCallback(() => {
     setIsOpenInput(false);
     setIsDropdownOpen(false);
     setSearchWith({
@@ -88,7 +88,7 @@ export const SearchInput: FC<Props> = ({ className = '' }) => {
     });
 
     clearAplyQuery();
-  };
+  }, [pathname, search]);
 
   const toggleButton = () => {
     if (!isOpenInput) {

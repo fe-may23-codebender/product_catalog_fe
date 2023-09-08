@@ -18,10 +18,11 @@ import Toggle from '../Toggle/Toggle';
 type Props = {
   isOpen: boolean;
   toggleMenu: () => void;
+  activeLink: string;
+  onChangeLink: (link: string) => void;
 };
 
-export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
-  const [activeLink, setActiveLink] = useState<string>('');
+export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu, activeLink, onChangeLink }) => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   const isThemeModeDark = useContext(ThemeContext).theme === 'dark';
@@ -34,7 +35,7 @@ export const BurgerMenu: React.FC<Props> = ({ isOpen, toggleMenu }) => {
   };
 
   const handleLinkClick = (linkIndex: string) => {
-    setActiveLink(linkIndex);
+    onChangeLink(linkIndex);
     toggleMenu();
   };
 
